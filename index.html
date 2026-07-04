@@ -518,6 +518,14 @@ h1 { letter-spacing: -0.04em; }
 @media (max-width: 480px) { #ai-chat-window.open { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); background: rgba(255,255,255,0.9); } html.dark #ai-chat-window.open { background: rgba(17,24,39, 0.9); } }
 .ai-msg { animation: msgSlide 0.3s ease-out forwards; }
 @keyframes msgSlide { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  .reveal-up, .reveal-scale, .reveal-left, .reveal-right { opacity: 1 !important; transform: none !important; }
+  .word-anim { opacity: 1 !important; transform: none !important; }
+  .promo-track, .marquee-track, .test-track { animation: none !important; }
+  #ai-chat-btn { animation: none !important; }
+  html { scroll-behavior: auto !important; }
+}
 .footer-map-card { border: 1px solid var(--border); border-radius: 16px; overflow: hidden; background: var(--surface); box-shadow: 0 4px 20px rgba(0,0,0,0.05); display: flex; flex-direction: column; width: 100%; }
 .footer-map-info { padding: 20px; display: flex; align-items: flex-start; gap: 12px; }
 .footer-map-icon { width: 40px; height: 40px; background: var(--primary-light); color: var(--primary); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
@@ -3561,34 +3569,7 @@ function spTogglePricing(type) {
     const spTeamPrice = document.getElementById('sp-team-price');
     if (spTeamPrice) spTeamPrice.innerHTML = isAnn ? '$39<span class="sp-plan-per">/mo</span>' : '$49<span class="sp-plan-per">/mo</span>';
     const spBtnLabel = document.getElementById('sp-btn-label');
-    if (spBtnLabel && spBtnLabel.textContent.includes('
-<button id="ai-chat-btn" onclick="toggleAiChat()" aria-label="Open AI Assistant">
-  <span id="ai-chat-icon-open" style="display:flex;align-items:center;justify-content:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
-  <span id="ai-chat-icon-close" style="display:none;align-items:center;justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>
-  <span class="chat-online-dot"></span>
-</button>
-<div id="ai-chat-window">
-  <div id="ai-chat-header">
-    <div style="display:flex;align-items:center;gap:10px;">
-      <div style="width:36px;height:36px;border-radius:10px;background:var(--primary-light);display:flex;align-items:center;justify-content:center;color:var(--primary);flex-shrink:0;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1" fill="currentColor"/></svg></div>
-      <div><div style="font-size:13.5px;font-weight:700;line-height:1.2;">LumenResearch AI</div><div style="font-size:11px;color:var(--muted);display:flex;align-items:center;gap:4px;"><span style="width:6px;height:6px;background:#22c55e;border-radius:50%;display:inline-block;"></span>Llama 3.1 · Groq · Online</div></div>
-    </div>
-    <div style="display:flex;gap:2px;">
-      <button onclick="clearAiChat()" title="Clear" style="background:none;border:none;cursor:pointer;color:var(--muted);width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;transition:all 0.15s;" onmouseover="this.style.background='var(--bg)';this.style.color='var(--ink)'" onmouseout="this.style.background='none';this.style.color='var(--muted)'"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6M9 6V4h6v2"/></svg></button>
-      <button onclick="toggleAiChat()" title="Close" style="background:none;border:none;cursor:pointer;color:var(--muted);width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;transition:all 0.15s;" onmouseover="this.style.background='var(--bg)';this.style.color='var(--ink)'" onmouseout="this.style.background='none';this.style.color='var(--muted)'"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
-    </div>
-  </div>
-  <div id="ai-chat-messages">
-    <div class="ai-msg assistant"><div class="ai-avatar bot"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1" fill="currentColor"/></svg></div><div class="ai-msg-bubble">Hello! I am your LumenResearch AI assistant. I can help you understand papers, suggest research methodologies, synthesize cross-domain insights, and more. What are you working on?</div></div>
-  </div>
-  <div id="ai-chat-input-row">
-    <textarea id="ai-chat-input" placeholder="Ask about research, papers, methods..." rows="1" onkeydown="aiChatKeydown(event)" oninput="autoResizeAiInput(this)"></textarea>
-    <button id="ai-chat-send" onclick="sendAiMessage()" title="Send"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
-  </div>
-</div>
-</body>
-</html>
-)) spBtnLabel.textContent = isAnn ? 'Subscribe · $39/mo' : 'Subscribe · $49/mo';
+    if (spBtnLabel && spBtnLabel.textContent.includes('Subscribe')) spBtnLabel.textContent = isAnn ? 'Subscribe · $39/mo' : 'Subscribe · $49/mo';
 }
 
 </script>
