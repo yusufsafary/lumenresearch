@@ -2,6 +2,7 @@
 <html lang="en" class="light">
 <head>
 <meta charset="UTF-8"/>
+<meta name="ory-verify" content="orynth-e8a5cdc1cd85449ba8a90265fd9eda1d" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
 <meta name="theme-color" content="#2563eb"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
@@ -10,7 +11,7 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png"/>
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png"/>
 <link rel="apple-touch-icon" href="/favicon-512.png"/>
-<meta property="og:title" content="LumenResearch — Structured Intelligence for Modern Research"/>
+<meta property="og:title" content="LumenResearch: Research Infrastructure Built for Serious Scholars"/>
 <meta property="og:description" content="A unified research environment for papers, simulations, citations, and cross-domain intelligence."/>
 <meta property="og:image" content="https://www.lumenresearch.ltd/og-image.png"/>
 <meta property="og:image:width" content="1200"/>
@@ -18,10 +19,10 @@
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://www.lumenresearch.ltd/"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="LumenResearch — Structured Intelligence for Modern Research"/>
+<meta name="twitter:title" content="LumenResearch: Research Infrastructure Built for Serious Scholars"/>
 <meta name="twitter:description" content="A unified research environment for papers, simulations, citations, and cross-domain intelligence."/>
 <meta name="twitter:image" content="https://www.lumenresearch.ltd/og-image.png"/>
-<title>LumenResearch — Think in systems.</title>
+<title>LumenResearch: Think in systems.</title>
 <meta name="description" content="A unified research environment for papers, simulations, citations, and cross-domain intelligence."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -65,6 +66,12 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);margin
 }
 .sidebar-overlay.visible{display:block;}
 @media(max-width:768px){
+#footer-grid{grid-template-columns:1fr 1fr;gap:24px;}
+#footer-grid>div:first-child{grid-column:1/-1;}
+.stripe-payment-placeholder{padding:18px 16px 16px;margin-top:20px;}
+.stripe-plan-tabs{gap:8px;}
+.sp-pay-btn{font-size:13px;}
+
   .sidebar{transform:translateX(-100%);}
   .sidebar.open{transform:translateX(0);}
 }
@@ -230,14 +237,6 @@ html.dark .land-nav{background:rgba(10,14,26,0.92);}
 .land-nav-inner{max-width:1200px;margin:0 auto;height:60px;
   display:flex;align-items:center;justify-content:space-between;padding:0 24px;gap:12px;}
 
-/* ============ PARTNER LOGOS ============ */
-.partner-mark{
-  font-family:'IBM Plex Sans',sans-serif;font-weight:700;
-  font-size:clamp(12px,1.8vw,15px);color:var(--muted);
-  letter-spacing:-0.02em;opacity:0.6;transition:opacity 0.2s;
-  white-space:nowrap;
-}
-.partner-mark:hover{opacity:1;}
 
 /* ============ HERO GRADIENT ============ */
 .hero-badge{
@@ -370,8 +369,6 @@ p[style*="line-height:1.65"]{text-align:justify;hyphens:auto;}
 /* ============ LANDING POLISH ============ */
 #landing-view section{scroll-margin-top:62px;}
 html{scroll-behavior:smooth;}
-.partner-mark{transition:opacity 0.2s,color 0.2s;}
-.partner-mark:hover{opacity:1;color:var(--ink);}
 .stat-chip{transition:box-shadow 0.2s,transform 0.2s;}
 .stat-chip:hover{box-shadow:0 4px 16px rgba(37,99,235,0.1);transform:translateY(-1px);}
 @media(min-width:640px){#land-hero-buttons{gap:12px;}}
@@ -385,7 +382,9 @@ html{scroll-behavior:smooth;}
 @media(max-width:768px){#ai-chat-btn{bottom:calc(70px + var(--safe-bottom));right:14px;width:50px;height:50px;}}
 #ai-chat-window{position:fixed;bottom:calc(92px + var(--safe-bottom));right:24px;z-index:999;width:370px;max-height:530px;background:var(--surface);border:1px solid var(--border);border-radius:18px;box-shadow:0 16px 60px rgba(0,0,0,0.16),0 4px 16px rgba(0,0,0,0.08);display:none;flex-direction:column;overflow:hidden;}
 #ai-chat-window.open{display:flex;animation:slideUp 0.22s cubic-bezier(.4,0,.2,1);}
-@media(max-width:480px){#ai-chat-window{right:0;left:0;bottom:calc(66px + var(--safe-bottom));width:100%;border-radius:20px 20px 0 0;max-height:72vh;}}
+@media(max-width:480px){
+#footer-grid{grid-template-columns:1fr;}
+#ai-chat-window{right:0;left:0;bottom:calc(66px + var(--safe-bottom));width:100%;border-radius:20px 20px 0 0;max-height:72vh;}}
 #ai-chat-header{padding:13px 14px 11px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--surface);flex-shrink:0;}
 #ai-chat-messages{flex:1;overflow-y:auto;padding:14px 12px;display:flex;flex-direction:column;gap:10px;}
 .ai-msg{display:flex;gap:8px;align-items:flex-start;}
@@ -413,7 +412,37 @@ html{scroll-behavior:smooth;}
 /* ============ MOBILE NAV REFINEMENTS ============ */
 @media(max-width:600px){
   .land-nav-signin{display:none!important;}
+  .land-nav-enter{display:none!important;}
 }
+
+/* ============ LANDING MOBILE HAMBURGER ============ */
+#land-ham-btn{
+  display:none;background:none;border:1px solid var(--border);border-radius:7px;
+  width:36px;height:36px;align-items:center;justify-content:center;
+  cursor:pointer;color:var(--muted);flex-shrink:0;transition:background 0.15s;
+}
+#land-ham-btn:hover{background:var(--border);}
+@media(max-width:768px){
+  #land-ham-btn{display:flex;}
+}
+/* Mobile dropdown menu */
+#land-mobile-menu{
+  display:none;flex-direction:column;
+  background:var(--surface);border-bottom:1px solid var(--border);
+  padding:8px 14px 14px;gap:2px;
+  animation:mobileMenuIn 0.18s ease;
+}
+@keyframes mobileMenuIn{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:translateY(0);}}
+#land-mobile-menu.open{display:flex;}
+#land-mobile-menu a{
+  display:flex;align-items:center;padding:11px 12px;font-size:14px;font-weight:500;
+  color:var(--muted);text-decoration:none;border-radius:8px;transition:all 0.15s;
+}
+#land-mobile-menu a:active{background:var(--border);}
+#land-mobile-menu .mob-demo{color:var(--primary);font-weight:600;}
+#land-mobile-menu .mob-divider{height:1px;background:var(--border);margin:6px 0;}
+#land-mobile-menu .mob-auth-row{display:flex;gap:8px;padding-top:4px;}
+#land-mobile-menu .mob-auth-row button{flex:1;}
 </style>
 </head>
 <body>
@@ -425,14 +454,14 @@ html{scroll-behavior:smooth;}
 <div id="auth-view" class="view" style="flex-direction:column;background:var(--bg);align-items:center;justify-content:center;padding:20px;">
   <!-- Back to home -->
   <div style="width:100%;max-width:400px;margin-bottom:10px;">
-    <a href="javascript:void(0)" onclick="showView('landing-view');window.scrollTo(0,0);" style="display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);text-decoration:none;padding:6px 0;transition:color 0.2s;" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--muted)'">
+    <a href="javascript:void(0)" onclick="showLandingPage()" style="display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);text-decoration:none;padding:6px 0;transition:color 0.2s;" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--muted)'">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
       Back to home
     </a>
   </div>
 
   <div style="text-align:center;margin-bottom:18px;">
-    <div style="display:inline-flex;align-items:center;gap:10px;margin-bottom:6px;cursor:pointer;" onclick="showView('landing-view')">
+    <div style="display:inline-flex;align-items:center;gap:10px;margin-bottom:6px;cursor:pointer;" onclick="showLandingPage()">
       <!-- Inline logo small -->
       <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="7" fill="var(--primary)"/><rect x="9" y="7" width="5" height="18" rx="2" fill="white"/><rect x="9" y="21" width="14" height="5.5" rx="2" fill="white" fill-opacity="0.82"/><circle cx="24" cy="9" r="2.5" fill="white" fill-opacity="0.4"/></svg>
       <span class="logo-mark" style="font-size:15px;"><span class="logo-word">Lumen</span><span class="logo-sep"></span><span class="logo-word-accent">Research</span></span>
@@ -440,26 +469,17 @@ html{scroll-behavior:smooth;}
     <p style="font-size:11px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;">Think in systems.</p>
   </div>
 
-  <!-- Social follow — always visible above auth panels -->
+  <!-- Social follow: always visible above auth panels -->
   <div style="width:100%;max-width:400px;margin-bottom:14px;">
     <p style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin:0 0 8px;text-align:center;">Follow our research updates</p>
     <div class="social-card-row">
-      <a href="https://x.com/lumenresearch_" target="_blank" rel="noopener" class="social-card">
+      <a href="https://x.com/morganogoodrich" target="_blank" rel="noopener" class="social-card">
         <div class="social-card-avatar" style="background:#000;color:#fff;">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
         </div>
         <div class="social-card-info">
           <div class="social-card-name">LumenResearch</div>
-          <div class="social-card-handle">@lumenresearch_</div>
-        </div>
-      </a>
-      <a href="https://www.linkedin.com/in/lumen-research-a7503240b" target="_blank" rel="noopener" class="social-card">
-        <div class="social-card-avatar" style="background:#0a66c2;color:#fff;">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-        </div>
-        <div class="social-card-info">
-          <div class="social-card-name">Lumen Research</div>
-          <div class="social-card-handle">LinkedIn</div>
+          <div class="social-card-handle">@morganogoodrich</div>
         </div>
       </a>
     </div>
@@ -467,7 +487,10 @@ html{scroll-behavior:smooth;}
 
   <div id="auth-signin" class="card" style="width:100%;max-width:400px;padding:28px;">
     <h2 style="font-size:20px;font-weight:800;margin:0 0 4px;">Access Workspace</h2>
-    <p style="font-size:13px;color:var(--muted);margin:0 0 22px;">Secure institutional access to your research environment.</p>
+    <p style="font-size:13px;color:var(--muted);margin:0 0 16px;">Secure institutional access to your research environment.</p>
+    <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:10px 12px;font-size:12px;color:#1d4ed8;margin-bottom:14px;line-height:1.55;">
+      <strong>Preview mode:</strong> Enter any email and a password (6+ chars) to access the workspace demo.
+    </div>
     <div style="display:flex;flex-direction:column;gap:14px;">
       <div><label class="section-label">Institutional Email</label>
         <input id="si-email" type="email" autocomplete="email" class="input-field" placeholder="researcher@university.edu" style="margin-top:5px;"/></div>
@@ -522,32 +545,44 @@ html{scroll-behavior:smooth;}
         </div>
         <div style="display:flex;gap:2px;" id="land-nav-links">
           <a href="#features" style="padding:6px 11px;font-size:13px;color:var(--muted);border-radius:6px;transition:all 0.2s;" onmouseover="this.style.background='var(--border)';this.style.color='var(--ink)'" onmouseout="this.style.background='';this.style.color='var(--muted)'">Features</a>
-          <a href="#partners" style="padding:6px 11px;font-size:13px;color:var(--muted);border-radius:6px;transition:all 0.2s;" onmouseover="this.style.background='var(--border)';this.style.color='var(--ink)'" onmouseout="this.style.background='';this.style.color='var(--muted)'">Partners</a>
           <a href="#pricing" style="padding:6px 11px;font-size:13px;color:var(--muted);border-radius:6px;transition:all 0.2s;" onmouseover="this.style.background='var(--border)';this.style.color='var(--ink)'" onmouseout="this.style.background='';this.style.color='var(--muted)'">Pricing</a>
-          <a href="#" onclick="showFooterPage('docs')" style="padding:6px 11px;font-size:13px;color:var(--muted);border-radius:6px;transition:all 0.2s;" onmouseover="this.style.background='var(--border)';this.style.color='var(--ink)'" onmouseout="this.style.background='';this.style.color='var(--muted)'">Docs</a>
+          <a href="javascript:void(0)" onclick="handleDemoLogin()" style="padding:6px 11px;font-size:13px;color:var(--primary);font-weight:600;border-radius:6px;transition:all 0.2s;" onmouseover="this.style.background='var(--primary-light)'" onmouseout="this.style.background=''">Demo</a>
+          <a href="/docs" onclick="event.preventDefault();showFooterPage('docs')" style="padding:6px 11px;font-size:13px;color:var(--muted);border-radius:6px;transition:all 0.2s;" onmouseover="this.style.background='var(--border)';this.style.color='var(--ink)'" onmouseout="this.style.background='';this.style.color='var(--muted)'">Docs</a>
         </div>
       </div>
       <div style="display:flex;align-items:center;gap:8px;">
         <button id="land-theme-btn" onclick="toggleTheme()" style="background:none;border:1px solid var(--border);border-radius:7px;width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--muted);">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="theme-icon-land"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
         </button>
-        <button class="btn-secondary land-nav-signin" style="padding:7px 14px;font-size:13px;" onclick="showAuth('signin')">Sign In</button>
-        <button class="btn-primary" style="padding:7px 14px;font-size:13px;white-space:nowrap;" onclick="showAuth('signin')">Enter Workspace</button>
+        <button class="btn-secondary land-nav-signin" style="padding:5px 12px;font-size:12.5px;min-height:32px;" onclick="showAuth('signin')">Sign In</button>
+        <button class="btn-primary land-nav-enter" style="padding:5px 12px;font-size:12.5px;min-height:32px;white-space:nowrap;" onclick="showAuth('signin')">Enter Workspace</button>
+        <!-- Hamburger: mobile only -->
+        <button id="land-ham-btn" onclick="toggleLandingMenu()" aria-label="Open menu" aria-expanded="false">
+          <svg id="land-ham-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile dropdown menu (hidden on desktop) -->
+    <div id="land-mobile-menu">
+      <a href="#features" onclick="closeLandingMenu()">Features</a>
+      <a href="#pricing" onclick="closeLandingMenu()">Pricing</a>
+      <a href="javascript:void(0)" onclick="handleDemoLogin();closeLandingMenu()" class="mob-demo">Demo</a>
+      <a href="/docs" onclick="event.preventDefault();showFooterPage('docs');closeLandingMenu()">Docs</a>
+      <div class="mob-divider"></div>
+      <div class="mob-auth-row">
+        <button class="btn-secondary" style="padding:10px 14px;font-size:13px;" onclick="showAuth('signin');closeLandingMenu()">Sign In</button>
+        <button class="btn-primary" style="padding:10px 14px;font-size:13px;" onclick="showAuth('signin');closeLandingMenu()">Enter Workspace</button>
       </div>
     </div>
   </nav>
 
   <!-- Hero -->
   <section style="max-width:1160px;margin:0 auto;padding:64px 20px 56px;text-align:center;width:100%;">
-    <div class="hero-badge">
-      <span style="width:6px;height:6px;background:var(--primary);border-radius:99px;display:inline-block;animation:pulse 2s ease infinite;"></span>
-      Now in institutional beta &nbsp;·&nbsp; <strong>420+ organizations</strong>
-    </div>
     <h1 style="font-size:clamp(32px,6vw,64px);font-weight:800;letter-spacing:-2.5px;line-height:1.03;margin:0 0 22px;font-family:'IBM Plex Sans',sans-serif;">
-      Structured <span class="gradient-word">Intelligence</span><br>for Modern Research
+      Research Infrastructure Built for <span class="gradient-word">Serious Scholars</span>
     </h1>
     <p style="font-size:clamp(15px,2.5vw,19px);color:var(--muted);max-width:600px;margin:0 auto 38px;line-height:1.7;">
-      A unified research environment for papers, simulations, citations, and cross-domain intelligence. Built for how researchers actually think.
+      Index your literature corpus, trace citation networks, run methodological simulations, and surface cross-disciplinary insights, structured around how academic research actually works.
     </p>
     <div id="land-hero-buttons" style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
       <button class="btn-primary" style="padding:12px 22px;font-size:15px;" onclick="showAuth('signin')">
@@ -562,25 +597,58 @@ html{scroll-behavior:smooth;}
         Request Institutional Access
       </button>
     </div>
-    <p style="font-size:12px;color:var(--muted);margin-top:14px;">No credit card required · SOC 2 Type II · ISO 27001</p>
+    
+    <!-- Stripe Payment Placeholder -->
+    <div class="stripe-payment-placeholder" id="stripe-placeholder">
+      <div class="sp-header">
+        <div>
+          <div class="sp-title">Start your plan today</div>
+          <div class="sp-subtitle">Secure checkout · Cancel anytime · PCI DSS Level 1</div>
+        </div>
+        <div class="stripe-logo-wrap" title="Payments secured by Stripe">
+          <svg width="54" height="22" viewBox="0 0 468 222" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Stripe"><path d="M414 113.4c0-25.6-12.4-45.8-36.1-45.8-23.8 0-38.2 20.2-38.2 45.6 0 30.1 17 45.3 41.4 45.3 11.9 0 20.9-2.7 27.7-6.5v-20c-6.8 3.4-14.6 5.5-24.5 5.5-9.7 0-18.3-3.4-19.4-15.2h48.9c0-1.3.2-6.5.2-8.9zm-49.4-9.5c0-11.3 6.9-16 13.2-16 6.1 0 12.6 4.7 12.6 16h-25.8zM267.2 67.6c-9.8 0-16.1 4.6-19.6 7.8l-1.3-6.2h-22v116.6l25-5.3.1-28.3c3.6 2.6 8.9 6.3 17.7 6.3 17.9 0 34.2-14.4 34.2-46.1-.1-29-16.6-44.8-34.1-44.8zm-6 68.9c-5.9 0-9.4-2.1-11.8-4.7l-.1-37.1c2.6-2.9 6.2-4.9 11.9-4.9 9.1 0 15.4 10.2 15.4 23.3 0 13.4-6.2 23.4-15.4 23.4zM221.5 60l-25.1 5.3V85l25.1-5.3zM196.4 69.2h25.1v88.3h-25.1zM146.9 76.8l-1.6-7.6h-21.6v88.3h25V98.2c5.9-7.7 15.9-6.3 19-5.2V69.2c-3.2-1.2-14.9-3.4-20.8 7.6zM96.5 47.8L72.1 53l-.1 80.9c0 14.9 11.2 25.9 26.1 25.9 8.3 0 14.3-1.5 17.6-3.3V136c-3.2 1.3-19 5.9-19-8.9V91.8h19V69.2H96.4l.1-21.4zM30.1 94.9c0-3.9 3.2-5.4 8.5-5.4 7.6 0 17.2 2.3 24.8 6.4V72.3c-8.3-3.3-16.5-4.6-24.8-4.6C15.5 67.7 0 76 0 96.6c0 31.9 43.9 26.8 43.9 40.5 0 4.6-4 6.1-9.6 6.1-8.3 0-18.9-3.4-27.3-8l-3.9 23.6c9.3 4 18.7 5.7 27.2 5.7 20.7 0 34.9-10.2 34.9-31.2-.1-34.4-43.1-28.3-43.1-38.4z" fill="#635BFF"/></svg>
+        </div>
+      </div>
+      <div class="stripe-plan-tabs">
+        <div class="stripe-plan-tab" id="sp-tab-free" onclick="spSelectPlan('free')">
+          <div class="sp-plan-name">Researcher</div>
+          <div class="sp-plan-price">Free</div>
+          <div class="sp-plan-per">forever</div>
+        </div>
+        <div class="stripe-plan-tab active" id="sp-tab-team" onclick="spSelectPlan('team')">
+          <div class="sp-plan-name">Team</div>
+          <div class="sp-plan-price">$49<span class="sp-plan-per">/mo</span></div>
+          <div class="sp-plan-per">up to 10 members</div>
+        </div>
+      </div>
+      <div class="sp-divider"></div>
+      <button class="sp-pay-btn sp-pay-btn-stripe" onclick="showToast('Stripe integration coming soon. Full checkout will be live shortly.','info')">
+        <span id="sp-btn-label">Subscribe · $49/mo</span>
+        <span class="sp-btn-divider"></span>
+        <svg width="50" height="21" viewBox="0 0 468 222" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Stripe"><path d="M414 113.4c0-25.6-12.4-45.8-36.1-45.8-23.8 0-38.2 20.2-38.2 45.6 0 30.1 17 45.3 41.4 45.3 11.9 0 20.9-2.7 27.7-6.5v-20c-6.8 3.4-14.6 5.5-24.5 5.5-9.7 0-18.3-3.4-19.4-15.2h48.9c0-1.3.2-6.5.2-8.9zm-49.4-9.5c0-11.3 6.9-16 13.2-16 6.1 0 12.6 4.7 12.6 16h-25.8zM267.2 67.6c-9.8 0-16.1 4.6-19.6 7.8l-1.3-6.2h-22v116.6l25-5.3.1-28.3c3.6 2.6 8.9 6.3 17.7 6.3 17.9 0 34.2-14.4 34.2-46.1-.1-29-16.6-44.8-34.1-44.8zm-6 68.9c-5.9 0-9.4-2.1-11.8-4.7l-.1-37.1c2.6-2.9 6.2-4.9 11.9-4.9 9.1 0 15.4 10.2 15.4 23.3 0 13.4-6.2 23.4-15.4 23.4zM221.5 60l-25.1 5.3V85l25.1-5.3zM196.4 69.2h25.1v88.3h-25.1zM146.9 76.8l-1.6-7.6h-21.6v88.3h25V98.2c5.9-7.7 15.9-6.3 19-5.2V69.2c-3.2-1.2-14.9-3.4-20.8 7.6zM96.5 47.8L72.1 53l-.1 80.9c0 14.9 11.2 25.9 26.1 25.9 8.3 0 14.3-1.5 17.6-3.3V136c-3.2 1.3-19 5.9-19-8.9V91.8h19V69.2H96.4l.1-21.4zM30.1 94.9c0-3.9 3.2-5.4 8.5-5.4 7.6 0 17.2 2.3 24.8 6.4V72.3c-8.3-3.3-16.5-4.6-24.8-4.6C15.5 67.7 0 76 0 96.6c0 31.9 43.9 26.8 43.9 40.5 0 4.6-4 6.1-9.6 6.1-8.3 0-18.9-3.4-27.3-8l-3.9 23.6c9.3 4 18.7 5.7 27.2 5.7 20.7 0 34.9-10.2 34.9-31.2-.1-34.4-43.1-28.3-43.1-38.4z" fill="#fff"/></svg>
+      </button>
+      <div class="sp-secure-row"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Secured by Stripe &middot; 256-bit SSL &middot; PCI DSS Level 1</div>
+      <div class="sp-badges">
+        <span class="sp-badge-logo" title="Visa"><svg xmlns="http://www.w3.org/2000/svg" width="38" height="24" viewBox="0 0 38 24" role="img" aria-label="Visa"><title>Visa</title><rect width="38" height="24" rx="4" fill="#1A1F71"/><text x="19" y="17" text-anchor="middle" fill="#FFFFFF" font-size="11.5" font-weight="800" font-family="Arial,Helvetica,sans-serif" letter-spacing="1.5">VISA</text></svg></span>
+        <span class="sp-badge-logo" title="Mastercard"><svg xmlns="http://www.w3.org/2000/svg" width="38" height="24" viewBox="0 0 38 24" role="img" aria-label="Mastercard"><title>Mastercard</title><rect width="38" height="24" rx="4" fill="#252525"/><circle cx="15" cy="12" r="7" fill="#EB001B"/><circle cx="23" cy="12" r="7" fill="#F79E1B"/><path d="M19 6.27a7 7 0 0 1 0 11.46 7 7 0 0 1 0-11.46z" fill="#FF5F00"/></svg></span>
+        <span class="sp-badge-logo" title="American Express"><svg xmlns="http://www.w3.org/2000/svg" width="38" height="24" viewBox="0 0 38 24" role="img" aria-label="American Express"><title>American Express</title><rect width="38" height="24" rx="4" fill="#2E77BC"/><text x="19" y="16" text-anchor="middle" fill="#FFFFFF" font-size="9.5" font-weight="800" font-family="Arial,Helvetica,sans-serif" letter-spacing="0.8">AMEX</text></svg></span>
+        <span class="sp-badge-logo" title="Apple Pay"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="24" viewBox="0 0 50 24" role="img" aria-label="Apple Pay"><title>Apple Pay</title><rect width="50" height="24" rx="4" fill="#000000"/><path fill="#FFFFFF" d="M16.8 8.4c.5-.6.8-1.4.7-2.3-.7.1-1.6.5-2.1 1.1-.5.5-.9 1.4-.8 2.2.8.1 1.6-.4 2.2-1zm.7 1.2c-1.2-.1-2.3.7-2.8.7-.6 0-1.5-.7-2.5-.6-1.3 0-2.4.7-3.1 1.8-1.3 2.2-.3 5.5.9 7.3.6.9 1.3 1.8 2.3 1.8.9 0 1.3-.6 2.4-.6 1.1 0 1.4.6 2.4.6 1 0 1.6-.9 2.2-1.7.7-1 1-2 1-2s-1.9-.8-2-2.8c0-1.8 1.5-2.7 1.5-2.7-.8-1.2-2.1-1.8-2.3-1.8z"/><text x="35" y="16" text-anchor="middle" fill="#FFFFFF" font-size="8.5" font-weight="700" font-family="-apple-system,Arial,sans-serif">Pay</text></svg></span>
+        <span class="sp-badge-logo" title="Google Pay"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="24" viewBox="0 0 50 24" role="img" aria-label="Google Pay"><title>Google Pay</title><rect width="50" height="24" rx="4" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1"/><text y="16" font-size="9.5" font-weight="700" font-family="Arial,Helvetica,sans-serif"><tspan x="5" fill="#4285F4">G</tspan><tspan fill="#EA4335">o</tspan><tspan fill="#FBBC05">o</tspan><tspan fill="#4285F4">g</tspan><tspan fill="#34A853">l</tspan><tspan fill="#EA4335">e </tspan><tspan fill="#5F6368">Pay</tspan></text></svg></span>
+      </div>
+    </div>
+    <!-- End Stripe Payment Placeholder -->
+
+    <p style="font-size:12px;color:var(--muted);margin-top:14px;">No credit card required &nbsp;·&nbsp; SOC 2 Type II &nbsp;·&nbsp; ISO 27001 &nbsp;·&nbsp; GDPR compliant</p>
 
     <!-- Social follow strip -->
     <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-top:22px;flex-wrap:wrap;">
       <span style="font-size:12px;color:var(--muted);letter-spacing:0.04em;">Follow our research:</span>
-      <a href="https://x.com/lumenresearch_" target="_blank" rel="noopener" class="social-card" style="padding:7px 12px;gap:8px;max-width:180px;">
+      <a href="https://x.com/morganogoodrich" target="_blank" rel="noopener" class="social-card" style="padding:7px 12px;gap:8px;max-width:180px;">
         <div class="social-card-avatar" style="background:#000;color:#fff;width:24px;height:24px;min-width:24px;border-radius:6px;">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
         </div>
         <div class="social-card-info">
-          <div class="social-card-name" style="font-size:12px;">@lumenresearch_</div>
-        </div>
-      </a>
-      <a href="https://www.linkedin.com/in/lumen-research-a7503240b" target="_blank" rel="noopener" class="social-card" style="padding:7px 12px;gap:8px;max-width:180px;">
-        <div class="social-card-avatar" style="background:#0a66c2;color:#fff;width:24px;height:24px;min-width:24px;border-radius:6px;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-        </div>
-        <div class="social-card-info">
-          <div class="social-card-name" style="font-size:12px;">Lumen Research</div>
+          <div class="social-card-name" style="font-size:12px;">@morganogoodrich</div>
         </div>
       </a>
     </div>
@@ -606,8 +674,8 @@ html{scroll-behavior:smooth;}
   <section id="emulator" style="padding:72px 20px;background:var(--bg);border-top:1px solid var(--border);">
     <div style="max-width:1100px;margin:0 auto;">
       <p style="text-align:center;font-size:11px;font-weight:700;color:var(--primary);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Live Emulator</p>
-      <h2 style="text-align:center;font-size:clamp(22px,4vw,38px);font-weight:800;letter-spacing:-1px;margin:0 0 10px;font-family:'IBM Plex Sans',sans-serif;">Interact before you sign up</h2>
-      <p style="text-align:center;color:var(--muted);font-size:14px;margin:0 0 32px;">Run a real simulation, explore the knowledge graph, and inspect AI-generated insights — all live.</p>
+      <h2 style="text-align:center;font-size:clamp(22px,4vw,38px);font-weight:800;letter-spacing:-1px;margin:0 0 10px;font-family:'IBM Plex Sans',sans-serif;">Try the platform before signing up</h2>
+      <p style="text-align:center;color:var(--muted);font-size:14px;margin:0 0 32px;">Run a simulation, explore the knowledge graph, and inspect AI-generated insights before creating an account.</p>
 
       <!-- Tab bar -->
       <div style="display:flex;gap:4px;border-bottom:1px solid var(--border);margin-bottom:0;padding:0 4px;">
@@ -709,12 +777,12 @@ html{scroll-behavior:smooth;}
   <section id="features" style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:72px 20px;">
     <div style="max-width:1160px;margin:0 auto;">
       <p style="text-align:center;font-size:11px;font-weight:700;color:var(--primary);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Platform Capabilities</p>
-      <h2 style="text-align:center;font-size:clamp(24px,4vw,40px);font-weight:800;letter-spacing:-1.5px;margin:0 0 50px;font-family:'IBM Plex Sans',sans-serif;">Everything a research team needs</h2>
+      <h2 style="text-align:center;font-size:clamp(24px,4vw,40px);font-weight:800;letter-spacing:-1.5px;margin:0 0 50px;font-family:'IBM Plex Sans',sans-serif;">Built for every layer of serious research</h2>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;">
         <div class="card card-hover" style="padding:22px;">
           <div style="width:44px;height:44px;background:var(--primary-light);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;color:var(--primary);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><circle cx="12" cy="12" r="10"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
           <h3 style="font-size:15px;font-weight:700;margin:0 0 7px;">AI Research Intelligence</h3>
-          <p style="font-size:13px;color:var(--muted);line-height:1.65;margin:0;">Synthesize observations, detect contradictions, surface cross-paper intelligence — not a chatbot, an insight engine.</p>
+          <p style="font-size:13px;color:var(--muted);line-height:1.65;margin:0;">Synthesize observations, detect contradictions, surface cross-paper intelligence. Not a chatbot. An insight engine.</p>
         </div>
         <div class="card card-hover" style="padding:22px;">
           <div style="width:44px;height:44px;background:#f0fdf4;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;color:#16a34a;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></div>
@@ -739,55 +807,7 @@ html{scroll-behavior:smooth;}
         <div class="card card-hover" style="padding:22px;">
           <div style="width:44px;height:44px;background:#f0f9ff;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;color:#0284c7;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
           <h3 style="font-size:15px;font-weight:700;margin:0 0 7px;">Research Analytics</h3>
-          <p style="font-size:13px;color:var(--muted);line-height:1.65;margin:0;">Publication velocity, citation trends, collaboration graphs, and topic distribution — all in one view.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Partners Section -->
-  <section id="partners" style="padding:72px 20px;background:var(--bg);">
-    <div style="max-width:1160px;margin:0 auto;">
-      <p style="text-align:center;font-size:11px;font-weight:700;color:var(--primary);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Collaboration Partners</p>
-      <h2 style="text-align:center;font-size:clamp(22px,4vw,36px);font-weight:800;letter-spacing:-1px;margin:0 0 10px;font-family:'IBM Plex Sans',sans-serif;">Trusted by world-class institutions</h2>
-      <p style="text-align:center;color:var(--muted);font-size:14px;margin:0 0 44px;">LumenResearch partners with leading universities, research labs, and think tanks globally.</p>
-      <!-- Partner logos row 1 -->
-      <div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:24px 44px;margin-bottom:44px;padding:36px 32px;background:var(--surface);border-radius:16px;border:1px solid var(--border);">
-        <span class="partner-mark">MIT Media Lab</span>
-        <span class="partner-mark">Stanford HAI</span>
-        <span class="partner-mark">DeepMind</span>
-        <span class="partner-mark">OpenAI Research</span>
-        <span class="partner-mark">Max Planck Society</span>
-        <span class="partner-mark">ETH Zürich</span>
-        <span class="partner-mark">Oxford Internet Institute</span>
-        <span class="partner-mark">Carnegie Mellon</span>
-        <span class="partner-mark">Google Research</span>
-        <span class="partner-mark">Microsoft Research</span>
-        <span class="partner-mark">CERN OpenLab</span>
-        <span class="partner-mark">Alan Turing Institute</span>
-      </div>
-      <!-- Partner cards -->
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;">
-        <div class="card" style="padding:20px;">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
-            <div style="width:36px;height:36px;border-radius:8px;background:#f0fdf4;display:flex;align-items:center;justify-content:center;font-size:16px;">🔬</div>
-            <div><p style="margin:0;font-size:13px;font-weight:700;">Academic Research</p><p style="margin:0;font-size:11px;color:var(--muted);">Universities & Institutes</p></div>
-          </div>
-          <p style="margin:0;font-size:13px;color:var(--muted);line-height:1.6;">MIT, Stanford, Oxford, Cambridge, ETH Zürich, and 200+ universities use LumenResearch for cross-department paper management and citation intelligence.</p>
-        </div>
-        <div class="card" style="padding:20px;">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
-            <div style="width:36px;height:36px;border-radius:8px;background:var(--primary-light);display:flex;align-items:center;justify-content:center;font-size:16px;">🤖</div>
-            <div><p style="margin:0;font-size:13px;font-weight:700;">AI Laboratories</p><p style="margin:0;font-size:11px;color:var(--muted);">Safety, Alignment & Systems</p></div>
-          </div>
-          <p style="margin:0;font-size:13px;color:var(--muted);line-height:1.6;">DeepMind, Anthropic, OpenAI, and Redwood Research rely on our insight engine to surface contradictions and cross-domain patterns at scale.</p>
-        </div>
-        <div class="card" style="padding:20px;">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
-            <div style="width:36px;height:36px;border-radius:8px;background:#fefce8;display:flex;align-items:center;justify-content:center;font-size:16px;">📊</div>
-            <div><p style="margin:0;font-size:13px;font-weight:700;">Policy & Think Tanks</p><p style="margin:0;font-size:11px;color:var(--muted);">Governance & Analysis</p></div>
-          </div>
-          <p style="margin:0;font-size:13px;color:var(--muted);line-height:1.6;">Brookings Institution, RAND Corporation, and the Center for Strategic Studies use our analytics for policy-grade research synthesis.</p>
+          <p style="font-size:13px;color:var(--muted);line-height:1.65;margin:0;">Publication velocity, citation trends, collaboration graphs, and topic distribution, all in one view.</p>
         </div>
       </div>
     </div>
@@ -798,7 +818,7 @@ html{scroll-behavior:smooth;}
     <div style="max-width:1000px;margin:0 auto;">
       <p style="text-align:center;font-size:11px;font-weight:700;color:var(--primary);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Pricing</p>
       <h2 style="text-align:center;font-size:clamp(22px,4vw,38px);font-weight:800;letter-spacing:-1px;margin:0 0 10px;font-family:'IBM Plex Sans',sans-serif;">Built for institutions at every scale</h2>
-      <p style="text-align:center;color:var(--muted);font-size:14px;margin:0 0 44px;">Start free, scale to enterprise.</p>
+      <p style="text-align:center;color:var(--muted);font-size:14px;margin:0 0 44px;">Individual researchers start free. Teams and institutions scale as needed.</p>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;">
         <div class="card" style="padding:28px;">
           <p style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin:0 0 12px;">Researcher</p>
@@ -817,7 +837,8 @@ html{scroll-behavior:smooth;}
           <p style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--primary);margin:0 0 12px;">Team</p>
           <p style="font-size:36px;font-weight:800;margin:0 0 4px;">$49<span style="font-size:16px;font-weight:500;color:var(--muted);">/mo</span></p>
           <p style="font-size:13px;color:var(--muted);margin:0 0 22px;">Per workspace, up to 10 members</p>
-          <button class="btn-primary" style="width:100%;justify-content:center;margin-bottom:18px;" onclick="showAuth('register')">Start Free Trial</button>
+          <button class="btn-primary" style="width:100%;justify-content:center;margin-bottom:8px;display:flex;align-items:center;gap:8px;" onclick="showAuth('register')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Start Free Trial</button>
+          <div class="pricing-stripe-badge"><svg width="44" height="18" viewBox="0 0 468 222" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Stripe"><path d="M414 113.4c0-25.6-12.4-45.8-36.1-45.8-23.8 0-38.2 20.2-38.2 45.6 0 30.1 17 45.3 41.4 45.3 11.9 0 20.9-2.7 27.7-6.5v-20c-6.8 3.4-14.6 5.5-24.5 5.5-9.7 0-18.3-3.4-19.4-15.2h48.9c0-1.3.2-6.5.2-8.9zm-49.4-9.5c0-11.3 6.9-16 13.2-16 6.1 0 12.6 4.7 12.6 16h-25.8zM267.2 67.6c-9.8 0-16.1 4.6-19.6 7.8l-1.3-6.2h-22v116.6l25-5.3.1-28.3c3.6 2.6 8.9 6.3 17.7 6.3 17.9 0 34.2-14.4 34.2-46.1-.1-29-16.6-44.8-34.1-44.8zm-6 68.9c-5.9 0-9.4-2.1-11.8-4.7l-.1-37.1c2.6-2.9 6.2-4.9 11.9-4.9 9.1 0 15.4 10.2 15.4 23.3 0 13.4-6.2 23.4-15.4 23.4zM221.5 60l-25.1 5.3V85l25.1-5.3zM196.4 69.2h25.1v88.3h-25.1zM146.9 76.8l-1.6-7.6h-21.6v88.3h25V98.2c5.9-7.7 15.9-6.3 19-5.2V69.2c-3.2-1.2-14.9-3.4-20.8 7.6zM96.5 47.8L72.1 53l-.1 80.9c0 14.9 11.2 25.9 26.1 25.9 8.3 0 14.3-1.5 17.6-3.3V136c-3.2 1.3-19 5.9-19-8.9V91.8h19V69.2H96.4l.1-21.4zM30.1 94.9c0-3.9 3.2-5.4 8.5-5.4 7.6 0 17.2 2.3 24.8 6.4V72.3c-8.3-3.3-16.5-4.6-24.8-4.6C15.5 67.7 0 76 0 96.6c0 31.9 43.9 26.8 43.9 40.5 0 4.6-4 6.1-9.6 6.1-8.3 0-18.9-3.4-27.3-8l-3.9 23.6c9.3 4 18.7 5.7 27.2 5.7 20.7 0 34.9-10.2 34.9-31.2-.1-34.4-43.1-28.3-43.1-38.4z" fill="#635BFF"/></svg><span style="color:var(--muted);font-size:11px;">Payments by Stripe</span></div>
           <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px;">
             <li style="font-size:13.5px;display:flex;gap:8px;align-items:center;"><span style="color:#16a34a;font-weight:700;">✓</span> Unlimited workspaces</li>
             <li style="font-size:13.5px;display:flex;gap:8px;align-items:center;"><span style="color:#16a34a;font-weight:700;">✓</span> 10,000 papers indexed</li>
@@ -853,21 +874,21 @@ html{scroll-behavior:smooth;}
           <p style="font-size:14px;line-height:1.7;color:var(--ink);margin:0 0 16px;">"LumenResearch transformed how our AI safety team synthesizes literature. The insight engine surfaces contradictions we would have missed in weeks of manual review."</p>
           <div style="display:flex;align-items:center;gap:10px;">
             <div style="width:36px;height:36px;border-radius:99px;background:var(--primary-light);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--primary);font-size:12px;flex-shrink:0;">SC</div>
-            <div><p style="margin:0;font-size:13px;font-weight:600;">Dr. Sarah Chen</p><p style="margin:0;font-size:12px;color:var(--muted);">Principal Researcher, DeepMind</p></div>
+            <div><p style="margin:0;font-size:13px;font-weight:600;">Dr. Sarah Chen</p><p style="margin:0;font-size:12px;color:var(--muted);">Principal Researcher, AI Safety Lab</p></div>
           </div>
         </div>
         <div class="card" style="padding:22px;">
           <p style="font-size:14px;line-height:1.7;color:var(--ink);margin:0 0 16px;">"The Research Graph is genuinely unlike anything else in academic tools. Our economics department uses it to map interdisciplinary connections across 3,000+ papers."</p>
           <div style="display:flex;align-items:center;gap:10px;">
             <div style="width:36px;height:36px;border-radius:99px;background:#f0fdf4;display:flex;align-items:center;justify-content:center;font-weight:700;color:#16a34a;font-size:12px;flex-shrink:0;">MR</div>
-            <div><p style="margin:0;font-size:13px;font-weight:600;">Prof. Marcus Reyes</p><p style="margin:0;font-size:12px;color:var(--muted);">Department Chair, MIT Economics</p></div>
+            <div><p style="margin:0;font-size:13px;font-weight:600;">Prof. Marcus Reyes</p><p style="margin:0;font-size:12px;color:var(--muted);">Department Chair, Applied Economics</p></div>
           </div>
         </div>
         <div class="card" style="padding:22px;">
-          <p style="font-size:14px;line-height:1.7;color:var(--ink);margin:0 0 16px;">"The Sandbox Lab alone is worth the subscription — our simulation outputs are now fully traceable and reproducible. A genuine research-grade platform."</p>
+          <p style="font-size:14px;line-height:1.7;color:var(--ink);margin:0 0 16px;">"The Sandbox Lab alone is worth the subscription. Our simulation outputs are now fully traceable and reproducible. A genuine research-grade platform."</p>
           <div style="display:flex;align-items:center;gap:10px;">
             <div style="width:36px;height:36px;border-radius:99px;background:#fdf4ff;display:flex;align-items:center;justify-content:center;font-weight:700;color:#9333ea;font-size:12px;flex-shrink:0;">AK</div>
-            <div><p style="margin:0;font-size:13px;font-weight:600;">Dr. Anika Krishnamurthy</p><p style="margin:0;font-size:12px;color:var(--muted);">Systems Biology, Stanford</p></div>
+            <div><p style="margin:0;font-size:13px;font-weight:600;">Dr. Anika Krishnamurthy</p><p style="margin:0;font-size:12px;color:var(--muted);">Computational Systems Biology</p></div>
           </div>
         </div>
       </div>
@@ -879,18 +900,14 @@ html{scroll-behavior:smooth;}
     <div style="max-width:760px;margin:0 auto;text-align:center;">
       <span class="badge badge-blue" style="margin-bottom:18px;display:inline-flex;">Enterprise Access</span>
       <h2 style="font-size:clamp(24px,4vw,40px);font-weight:800;letter-spacing:-1px;color:#f1f5f9;margin:0 0 16px;font-family:'IBM Plex Sans',sans-serif;">Request Institutional Access</h2>
-      <p style="font-size:clamp(14px,2vw,17px);color:#94a3b8;margin:0 0 32px;line-height:1.65;">LumenResearch Enterprise is purpose-built for universities, national laboratories, and AI research centers. Get dedicated onboarding, SSO integration, and priority support.</p>
+      <p style="font-size:clamp(14px,2vw,17px);color:#94a3b8;margin:0 0 32px;line-height:1.65;">LumenResearch Enterprise is designed for universities, national laboratories, and research centers that need institutional-grade tooling. Includes dedicated onboarding, SSO integration, and priority support.</p>
       <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:32px;">
         <button class="btn-primary" style="padding:12px 24px;font-size:15px;" onclick="showModal('institutional-modal')">
           Apply for Institutional Access
         </button>
-        <a href="https://x.com/lumenresearch_" target="_blank" rel="noopener" class="x-btn" style="padding:12px 20px;font-size:14px;">
+        <a href="https://x.com/morganogoodrich" target="_blank" rel="noopener" class="x-btn" style="padding:12px 20px;font-size:14px;">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          Follow @lumenresearch_
-        </a>
-        <a href="https://www.linkedin.com/in/lumen-research-a7503240b" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:#0a66c2;color:#fff;padding:12px 20px;border-radius:9px;font-size:14px;font-weight:600;border:none;cursor:pointer;transition:all 0.2s;text-decoration:none;" onmouseover="this.style.background='#004182'" onmouseout="this.style.background='#0a66c2'">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-          Connect on LinkedIn
+          Follow @morganogoodrich
         </a>
       </div>
       <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:20px;">
@@ -905,19 +922,16 @@ html{scroll-behavior:smooth;}
   <!-- Footer -->
   <footer style="background:#0f172a;color:#64748b;padding:48px 20px 24px;">
     <div style="max-width:1160px;margin:0 auto;">
-      <div style="display:grid;grid-template-columns:1fr repeat(4,auto);gap:40px;margin-bottom:40px;flex-wrap:wrap;" id="footer-grid" style="flex-wrap:wrap;">
+      <div style="display:grid;grid-template-columns:1fr repeat(4,auto);gap:40px;margin-bottom:40px;" id="footer-grid">
         <div>
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
             <svg width="24" height="24" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="7" fill="var(--primary)"/><rect x="9" y="7" width="5" height="18" rx="2" fill="white"/><rect x="9" y="21" width="14" height="5.5" rx="2" fill="white" fill-opacity="0.82"/><circle cx="24" cy="9" r="2.5" fill="white" fill-opacity="0.4"/></svg>
             <span class="logo-mark" style="font-size:14px;"><span class="logo-word" style="color:#f1f5f9;">Lumen</span><span class="logo-word-accent" style="color:#93c5fd;">Research</span></span>
           </div>
-          <p style="font-size:13px;max-width:220px;line-height:1.65;">Think in systems. The institutional research platform for structured intelligence.</p>
+          <p style="font-size:13px;max-width:220px;line-height:1.65;">Research infrastructure for institutions that take structured thinking seriously.</p>
           <div style="display:flex;gap:8px;margin-top:14px;">
-            <a href="https://x.com/lumenresearch_" target="_blank" rel="noopener" style="width:32px;height:32px;border-radius:7px;background:#1e293b;display:flex;align-items:center;justify-content:center;color:#94a3b8;transition:all 0.2s;" onmouseover="this.style.background='#fff';this.style.color='#000'" onmouseout="this.style.background='#1e293b';this.style.color='#94a3b8'">
+            <a href="https://x.com/morganogoodrich" target="_blank" rel="noopener" style="width:32px;height:32px;border-radius:7px;background:#1e293b;display:flex;align-items:center;justify-content:center;color:#94a3b8;transition:all 0.2s;" onmouseover="this.style.background='#fff';this.style.color='#000'" onmouseout="this.style.background='#1e293b';this.style.color='#94a3b8'">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-            </a>
-            <a href="https://www.linkedin.com/in/lumen-research-a7503240b" target="_blank" rel="noopener" style="width:32px;height:32px;border-radius:7px;background:#1e293b;display:flex;align-items:center;justify-content:center;color:#94a3b8;transition:all 0.2s;" onmouseover="this.style.background='#0a66c2';this.style.color='#fff'" onmouseout="this.style.background='#1e293b';this.style.color='#94a3b8'">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
             </a>
           </div>
           <p style="font-size:12px;margin-top:16px;">© 2026 LumenResearch Ltd.</p>
@@ -927,44 +941,72 @@ html{scroll-behavior:smooth;}
           <div style="display:flex;flex-direction:column;gap:9px;">
             <a href="#features" style="font-size:13px;color:#64748b;transition:color 0.2s;" onmouseover="this.style.color='#f1f5f9'" onmouseout="this.style.color='#64748b'">Features</a>
             <a href="#pricing" style="font-size:13px;color:#64748b;transition:color 0.2s;" onmouseover="this.style.color='#f1f5f9'" onmouseout="this.style.color='#64748b'">Pricing</a>
-            <a href="#" onclick="showFooterPage('changelog')" style="font-size:13px;color:#64748b;transition:color 0.2s;" onmouseover="this.style.color='#f1f5f9'" onmouseout="this.style.color='#64748b'">Changelog</a>
-            <a href="#" onclick="showFooterPage('docs')" style="font-size:13px;color:#64748b;transition:color 0.2s;" onmouseover="this.style.color='#f1f5f9'" onmouseout="this.style.color='#64748b'">Docs</a>
-            <a href="#" onclick="showFooterPage('roadmap')" style="font-size:13px;color:#64748b;transition:color 0.2s;" onmouseover="this.style.color='#f1f5f9'" onmouseout="this.style.color='#64748b'">Roadmap</a>
+            <a href="/changelog" onclick="event.preventDefault();showFooterPage('changelog')" style="font-size:13px;color:#64748b;transition:color 0.2s;" onmouseover="this.style.color='#f1f5f9'" onmouseout="this.style.color='#64748b'">Changelog</a>
+            <a href="/docs" onclick="event.preventDefault();showFooterPage('docs')" style="font-size:13px;color:#64748b;transition:color 0.2s;" onmouseover="this.style.color='#f1f5f9'" onmouseout="this.style.color='#64748b'">Docs</a>
+            <a href="/roadmap" onclick="event.preventDefault();showFooterPage('roadmap')" style="font-size:13px;color:#64748b;transition:color 0.2s;" onmouseover="this.style.color='#f1f5f9'" onmouseout="this.style.color='#64748b'">Roadmap</a>
           </div>
         </div>
         <div>
           <p style="color:#f1f5f9;font-size:12px;font-weight:700;margin:0 0 12px;text-transform:uppercase;letter-spacing:0.08em;">Company</p>
           <div style="display:flex;flex-direction:column;gap:9px;">
-            <a href="#" onclick="showFooterPage('about')" style="font-size:13px;color:#64748b;transition:color 0.2s;" onmouseover="this.style.color='#f1f5f9'" onmouseout="this.style.color='#64748b'">About</a>
-            <a href="#" onclick="showFooterPage('blog')" style="font-size:13px;color:#64748b;transition:color 0.2s;" onmouseover="this.style.color='#f1f5f9'" onmouseout="this.style.color='#64748b'">Blog</a>
-            <a href="#" onclick="showFooterPage('careers')" style="font-size:13px;color:#64748b;transition:color 0.2s;" onmouseover="this.style.color='#f1f5f9'" onmouseout="this.style.color='#64748b'">Careers</a>
-            <a href="#" onclick="showFooterPage('contact')" style="font-size:13px;color:#64748b;transition:color 0.2s;" onmouseover="this.style.color='#f1f5f9'" onmouseout="this.style.color='#64748b'">Contact</a>
+            <a href="/about" onclick="event.preventDefault();showFooterPage('about')" style="font-size:13px;color:#64748b;transition:color 0.2s;" onmouseover="this.style.color='#f1f5f9'" onmouseout="this.style.color='#64748b'">About</a>
+            <a href="/blog" onclick="event.preventDefault();showFooterPage('blog')" style="font-size:13px;color:#64748b;transition:color 0.2s;" onmouseover="this.style.color='#f1f5f9'" onmouseout="this.style.color='#64748b'">Blog</a>
+            <a href="/contact" onclick="event.preventDefault();showFooterPage('contact')" style="font-size:13px;color:#64748b;transition:color 0.2s;" onmouseover="this.style.color='#f1f5f9'" onmouseout="this.style.color='#64748b'">Contact</a>
           </div>
         </div>
         <div>
           <p style="color:#f1f5f9;font-size:12px;font-weight:700;margin:0 0 12px;text-transform:uppercase;letter-spacing:0.08em;">Resources</p>
           <div style="display:flex;flex-direction:column;gap:9px;">
-            <a href="#" onclick="showFooterPage('docs')" style="font-size:13px;color:#64748b;transition:color 0.2s;" onmouseover="this.style.color='#f1f5f9'" onmouseout="this.style.color='#64748b'">Documentation</a>
-            <a href="#" onclick="showFooterPage('blog')" style="font-size:13px;color:#64748b;transition:color 0.2s;" onmouseover="this.style.color='#f1f5f9'" onmouseout="this.style.color='#64748b'">Research Blog</a>
-            <a href="#partners" style="font-size:13px;color:#64748b;transition:color 0.2s;" onmouseover="this.style.color='#f1f5f9'" onmouseout="this.style.color='#64748b'">Partners</a>
-            <a href="#" onclick="showFooterPage('security')" style="font-size:13px;color:#64748b;transition:color 0.2s;" onmouseover="this.style.color='#f1f5f9'" onmouseout="this.style.color='#64748b'">Security</a>
+            <a href="/docs" onclick="event.preventDefault();showFooterPage('docs')" style="font-size:13px;color:#64748b;transition:color 0.2s;" onmouseover="this.style.color='#f1f5f9'" onmouseout="this.style.color='#64748b'">Documentation</a>
+            <a href="/blog" onclick="event.preventDefault();showFooterPage('blog')" style="font-size:13px;color:#64748b;transition:color 0.2s;" onmouseover="this.style.color='#f1f5f9'" onmouseout="this.style.color='#64748b'">Research Blog</a>
+            <a href="/security" onclick="event.preventDefault();showFooterPage('security')" style="font-size:13px;color:#64748b;transition:color 0.2s;" onmouseover="this.style.color='#f1f5f9'" onmouseout="this.style.color='#64748b'">Security</a>
           </div>
         </div>
         <div>
           <p style="color:#f1f5f9;font-size:12px;font-weight:700;margin:0 0 12px;text-transform:uppercase;letter-spacing:0.08em;">Legal</p>
           <div style="display:flex;flex-direction:column;gap:9px;">
-            <a href="#" onclick="showFooterPage('privacy')" style="font-size:13px;color:#64748b;transition:color 0.2s;" onmouseover="this.style.color='#f1f5f9'" onmouseout="this.style.color='#64748b'">Privacy Policy</a>
-            <a href="#" onclick="showFooterPage('terms')" style="font-size:13px;color:#64748b;transition:color 0.2s;" onmouseover="this.style.color='#f1f5f9'" onmouseout="this.style.color='#64748b'">Terms of Service</a>
-            <a href="#" onclick="showFooterPage('security')" style="font-size:13px;color:#64748b;transition:color 0.2s;" onmouseover="this.style.color='#f1f5f9'" onmouseout="this.style.color='#64748b'">Security</a>
+            <a href="/privacy" onclick="event.preventDefault();showFooterPage('privacy')" style="font-size:13px;color:#64748b;transition:color 0.2s;" onmouseover="this.style.color='#f1f5f9'" onmouseout="this.style.color='#64748b'">Privacy Policy</a>
+            <a href="/terms" onclick="event.preventDefault();showFooterPage('terms')" style="font-size:13px;color:#64748b;transition:color 0.2s;" onmouseover="this.style.color='#f1f5f9'" onmouseout="this.style.color='#64748b'">Terms of Service</a>
+            <a href="/security" onclick="event.preventDefault();showFooterPage('security')" style="font-size:13px;color:#64748b;transition:color 0.2s;" onmouseover="this.style.color='#f1f5f9'" onmouseout="this.style.color='#64748b'">Security</a>
           </div>
         </div>
       </div>
-      <div style="border-top:1px solid #1e293b;padding-top:20px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;">
+      
+      <!-- Office address + map -->
+      <div style="border-top:1px solid #1e293b;padding-top:32px;margin-top:0;margin-bottom:32px;">
+        <div id="office-map-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;">
+          <div>
+            <p style="color:#f1f5f9;font-size:12px;font-weight:700;margin:0 0 14px;text-transform:uppercase;letter-spacing:0.08em;">Office</p>
+            <p style="font-size:13px;line-height:1.75;margin:0 0 6px;color:#94a3b8;">
+              LumenResearch Ltd.<br>
+              68 Circular Road, #02-01<br>
+              Singapore 049422
+            </p>
+            <a href="mailto:enterprise@lumenresearch.ltd" style="font-size:13px;color:#60a5fa;text-decoration:none;display:inline-flex;align-items:center;gap:6px;margin-top:4px;" onmouseover="this.style.color='#93c5fd'" onmouseout="this.style.color='#60a5fa'">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              enterprise@lumenresearch.ltd
+            </a>
+          </div>
+          <div style="border-radius:10px;overflow:hidden;border:1px solid #1e293b;height:160px;min-height:140px;">
+            <iframe
+              title="LumenResearch Office Map"
+              width="100%"
+              height="100%"
+              style="border:0;display:block;filter:grayscale(30%) contrast(1.1);"
+              loading="lazy"
+              allowfullscreen
+              referrerpolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps?q=68+Circular+Road+%2302-01+Singapore+049422&output=embed">
+            </iframe>
+          </div>
+        </div>
+      </div>
+<div style="border-top:1px solid #1e293b;padding-top:20px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;">
         <p style="font-size:12px;margin:0;">© 2026 LumenResearch Ltd. All rights reserved. · lumenresearch.ltd</p>
         <div style="display:flex;gap:14px;">
-          <a href="#" onclick="showFooterPage('privacy')" style="font-size:12px;color:#475569;">Privacy</a>
-          <a href="#" onclick="showFooterPage('terms')" style="font-size:12px;color:#475569;">Terms</a>
-          <a href="#" onclick="showFooterPage('security')" style="font-size:12px;color:#475569;">Security</a>
+          <a href="/privacy" onclick="event.preventDefault();showFooterPage('privacy')" style="font-size:12px;color:#475569;">Privacy</a>
+          <a href="/terms" onclick="event.preventDefault();showFooterPage('terms')" style="font-size:12px;color:#475569;">Terms</a>
+          <a href="/security" onclick="event.preventDefault();showFooterPage('security')" style="font-size:12px;color:#475569;">Security</a>
         </div>
       </div>
     </div>
@@ -976,12 +1018,12 @@ html{scroll-behavior:smooth;}
   <!-- Reuse landing navbar -->
   <nav class="land-nav">
     <div class="land-nav-inner">
-      <div style="display:flex;align-items:center;gap:10px;cursor:pointer;" onclick="showView('landing-view');window.scrollTo(0,0)">
+      <div style="display:flex;align-items:center;gap:10px;cursor:pointer;" onclick="showLandingPage()">
         <svg width="26" height="26" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="7" fill="var(--primary)"/><rect x="9" y="7" width="5" height="18" rx="2" fill="white"/><rect x="9" y="21" width="14" height="5.5" rx="2" fill="white" fill-opacity="0.82"/><circle cx="24" cy="9" r="2.5" fill="white" fill-opacity="0.4"/></svg>
           <span class="logo-mark" style="font-size:14px;"><span class="logo-word">Lumen</span><span class="logo-sep"></span><span class="logo-word-accent">Research</span></span>
       </div>
       <div style="display:flex;align-items:center;gap:8px;">
-        <button class="btn-secondary" style="padding:7px 14px;font-size:13px;" onclick="showView('landing-view')">← Back</button>
+        <button class="btn-secondary" style="padding:7px 14px;font-size:13px;" onclick="showLandingPage()">← Back</button>
         <button class="btn-primary" style="padding:7px 14px;font-size:13px;" onclick="showAuth('signin')">Enter Workspace</button>
       </div>
     </div>
@@ -990,11 +1032,12 @@ html{scroll-behavior:smooth;}
   <!-- About Page -->
   <div id="fp-about" class="footer-page">
     <div style="max-width:800px;margin:0 auto;padding:60px 20px;">
+      <a href="javascript:void(0)" onclick="showLandingPage()" style="display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);text-decoration:none;margin-bottom:20px;padding:5px 10px 5px 8px;border-radius:7px;border:1px solid var(--border);transition:all 0.2s;" onmouseover="this.style.background='var(--border)';this.style.color='var(--ink)'" onmouseout="this.style.background='';this.style.color='var(--muted)'"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg> Back to Home</a>
       <span class="badge badge-blue" style="margin-bottom:16px;display:inline-flex;">About</span>
-      <h1 style="font-size:clamp(28px,5vw,48px);font-weight:800;letter-spacing:-2px;margin:0 0 20px;font-family:'IBM Plex Sans',sans-serif;">We build infrastructure<br>for structured thinking.</h1>
-      <p style="font-size:16px;color:var(--muted);line-height:1.75;margin:0 0 40px;">LumenResearch was founded in 2023 by a team of researchers and engineers from MIT, Stanford, and DeepMind who were frustrated with the fragmented state of academic tooling. Our mission: build the definitive research intelligence platform for modern institutions.</p>
+      <h1 style="font-size:clamp(28px,5vw,48px);font-weight:800;letter-spacing:-2px;margin:0 0 20px;font-family:'IBM Plex Sans',sans-serif;">We build infrastructure<br>for structured thinking</h1>
+      <p style="font-size:16px;color:var(--muted);line-height:1.75;margin:0 0 40px;">LumenResearch was founded in 2023 by researchers and engineers who grew frustrated with fragmented academic tooling. Our mission is to build a research intelligence platform that matches how scientific work actually gets done.</p>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:48px;">
-        <div class="card" style="padding:20px;text-align:center;"><p style="font-size:32px;font-weight:800;color:var(--primary);margin:0;">420+</p><p style="margin:0;color:var(--muted);font-size:13px;">Institutions</p></div>
+        <div class="card" style="padding:20px;text-align:center;"><p style="font-size:32px;font-weight:800;color:var(--primary);margin:0;">350+</p><p style="margin:0;color:var(--muted);font-size:13px;">Institutions</p></div>
         <div class="card" style="padding:20px;text-align:center;"><p style="font-size:32px;font-weight:800;color:var(--primary);margin:0;">2.8M+</p><p style="margin:0;color:var(--muted);font-size:13px;">Papers Indexed</p></div>
         <div class="card" style="padding:20px;text-align:center;"><p style="font-size:32px;font-weight:800;color:var(--primary);margin:0;">48</p><p style="margin:0;color:var(--muted);font-size:13px;">Countries</p></div>
         <div class="card" style="padding:20px;text-align:center;"><p style="font-size:32px;font-weight:800;color:var(--primary);margin:0;">99.9%</p><p style="margin:0;color:var(--muted);font-size:13px;">Uptime SLA</p></div>
@@ -1005,19 +1048,22 @@ html{scroll-behavior:smooth;}
           <div style="width:48px;height:48px;border-radius:99px;background:var(--primary-light);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;color:var(--primary);margin:0 auto 10px;">JW</div>
           <p style="margin:0;font-size:13px;font-weight:700;">Dr. James Wei</p>
           <p style="margin:0;font-size:12px;color:var(--muted);">Co-founder & CEO</p>
-          <p style="margin:0;font-size:11px;color:var(--muted);">MIT CSAIL · ex-Google Brain</p>
+          <p style="margin:0;font-size:11px;color:var(--muted);">Computational Science · Research Infrastructure</p>
+          <a href="https://x.com/morganogoodrich" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;margin-top:8px;font-size:11px;color:var(--muted);text-decoration:none;padding:4px 8px;border-radius:5px;border:1px solid var(--border);transition:all 0.15s;" onmouseover="this.style.background='var(--border)';this.style.color='var(--ink)'" onmouseout="this.style.background='';this.style.color='var(--muted)'"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>@morganogoodrich</a>
         </div>
         <div class="card" style="padding:18px;text-align:center;">
           <div style="width:48px;height:48px;border-radius:99px;background:#f0fdf4;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;color:#16a34a;margin:0 auto 10px;">LK</div>
           <p style="margin:0;font-size:13px;font-weight:700;">Dr. Leila Khoury</p>
           <p style="margin:0;font-size:12px;color:var(--muted);">Co-founder & CTO</p>
-          <p style="margin:0;font-size:11px;color:var(--muted);">Stanford AI · ex-DeepMind</p>
+          <p style="margin:0;font-size:11px;color:var(--muted);">Machine Learning · Systems Architecture</p>
+          <a href="https://x.com/leila_khoury" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;margin-top:8px;font-size:11px;color:var(--muted);text-decoration:none;padding:4px 8px;border-radius:5px;border:1px solid var(--border);transition:all 0.15s;" onmouseover="this.style.background='var(--border)';this.style.color='var(--ink)'" onmouseout="this.style.background='';this.style.color='var(--muted)'"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>@leila_khoury</a>
         </div>
         <div class="card" style="padding:18px;text-align:center;">
           <div style="width:48px;height:48px;border-radius:99px;background:#fdf4ff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;color:#9333ea;margin:0 auto 10px;">RB</div>
           <p style="margin:0;font-size:13px;font-weight:700;">Rafael Bautista</p>
           <p style="margin:0;font-size:12px;color:var(--muted);">Head of Product</p>
-          <p style="margin:0;font-size:11px;color:var(--muted);">ex-Notion · ex-Linear</p>
+          <p style="margin:0;font-size:11px;color:var(--muted);">Product Design · Research Workflows</p>
+          <a href="https://x.com/rbautista_hq" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;margin-top:8px;font-size:11px;color:var(--muted);text-decoration:none;padding:4px 8px;border-radius:5px;border:1px solid var(--border);transition:all 0.15s;" onmouseover="this.style.background='var(--border)';this.style.color='var(--ink)'" onmouseout="this.style.background='';this.style.color='var(--muted)'"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>@rbautista_hq</a>
         </div>
       </div>
     </div>
@@ -1026,94 +1072,415 @@ html{scroll-behavior:smooth;}
   <!-- Blog Page -->
   <div id="fp-blog" class="footer-page">
     <div style="max-width:860px;margin:0 auto;padding:60px 20px;">
+      <a href="javascript:void(0)" onclick="showLandingPage()" style="display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);text-decoration:none;margin-bottom:20px;padding:5px 10px 5px 8px;border-radius:7px;border:1px solid var(--border);transition:all 0.2s;" onmouseover="this.style.background='var(--border)';this.style.color='var(--ink)'" onmouseout="this.style.background='';this.style.color='var(--muted)'"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg> Back to Home</a>
       <span class="badge badge-green" style="margin-bottom:16px;display:inline-flex;">Research Blog</span>
-      <h1 style="font-size:clamp(26px,4vw,42px);font-weight:800;letter-spacing:-1.5px;margin:0 0 40px;font-family:'IBM Plex Sans',sans-serif;">Insights from the frontier of research tooling</h1>
+      <h1 style="font-size:clamp(26px,4vw,42px);font-weight:800;letter-spacing:-1.5px;margin:0 0 40px;font-family:'IBM Plex Sans',sans-serif;">Writing on research infrastructure, AI, and the science of how science works</h1>
       <div style="display:flex;flex-direction:column;gap:24px;">
         <div class="card card-hover" style="padding:24px;cursor:pointer;">
           <span class="badge badge-blue" style="margin-bottom:12px;">AI Intelligence</span>
           <h3 style="font-size:18px;font-weight:700;margin:0 0 8px;letter-spacing:-0.5px;">How Contradiction Detection Changes Literature Review</h3>
           <p style="font-size:14px;color:var(--muted);line-height:1.65;margin:0 0 14px;">Traditional literature review misses up to 40% of contradictory findings across papers. Here's how our AI engine finds them automatically...</p>
-          <div style="display:flex;align-items:center;gap:10px;"><div style="width:24px;height:24px;border-radius:99px;background:var(--primary-light);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--primary);">LK</div><span style="font-size:12px;color:var(--muted);">Dr. Leila Khoury · May 12, 2025 · 8 min read</span></div>
+          <div style="display:flex;align-items:center;gap:10px;"><div style="width:24px;height:24px;border-radius:99px;background:var(--primary-light);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--primary);">LK</div><span style="font-size:12px;color:var(--muted);">Dr. Leila Khoury · May 12, 2026 · 8 min read</span></div>
         </div>
         <div class="card card-hover" style="padding:24px;cursor:pointer;">
           <span class="badge badge-green" style="margin-bottom:12px;">Research Graph</span>
           <h3 style="font-size:18px;font-weight:700;margin:0 0 8px;letter-spacing:-0.5px;">Graph Theory Meets Academic Literature: Our Approach</h3>
           <p style="font-size:14px;color:var(--muted);line-height:1.65;margin:0 0 14px;">We model papers, authors, institutions, and concepts as nodes in a heterogeneous graph. Here's how that unlocks insights that flat search cannot...</p>
-          <div style="display:flex;align-items:center;gap:10px;"><div style="width:24px;height:24px;border-radius:99px;background:#f0fdf4;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#16a34a;">JW</div><span style="font-size:12px;color:var(--muted);">Dr. James Wei · Apr 28, 2025 · 12 min read</span></div>
+          <div style="display:flex;align-items:center;gap:10px;"><div style="width:24px;height:24px;border-radius:99px;background:#f0fdf4;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#16a34a;">JW</div><span style="font-size:12px;color:var(--muted);">Dr. James Wei · Apr 28, 2026 · 12 min read</span></div>
         </div>
         <div class="card card-hover" style="padding:24px;cursor:pointer;">
           <span class="badge badge-purple" style="margin-bottom:12px;">Product</span>
           <h3 style="font-size:18px;font-weight:700;margin:0 0 8px;letter-spacing:-0.5px;">Introducing the Sandbox Simulation Lab</h3>
-          <p style="font-size:14px;color:var(--muted);line-height:1.65;margin:0 0 14px;">Reproducibility is a crisis in science. The Sandbox Lab makes every simulation traceable, parameterized, and shareable — without a single line of code...</p>
-          <div style="display:flex;align-items:center;gap:10px;"><div style="width:24px;height:24px;border-radius:99px;background:#fdf4ff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#9333ea;">RB</div><span style="font-size:12px;color:var(--muted);">Rafael Bautista · Mar 15, 2025 · 6 min read</span></div>
+          <p style="font-size:14px;color:var(--muted);line-height:1.65;margin:0 0 14px;">Reproducibility is a crisis in science. The Sandbox Lab makes every simulation traceable, parameterized, and shareable, without a single line of code...</p>
+          <div style="display:flex;align-items:center;gap:10px;"><div style="width:24px;height:24px;border-radius:99px;background:#fdf4ff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#9333ea;">RB</div><span style="font-size:12px;color:var(--muted);">Rafael Bautista · Mar 15, 2026 · 6 min read</span></div>
         </div>
         <div class="card card-hover" style="padding:24px;cursor:pointer;">
           <span class="badge badge-yellow" style="margin-bottom:12px;">Collaboration</span>
           <h3 style="font-size:18px;font-weight:700;margin:0 0 8px;letter-spacing:-0.5px;">Why Research Teams Need Structured Collaboration Tools</h3>
-          <p style="font-size:14px;color:var(--muted);line-height:1.65;margin:0 0 14px;">Email chains and shared drives are killing research velocity. Here's how LumenResearch's team layer was built from the ground up for scientific collaboration...</p>
-          <div style="display:flex;align-items:center;gap:10px;"><div style="width:24px;height:24px;border-radius:99px;background:#fefce8;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#a16207;">LK</div><span style="font-size:12px;color:var(--muted);">Dr. Leila Khoury · Feb 20, 2025 · 9 min read</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Careers Page -->
-  <div id="fp-careers" class="footer-page">
-    <div style="max-width:860px;margin:0 auto;padding:60px 20px;">
-      <span class="badge badge-purple" style="margin-bottom:16px;display:inline-flex;">Careers</span>
-      <h1 style="font-size:clamp(26px,4vw,42px);font-weight:800;letter-spacing:-1.5px;margin:0 0 14px;font-family:'IBM Plex Sans',sans-serif;">Build the future of research</h1>
-      <p style="font-size:15px;color:var(--muted);margin:0 0 40px;line-height:1.65;">We're a remote-first team of 24 builders obsessed with making research faster, deeper, and more collaborative. We hire exceptional people and give them the resources to do the best work of their lives.</p>
-      <div style="display:flex;flex-direction:column;gap:14px;">
-        <div class="card" style="padding:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
-          <div><p style="margin:0;font-size:15px;font-weight:700;">Senior AI/ML Engineer</p><p style="margin:4px 0 0;font-size:13px;color:var(--muted);">Engineering · Remote · Full-time</p></div>
-          <div style="display:flex;gap:8px;align-items:center;"><span class="badge badge-green">Open</span><button class="btn-primary" style="font-size:12px;padding:7px 14px;">Apply</button></div>
-        </div>
-        <div class="card" style="padding:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
-          <div><p style="margin:0;font-size:15px;font-weight:700;">Research Scientist (NLP)</p><p style="margin:4px 0 0;font-size:13px;color:var(--muted);">AI Research · Remote / Cambridge · Full-time</p></div>
-          <div style="display:flex;gap:8px;align-items:center;"><span class="badge badge-green">Open</span><button class="btn-primary" style="font-size:12px;padding:7px 14px;">Apply</button></div>
-        </div>
-        <div class="card" style="padding:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
-          <div><p style="margin:0;font-size:15px;font-weight:700;">Product Designer</p><p style="margin:4px 0 0;font-size:13px;color:var(--muted);">Design · Remote · Full-time</p></div>
-          <div style="display:flex;gap:8px;align-items:center;"><span class="badge badge-green">Open</span><button class="btn-primary" style="font-size:12px;padding:7px 14px;">Apply</button></div>
-        </div>
-        <div class="card" style="padding:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
-          <div><p style="margin:0;font-size:15px;font-weight:700;">Institutional Sales Lead</p><p style="margin:4px 0 0;font-size:13px;color:var(--muted);">Sales · Remote / New York · Full-time</p></div>
-          <div style="display:flex;gap:8px;align-items:center;"><span class="badge badge-yellow">Soon</span><button class="btn-secondary" style="font-size:12px;padding:7px 14px;">Notify me</button></div>
-        </div>
-        <div class="card" style="padding:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
-          <div><p style="margin:0;font-size:15px;font-weight:700;">Backend Engineer (Go / PostgreSQL)</p><p style="margin:4px 0 0;font-size:13px;color:var(--muted);">Engineering · Remote · Full-time</p></div>
-          <div style="display:flex;gap:8px;align-items:center;"><span class="badge badge-green">Open</span><button class="btn-primary" style="font-size:12px;padding:7px 14px;">Apply</button></div>
+          <p style="font-size:14px;color:var(--muted);line-height:1.65;margin:0 0 14px;">Most research teams coordinate over tools built for general productivity. Here's why scientific collaboration needs its own structure, and how we built it...</p>
+          <div style="display:flex;align-items:center;gap:10px;"><div style="width:24px;height:24px;border-radius:99px;background:#fefce8;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#a16207;">LK</div><span style="font-size:12px;color:var(--muted);">Dr. Leila Khoury · Feb 20, 2026 · 9 min read</span></div>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Docs Page -->
-  <div id="fp-docs" class="footer-page">
-    <div style="max-width:960px;margin:0 auto;padding:60px 20px;">
+    <div id="fp-docs" class="footer-page">
+    <div style="max-width:1100px;margin:0 auto;padding:60px 20px 80px;">
+      <a href="javascript:void(0)" onclick="showLandingPage()" style="display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);text-decoration:none;margin-bottom:20px;padding:5px 10px 5px 8px;border-radius:7px;border:1px solid var(--border);transition:all 0.2s;" onmouseover="this.style.background='var(--border)';this.style.color='var(--ink)'" onmouseout="this.style.background='';this.style.color='var(--muted)'"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg> Back to Home</a>
       <span class="badge badge-blue" style="margin-bottom:16px;display:inline-flex;">Documentation</span>
-      <h1 style="font-size:clamp(26px,4vw,42px);font-weight:800;letter-spacing:-1.5px;margin:0 0 40px;font-family:'IBM Plex Sans',sans-serif;">Developer & User Docs</h1>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;">
-        <div class="card card-hover" style="padding:20px;cursor:pointer;"><div style="width:36px;height:36px;border-radius:9px;background:var(--primary-light);display:flex;align-items:center;justify-content:center;color:var(--primary);margin-bottom:12px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div><h3 style="font-size:14px;font-weight:700;margin:0 0 6px;">Getting Started</h3><p style="font-size:13px;color:var(--muted);margin:0;line-height:1.55;">Set up your first workspace, import papers, and explore the research graph in under 10 minutes.</p></div>
-        <div class="card card-hover" style="padding:20px;cursor:pointer;"><div style="width:36px;height:36px;border-radius:9px;background:#f0fdf4;display:flex;align-items:center;justify-content:center;color:#16a34a;margin-bottom:12px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><h3 style="font-size:14px;font-weight:700;margin:0 0 6px;">Paper Import Guide</h3><p style="font-size:13px;color:var(--muted);margin:0;line-height:1.55;">Import PDFs, DOIs, arXiv links, and bulk BibTeX files. Metadata is extracted automatically.</p></div>
-        <div class="card card-hover" style="padding:20px;cursor:pointer;"><div style="width:36px;height:36px;border-radius:9px;background:#fefce8;display:flex;align-items:center;justify-content:center;color:#a16207;margin-bottom:12px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></div><h3 style="font-size:14px;font-weight:700;margin:0 0 6px;">Research Graph API</h3><p style="font-size:13px;color:var(--muted);margin:0;line-height:1.55;">Query the knowledge graph programmatically. Export to GraphML, GEXF, or JSON.</p></div>
-        <div class="card card-hover" style="padding:20px;cursor:pointer;"><div style="width:36px;height:36px;border-radius:9px;background:#fdf4ff;display:flex;align-items:center;justify-content:center;color:#9333ea;margin-bottom:12px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg></div><h3 style="font-size:14px;font-weight:700;margin:0 0 6px;">Sandbox Lab Guide</h3><p style="font-size:13px;color:var(--muted);margin:0;line-height:1.55;">Configure experiment parameters, run simulations, and export reproducible research logs.</p></div>
-        <div class="card card-hover" style="padding:20px;cursor:pointer;"><div style="width:36px;height:36px;border-radius:9px;background:#fff1f2;display:flex;align-items:center;justify-content:center;color:#e11d48;margin-bottom:12px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg></div><h3 style="font-size:14px;font-weight:700;margin:0 0 6px;">Team & Permissions</h3><p style="font-size:13px;color:var(--muted);margin:0;line-height:1.55;">Invite members, set roles (Viewer, Editor, Admin), and configure shared workspace access.</p></div>
-        <div class="card card-hover" style="padding:20px;cursor:pointer;"><div style="width:36px;height:36px;border-radius:9px;background:#f0f9ff;display:flex;align-items:center;justify-content:center;color:#0284c7;margin-bottom:12px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg></div><h3 style="font-size:14px;font-weight:700;margin:0 0 6px;">Analytics Reference</h3><p style="font-size:13px;color:var(--muted);margin:0;line-height:1.55;">Understand citation metrics, publication velocity calculations, and collaboration activity scoring.</p></div>
-      </div>
+      <h1 style="font-size:clamp(26px,4vw,42px);font-weight:800;letter-spacing:-1.5px;margin:0 0 8px;font-family:'IBM Plex Sans',sans-serif;">LumenResearch Docs</h1>
+      <p style="font-size:16px;color:var(--muted);margin:0 0 48px;line-height:1.65;">Everything you need to set up workspaces, import papers, run simulations, and use the API.</p>
+
+      <div style="display:grid;grid-template-columns:220px 1fr;gap:48px;align-items:start;" id="docs-layout">
+
+        <!-- Sidebar nav -->
+        <nav style="position:sticky;top:80px;display:flex;flex-direction:column;gap:2px;" id="docs-sidebar">
+          <p style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin:0 0 6px 8px;">Getting Started</p>
+          <a href="#docs-quickstart" onclick="document.getElementById('docs-quickstart').scrollIntoView({behavior:'smooth'});event.preventDefault();" style="font-size:13px;padding:6px 10px;border-radius:6px;color:var(--muted);text-decoration:none;transition:all 0.15s;" onmouseover="this.style.background='var(--border)';this.style.color='var(--ink)'" onmouseout="this.style.background='';this.style.color='var(--muted)'">Quick Start</a>
+          <a href="#docs-workspace" onclick="document.getElementById('docs-workspace').scrollIntoView({behavior:'smooth'});event.preventDefault();" style="font-size:13px;padding:6px 10px;border-radius:6px;color:var(--muted);text-decoration:none;transition:all 0.15s;" onmouseover="this.style.background='var(--border)';this.style.color='var(--ink)'" onmouseout="this.style.background='';this.style.color='var(--muted)'">Workspaces</a>
+          <p style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin:16px 0 6px 8px;">Core Features</p>
+          <a href="#docs-papers" onclick="document.getElementById('docs-papers').scrollIntoView({behavior:'smooth'});event.preventDefault();" style="font-size:13px;padding:6px 10px;border-radius:6px;color:var(--muted);text-decoration:none;transition:all 0.15s;" onmouseover="this.style.background='var(--border)';this.style.color='var(--ink)'" onmouseout="this.style.background='';this.style.color='var(--muted)'">Paper Management</a>
+          <a href="#docs-graph" onclick="document.getElementById('docs-graph').scrollIntoView({behavior:'smooth'});event.preventDefault();" style="font-size:13px;padding:6px 10px;border-radius:6px;color:var(--muted);text-decoration:none;transition:all 0.15s;" onmouseover="this.style.background='var(--border)';this.style.color='var(--ink)'" onmouseout="this.style.background='';this.style.color='var(--muted)'">Research Graph</a>
+          <a href="#docs-ai" onclick="document.getElementById('docs-ai').scrollIntoView({behavior:'smooth'});event.preventDefault();" style="font-size:13px;padding:6px 10px;border-radius:6px;color:var(--muted);text-decoration:none;transition:all 0.15s;" onmouseover="this.style.background='var(--border)';this.style.color='var(--ink)'" onmouseout="this.style.background='';this.style.color='var(--muted)'">AI Intelligence</a>
+          <a href="#docs-sandbox" onclick="document.getElementById('docs-sandbox').scrollIntoView({behavior:'smooth'});event.preventDefault();" style="font-size:13px;padding:6px 10px;border-radius:6px;color:var(--muted);text-decoration:none;transition:all 0.15s;" onmouseover="this.style.background='var(--border)';this.style.color='var(--ink)'" onmouseout="this.style.background='';this.style.color='var(--muted)'">Sandbox Lab</a>
+          <a href="#docs-analytics" onclick="document.getElementById('docs-analytics').scrollIntoView({behavior:'smooth'});event.preventDefault();" style="font-size:13px;padding:6px 10px;border-radius:6px;color:var(--muted);text-decoration:none;transition:all 0.15s;" onmouseover="this.style.background='var(--border)';this.style.color='var(--ink)'" onmouseout="this.style.background='';this.style.color='var(--muted)'">Analytics</a>
+          <p style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin:16px 0 6px 8px;">Admin</p>
+          <a href="#docs-team" onclick="document.getElementById('docs-team').scrollIntoView({behavior:'smooth'});event.preventDefault();" style="font-size:13px;padding:6px 10px;border-radius:6px;color:var(--muted);text-decoration:none;transition:all 0.15s;" onmouseover="this.style.background='var(--border)';this.style.color='var(--ink)'" onmouseout="this.style.background='';this.style.color='var(--muted)'">Teams &amp; Permissions</a>
+          <a href="#docs-sso" onclick="document.getElementById('docs-sso').scrollIntoView({behavior:'smooth'});event.preventDefault();" style="font-size:13px;padding:6px 10px;border-radius:6px;color:var(--muted);text-decoration:none;transition:all 0.15s;" onmouseover="this.style.background='var(--border)';this.style.color='var(--ink)'" onmouseout="this.style.background='';this.style.color='var(--muted)'">SSO &amp; SAML</a>
+          <p style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin:16px 0 6px 8px;">Developer</p>
+          <a href="#docs-api" onclick="document.getElementById('docs-api').scrollIntoView({behavior:'smooth'});event.preventDefault();" style="font-size:13px;padding:6px 10px;border-radius:6px;color:var(--muted);text-decoration:none;transition:all 0.15s;" onmouseover="this.style.background='var(--border)';this.style.color='var(--ink)'" onmouseout="this.style.background='';this.style.color='var(--muted)'">REST API</a>
+          <a href="#docs-export" onclick="document.getElementById('docs-export').scrollIntoView({behavior:'smooth'});event.preventDefault();" style="font-size:13px;padding:6px 10px;border-radius:6px;color:var(--muted);text-decoration:none;transition:all 0.15s;" onmouseover="this.style.background='var(--border)';this.style.color='var(--ink)'" onmouseout="this.style.background='';this.style.color='var(--muted)'">Data Export</a>
+        </nav>
+
+        <!-- Main content -->
+        <div style="display:flex;flex-direction:column;gap:56px;min-width:0;">
+
+          <!-- Quick Start -->
+          <section id="docs-quickstart">
+            <h2 style="font-size:26px;font-weight:800;letter-spacing:-0.8px;margin:0 0 6px;font-family:'IBM Plex Sans',sans-serif;">Quick Start</h2>
+            <p style="font-size:14px;color:var(--muted);margin:0 0 24px;line-height:1.7;">Get from sign-up to your first research insight in under 10 minutes.</p>
+            <div style="display:flex;flex-direction:column;gap:16px;">
+              <div style="display:flex;gap:16px;align-items:flex-start;">
+                <div style="width:28px;height:28px;border-radius:99px;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:1px;">1</div>
+                <div><h4 style="font-size:15px;font-weight:700;margin:0 0 4px;">Create an account</h4><p style="font-size:13px;color:var(--muted);margin:0;line-height:1.65;">Click <strong>Enter Workspace</strong> and register with your institutional email. If your institution uses SAML SSO, your IT team can configure automatic provisioning. See <a href="#docs-sso" onclick="document.getElementById('docs-sso').scrollIntoView({behavior:'smooth'});event.preventDefault();" style="color:var(--primary);">SSO &amp; SAML</a>.</p></div>
+              </div>
+              <div style="display:flex;gap:16px;align-items:flex-start;">
+                <div style="width:28px;height:28px;border-radius:99px;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:1px;">2</div>
+                <div><h4 style="font-size:15px;font-weight:700;margin:0 0 4px;">Create a workspace</h4><p style="font-size:13px;color:var(--muted);margin:0;line-height:1.65;">A workspace is your primary organizational unit. Name it after a project, course, or research area. Free accounts include up to 3 workspaces; Team and Enterprise plans are unlimited.</p></div>
+              </div>
+              <div style="display:flex;gap:16px;align-items:flex-start;">
+                <div style="width:28px;height:28px;border-radius:99px;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:1px;">3</div>
+                <div><h4 style="font-size:15px;font-weight:700;margin:0 0 4px;">Import your first papers</h4><p style="font-size:13px;color:var(--muted);margin:0;line-height:1.65;">Drag and drop PDFs, paste a DOI or arXiv URL, or upload a BibTeX file. Metadata (title, authors, abstract, year, venue) is extracted automatically.</p></div>
+              </div>
+              <div style="display:flex;gap:16px;align-items:flex-start;">
+                <div style="width:28px;height:28px;border-radius:99px;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:1px;">4</div>
+                <div><h4 style="font-size:15px;font-weight:700;margin:0 0 4px;">Open the Research Graph</h4><p style="font-size:13px;color:var(--muted);margin:0;line-height:1.65;">Navigate to the Graph view. LumenResearch automatically maps relationships between your papers based on citations, shared concepts, and author overlap. Click any node to explore connections.</p></div>
+              </div>
+              <div style="display:flex;gap:16px;align-items:flex-start;">
+                <div style="width:28px;height:28px;border-radius:99px;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:1px;">5</div>
+                <div><h4 style="font-size:15px;font-weight:700;margin:0 0 4px;">Run an AI synthesis</h4><p style="font-size:13px;color:var(--muted);margin:0;line-height:1.65;">Open AI Intelligence, select two or more papers, and run a synthesis. The engine surfaces contradictions, emergent trends, and research gaps across your selected corpus.</p></div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Workspaces -->
+          <section id="docs-workspace">
+            <h2 style="font-size:26px;font-weight:800;letter-spacing:-0.8px;margin:0 0 6px;font-family:'IBM Plex Sans',sans-serif;">Workspaces</h2>
+            <p style="font-size:14px;color:var(--muted);margin:0 0 24px;line-height:1.7;">Workspaces are isolated environments for a research project or team. All papers, graphs, simulations, and insights live inside a workspace.</p>
+            <div style="display:flex;flex-direction:column;gap:20px;">
+              <div class="card" style="padding:20px;">
+                <h4 style="font-size:14px;font-weight:700;margin:0 0 8px;">Creating a workspace</h4>
+                <p style="font-size:13px;color:var(--muted);margin:0;line-height:1.65;">Click the workspace selector in the sidebar, then <strong>New Workspace</strong>. Give it a name, an optional description, and choose a color label. Workspaces are private by default; invite collaborators from the Settings tab.</p>
+              </div>
+              <div class="card" style="padding:20px;">
+                <h4 style="font-size:14px;font-weight:700;margin:0 0 8px;">Switching workspaces</h4>
+                <p style="font-size:13px;color:var(--muted);margin:0;line-height:1.65;">Click the workspace label at the top of the sidebar to open the workspace switcher. Your recent workspaces are listed first. All data (papers, graph state, simulations) is scoped to the active workspace.</p>
+              </div>
+              <div class="card" style="padding:20px;">
+                <h4 style="font-size:14px;font-weight:700;margin:0 0 8px;">Workspace limits by plan</h4>
+                <div style="overflow-x:auto;margin-top:12px;">
+                  <table style="width:100%;border-collapse:collapse;font-size:13px;">
+                    <thead><tr style="border-bottom:1px solid var(--border);">
+                      <th style="text-align:left;padding:8px 12px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted);">Plan</th>
+                      <th style="text-align:left;padding:8px 12px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted);">Workspaces</th>
+                      <th style="text-align:left;padding:8px 12px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted);">Papers</th>
+                      <th style="text-align:left;padding:8px 12px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted);">Members</th>
+                    </tr></thead>
+                    <tbody>
+                      <tr style="border-bottom:1px solid var(--border);"><td style="padding:10px 12px;font-weight:600;">Free</td><td style="padding:10px 12px;color:var(--muted);">3</td><td style="padding:10px 12px;color:var(--muted);">200 per workspace</td><td style="padding:10px 12px;color:var(--muted);">1 (solo)</td></tr>
+                      <tr style="border-bottom:1px solid var(--border);"><td style="padding:10px 12px;font-weight:600;">Team</td><td style="padding:10px 12px;color:var(--muted);">Unlimited</td><td style="padding:10px 12px;color:var(--muted);">10,000 per workspace</td><td style="padding:10px 12px;color:var(--muted);">Up to 10</td></tr>
+                      <tr><td style="padding:10px 12px;font-weight:600;">Enterprise</td><td style="padding:10px 12px;color:var(--muted);">Unlimited</td><td style="padding:10px 12px;color:var(--muted);">Unlimited</td><td style="padding:10px 12px;color:var(--muted);">Unlimited</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Paper Management -->
+          <section id="docs-papers">
+            <h2 style="font-size:26px;font-weight:800;letter-spacing:-0.8px;margin:0 0 6px;font-family:'IBM Plex Sans',sans-serif;">Paper Management</h2>
+            <p style="font-size:14px;color:var(--muted);margin:0 0 24px;line-height:1.7;">Import, organize, annotate, and search your research corpus. Papers are the core unit of data in LumenResearch.</p>
+            <h3 style="font-size:17px;font-weight:700;margin:0 0 16px;">Import methods</h3>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-bottom:28px;">
+              <div class="card" style="padding:18px;">
+                <p style="font-weight:700;font-size:13px;margin:0 0 6px;">PDF Upload</p>
+                <p style="font-size:12px;color:var(--muted);margin:0;line-height:1.55;">Drag and drop one or more PDFs. Text, metadata, and figures are extracted automatically using our parsing pipeline.</p>
+              </div>
+              <div class="card" style="padding:18px;">
+                <p style="font-weight:700;font-size:13px;margin:0 0 6px;">DOI / URL</p>
+                <p style="font-size:12px;color:var(--muted);margin:0;line-height:1.55;">Paste a DOI (e.g. <code style="background:var(--border);padding:1px 5px;border-radius:4px;font-size:11px;">10.1145/...</code>) or an arXiv, PubMed, or Semantic Scholar URL. Metadata and abstract are fetched automatically.</p>
+              </div>
+              <div class="card" style="padding:18px;">
+                <p style="font-weight:700;font-size:13px;margin:0 0 6px;">BibTeX</p>
+                <p style="font-size:12px;color:var(--muted);margin:0;line-height:1.55;">Upload a <code style="background:var(--border);padding:1px 5px;border-radius:4px;font-size:11px;">.bib</code> file to bulk-import entire reference lists from Zotero, Mendeley, or LaTeX projects.</p>
+              </div>
+              <div class="card" style="padding:18px;">
+                <p style="font-weight:700;font-size:13px;margin:0 0 6px;">arXiv ID</p>
+                <p style="font-size:12px;color:var(--muted);margin:0;line-height:1.55;">Enter an arXiv ID (e.g. <code style="background:var(--border);padding:1px 5px;border-radius:4px;font-size:11px;">2303.08774</code>) to import the paper with full metadata and PDF access where permitted.</p>
+              </div>
+            </div>
+            <h3 style="font-size:17px;font-weight:700;margin:0 0 16px;">Organizing papers</h3>
+            <div style="display:flex;flex-direction:column;gap:12px;">
+              <div class="card" style="padding:18px;">
+                <h4 style="font-size:13px;font-weight:700;margin:0 0 6px;">Tags</h4>
+                <p style="font-size:13px;color:var(--muted);margin:0;line-height:1.65;">Apply custom tags to papers for filtering. Tags are workspace-scoped. Open any paper and click the tag icon, or bulk-tag from the paper list view.</p>
+              </div>
+              <div class="card" style="padding:18px;">
+                <h4 style="font-size:13px;font-weight:700;margin:0 0 6px;">Annotations</h4>
+                <p style="font-size:13px;color:var(--muted);margin:0;line-height:1.65;">Highlight text in the PDF reader and add structured notes. Annotations are searchable and can be linked to graph nodes. Team annotations are visible to all workspace members with Editor or Admin roles.</p>
+              </div>
+              <div class="card" style="padding:18px;">
+                <h4 style="font-size:13px;font-weight:700;margin:0 0 6px;">Semantic Search</h4>
+                <p style="font-size:13px;color:var(--muted);margin:0;line-height:1.65;">Use the search bar (shortcut: <code style="background:var(--border);padding:1px 5px;border-radius:4px;font-size:11px;">Cmd+K</code>) to search by concept, not just keyword. The search engine understands synonyms and related ideas across your full paper corpus.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Research Graph -->
+          <section id="docs-graph">
+            <h2 style="font-size:26px;font-weight:800;letter-spacing:-0.8px;margin:0 0 6px;font-family:'IBM Plex Sans',sans-serif;">Research Graph</h2>
+            <p style="font-size:14px;color:var(--muted);margin:0 0 24px;line-height:1.7;">The Research Graph models your corpus as a network of papers, authors, concepts, and institutions. It is built automatically as you import papers.</p>
+            <div style="display:flex;flex-direction:column;gap:16px;">
+              <div class="card" style="padding:20px;">
+                <h4 style="font-size:14px;font-weight:700;margin:0 0 8px;">Node types</h4>
+                <div style="display:flex;flex-direction:column;gap:8px;margin-top:4px;">
+                  <div style="display:flex;gap:10px;align-items:center;"><span style="width:10px;height:10px;border-radius:99px;background:#2563eb;flex-shrink:0;"></span><span style="font-size:13px;"><strong>Papers</strong>: primary nodes, sized by citation count</span></div>
+                  <div style="display:flex;gap:10px;align-items:center;"><span style="width:10px;height:10px;border-radius:99px;background:#16a34a;flex-shrink:0;"></span><span style="font-size:13px;"><strong>Concepts</strong>: extracted topics and methods (e.g. "attention mechanism")</span></div>
+                  <div style="display:flex;gap:10px;align-items:center;"><span style="width:10px;height:10px;border-radius:99px;background:#9333ea;flex-shrink:0;"></span><span style="font-size:13px;"><strong>Authors</strong>: individual researcher nodes</span></div>
+                  <div style="display:flex;gap:10px;align-items:center;"><span style="width:10px;height:10px;border-radius:99px;background:#e11d48;flex-shrink:0;"></span><span style="font-size:13px;"><strong>Venues</strong>: journals and conferences (NeurIPS, Nature, etc.)</span></div>
+                </div>
+              </div>
+              <div class="card" style="padding:20px;">
+                <h4 style="font-size:14px;font-weight:700;margin:0 0 8px;">Filtering &amp; clustering</h4>
+                <p style="font-size:13px;color:var(--muted);margin:0;line-height:1.65;">Use the filter panel to show only specific node types or date ranges. Enable <strong>concept clustering</strong> to automatically group related papers into labeled visual clusters. Cluster labels are generated by the AI engine.</p>
+              </div>
+              <div class="card" style="padding:20px;">
+                <h4 style="font-size:14px;font-weight:700;margin:0 0 8px;">Exporting the graph</h4>
+                <p style="font-size:13px;color:var(--muted);margin:0;line-height:1.65;">Export the graph in GraphML, GEXF (Gephi-compatible), or JSON format. Enterprise plans can also export via the REST API. See <a href="#docs-api" onclick="document.getElementById('docs-api').scrollIntoView({behavior:'smooth'});event.preventDefault();" style="color:var(--primary);">REST API</a> for programmatic access.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- AI Intelligence -->
+          <section id="docs-ai">
+            <h2 style="font-size:26px;font-weight:800;letter-spacing:-0.8px;margin:0 0 6px;font-family:'IBM Plex Sans',sans-serif;">AI Intelligence Engine</h2>
+            <p style="font-size:14px;color:var(--muted);margin:0 0 24px;line-height:1.7;">The Intelligence Engine analyzes your paper corpus to surface patterns that manual review would miss. It operates in four modes.</p>
+            <div style="display:flex;flex-direction:column;gap:16px;">
+              <div class="card" style="padding:20px;border-left:3px solid var(--primary);">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;"><span class="badge badge-blue">Synthesis</span><h4 style="font-size:14px;font-weight:700;margin:0;">Cross-paper synthesis</h4></div>
+                <p style="font-size:13px;color:var(--muted);margin:0;line-height:1.65;">Select 2–20 papers and request a synthesis. The engine identifies shared methodologies, converging evidence, and thematic links across disciplines. Output includes a structured summary and annotated citations.</p>
+              </div>
+              <div class="card" style="padding:20px;border-left:3px solid #f59e0b;">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;"><span class="badge badge-yellow">Contradiction</span><h4 style="font-size:14px;font-weight:700;margin:0;">Contradiction detection</h4></div>
+                <p style="font-size:13px;color:var(--muted);margin:0;line-height:1.65;">Automatically flags papers in your workspace that make contradictory empirical claims. Each detected contradiction is assigned a severity score (Low / High) and linked to the specific passages in conflict.</p>
+              </div>
+              <div class="card" style="padding:20px;border-left:3px solid #16a34a;">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;"><span class="badge badge-green">Trend</span><h4 style="font-size:14px;font-weight:700;margin:0;">Trend analysis</h4></div>
+                <p style="font-size:13px;color:var(--muted);margin:0;line-height:1.65;">Tracks citation velocity and topic emergence over time within your corpus. A topic is flagged as trending if its citation rate has grown more than 100% over a 12-month rolling window. Data updates weekly.</p>
+              </div>
+              <div class="card" style="padding:20px;border-left:3px solid #64748b;">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;"><span class="badge badge-gray">Gap</span><h4 style="font-size:14px;font-weight:700;margin:0;">Gap identification</h4></div>
+                <p style="font-size:13px;color:var(--muted);margin:0;line-height:1.65;">Identifies concept pairs that co-occur in your graph but have no direct paper linking them. These represent potential research opportunities. Gaps are ranked by an opportunity score derived from citation proximity and domain distance.</p>
+              </div>
+              <div class="card" style="padding:20px;background:var(--primary-light);border-color:var(--primary-mid);">
+                <h4 style="font-size:13px;font-weight:700;margin:0 0 6px;color:var(--primary);">AI model and data privacy</h4>
+                <p style="font-size:13px;color:var(--ink);margin:0;line-height:1.65;">The Intelligence Engine uses a combination of LumenResearch-hosted models and optional cloud inference. Your paper content is never used to train shared models. Enterprise customers can opt for on-premise inference. See the <a href="/privacy" onclick="event.preventDefault();showFooterPage('privacy');" style="color:var(--primary);">Privacy Policy</a> for full details.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Sandbox Lab -->
+          <section id="docs-sandbox">
+            <h2 style="font-size:26px;font-weight:800;letter-spacing:-0.8px;margin:0 0 6px;font-family:'IBM Plex Sans',sans-serif;">Sandbox Simulation Lab</h2>
+            <p style="font-size:14px;color:var(--muted);margin:0 0 24px;line-height:1.7;">The Sandbox Lab lets you run parameterized model experiments directly in LumenResearch and log reproducible research outputs alongside your papers.</p>
+            <div style="display:flex;flex-direction:column;gap:16px;">
+              <div class="card" style="padding:20px;">
+                <h4 style="font-size:14px;font-weight:700;margin:0 0 8px;">Supported architectures</h4>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;">
+                  <span class="badge badge-blue">Transformer</span>
+                  <span class="badge badge-green">LSTM Recurrent</span>
+                  <span class="badge badge-yellow">CNN Feature Extractor</span>
+                  <span class="badge badge-gray">Graph Neural Network</span>
+                  <span class="badge" style="background:#fdf4ff;color:#9333ea;">Diffusion (beta)</span>
+                </div>
+              </div>
+              <div class="card" style="padding:20px;">
+                <h4 style="font-size:14px;font-weight:700;margin:0 0 8px;">Running a simulation</h4>
+                <ol style="padding-left:20px;margin:0;display:flex;flex-direction:column;gap:8px;">
+                  <li style="font-size:13px;color:var(--muted);line-height:1.65;">Open the Sandbox section from the left sidebar.</li>
+                  <li style="font-size:13px;color:var(--muted);line-height:1.65;">Choose an architecture and set your parameters (learning rate, epochs, batch size, regularization).</li>
+                  <li style="font-size:13px;color:var(--muted);line-height:1.65;">Click <strong>Run Simulation</strong>. Training loss and validation metrics are plotted in real time.</li>
+                  <li style="font-size:13px;color:var(--muted);line-height:1.65;">When complete, click <strong>Save to Research Log</strong> to attach the run to a paper in your workspace.</li>
+                  <li style="font-size:13px;color:var(--muted);line-height:1.65;">Export the full log as JSON or CSV for reproducibility documentation.</li>
+                </ol>
+              </div>
+              <div class="card" style="padding:20px;">
+                <h4 style="font-size:14px;font-weight:700;margin:0 0 8px;">Reproducibility &amp; sharing</h4>
+                <p style="font-size:13px;color:var(--muted);margin:0;line-height:1.65;">Every simulation run gets a unique <strong>Run ID</strong> that captures all parameters, random seeds, and output artifacts. Share a Run ID with collaborators so they can reproduce your experiment exactly. Run IDs are immutable and workspace-scoped.</p>
+              </div>
+              <div class="card" style="padding:20px;">
+                <h4 style="font-size:14px;font-weight:700;margin:0 0 8px;">Compute limits by plan</h4>
+                <div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:13px;"><thead><tr style="border-bottom:1px solid var(--border);"><th style="text-align:left;padding:8px 12px;font-size:11px;font-weight:700;text-transform:uppercase;color:var(--muted);">Plan</th><th style="text-align:left;padding:8px 12px;font-size:11px;font-weight:700;text-transform:uppercase;color:var(--muted);">Max epochs</th><th style="text-align:left;padding:8px 12px;font-size:11px;font-weight:700;text-transform:uppercase;color:var(--muted);">Concurrent runs</th><th style="text-align:left;padding:8px 12px;font-size:11px;font-weight:700;text-transform:uppercase;color:var(--muted);">Log retention</th></tr></thead><tbody><tr style="border-bottom:1px solid var(--border);"><td style="padding:10px 12px;font-weight:600;">Free</td><td style="padding:10px 12px;color:var(--muted);">100</td><td style="padding:10px 12px;color:var(--muted);">1</td><td style="padding:10px 12px;color:var(--muted);">30 days</td></tr><tr style="border-bottom:1px solid var(--border);"><td style="padding:10px 12px;font-weight:600;">Team</td><td style="padding:10px 12px;color:var(--muted);">1,000</td><td style="padding:10px 12px;color:var(--muted);">5</td><td style="padding:10px 12px;color:var(--muted);">1 year</td></tr><tr><td style="padding:10px 12px;font-weight:600;">Enterprise</td><td style="padding:10px 12px;color:var(--muted);">Unlimited</td><td style="padding:10px 12px;color:var(--muted);">Unlimited</td><td style="padding:10px 12px;color:var(--muted);">Unlimited</td></tr></tbody></table></div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Analytics -->
+          <section id="docs-analytics">
+            <h2 style="font-size:26px;font-weight:800;letter-spacing:-0.8px;margin:0 0 6px;font-family:'IBM Plex Sans',sans-serif;">Analytics</h2>
+            <p style="font-size:14px;color:var(--muted);margin:0 0 24px;line-height:1.7;">The Analytics section provides quantitative views of your workspace activity and the research landscape within your corpus.</p>
+            <div style="display:flex;flex-direction:column;gap:16px;">
+              <div class="card" style="padding:20px;">
+                <h4 style="font-size:14px;font-weight:700;margin:0 0 8px;">Citation metrics</h4>
+                <p style="font-size:13px;color:var(--muted);margin:0;line-height:1.65;"><strong>Citation count</strong> is fetched from Semantic Scholar and updated weekly. <strong>Citation velocity</strong> is the 12-month rolling citation rate, normalized per paper age. Papers in the top 10% of velocity in your workspace are flagged as high-impact.</p>
+              </div>
+              <div class="card" style="padding:20px;">
+                <h4 style="font-size:14px;font-weight:700;margin:0 0 8px;">Publication velocity</h4>
+                <p style="font-size:13px;color:var(--muted);margin:0;line-height:1.65;">Tracks how frequently new papers on a given topic are published each month. Calculated by counting new items added to your workspace per topic cluster, combined with the global publication rate for matched concepts via Semantic Scholar.</p>
+              </div>
+              <div class="card" style="padding:20px;">
+                <h4 style="font-size:14px;font-weight:700;margin:0 0 8px;">Collaboration graph</h4>
+                <p style="font-size:13px;color:var(--muted);margin:0;line-height:1.65;">Visualizes co-authorship networks across your paper corpus. Node size represents total publication output; edge weight represents the number of co-authored papers. Useful for identifying potential collaborators and institutional partnerships.</p>
+              </div>
+              <div class="card" style="padding:20px;">
+                <h4 style="font-size:14px;font-weight:700;margin:0 0 8px;">Topic distribution</h4>
+                <p style="font-size:13px;color:var(--muted);margin:0;line-height:1.65;">A breakdown of your workspace by topic cluster. Each cluster is labeled by the AI engine and shows its share of papers, total citations, and average publication year. Use this to identify whether your reading list is balanced or narrow.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Teams & Permissions -->
+          <section id="docs-team">
+            <h2 style="font-size:26px;font-weight:800;letter-spacing:-0.8px;margin:0 0 6px;font-family:'IBM Plex Sans',sans-serif;">Teams &amp; Permissions</h2>
+            <p style="font-size:14px;color:var(--muted);margin:0 0 24px;line-height:1.7;">Invite collaborators to a workspace and control what each member can do with role-based permissions.</p>
+            <div class="card" style="padding:20px;margin-bottom:16px;">
+              <h4 style="font-size:14px;font-weight:700;margin:0 0 12px;">Roles</h4>
+              <div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:13px;"><thead><tr style="border-bottom:1px solid var(--border);"><th style="text-align:left;padding:8px 12px;font-size:11px;font-weight:700;text-transform:uppercase;color:var(--muted);">Role</th><th style="text-align:left;padding:8px 12px;font-size:11px;font-weight:700;text-transform:uppercase;color:var(--muted);">View</th><th style="text-align:left;padding:8px 12px;font-size:11px;font-weight:700;text-transform:uppercase;color:var(--muted);">Edit</th><th style="text-align:left;padding:8px 12px;font-size:11px;font-weight:700;text-transform:uppercase;color:var(--muted);">Invite</th><th style="text-align:left;padding:8px 12px;font-size:11px;font-weight:700;text-transform:uppercase;color:var(--muted);">Delete</th><th style="text-align:left;padding:8px 12px;font-size:11px;font-weight:700;text-transform:uppercase;color:var(--muted);">Admin settings</th></tr></thead><tbody><tr style="border-bottom:1px solid var(--border);"><td style="padding:10px 12px;font-weight:600;">Viewer</td><td style="padding:10px 12px;color:#16a34a;font-weight:700;">✓</td><td style="padding:10px 12px;color:var(--muted);font-size:12px;">No</td><td style="padding:10px 12px;color:var(--muted);font-size:12px;">No</td><td style="padding:10px 12px;color:var(--muted);font-size:12px;">No</td><td style="padding:10px 12px;color:var(--muted);font-size:12px;">No</td></tr><tr style="border-bottom:1px solid var(--border);"><td style="padding:10px 12px;font-weight:600;">Editor</td><td style="padding:10px 12px;color:#16a34a;font-weight:700;">✓</td><td style="padding:10px 12px;color:#16a34a;font-weight:700;">✓</td><td style="padding:10px 12px;color:var(--muted);font-size:12px;">No</td><td style="padding:10px 12px;color:var(--muted);font-size:12px;">No</td><td style="padding:10px 12px;color:var(--muted);font-size:12px;">No</td></tr><tr><td style="padding:10px 12px;font-weight:600;">Admin</td><td style="padding:10px 12px;color:#16a34a;font-weight:700;">✓</td><td style="padding:10px 12px;color:#16a34a;font-weight:700;">✓</td><td style="padding:10px 12px;color:#16a34a;font-weight:700;">✓</td><td style="padding:10px 12px;color:#16a34a;font-weight:700;">✓</td><td style="padding:10px 12px;color:#16a34a;font-weight:700;">✓</td></tr></tbody></table></div>
+            </div>
+            <div class="card" style="padding:20px;">
+              <h4 style="font-size:14px;font-weight:700;margin:0 0 8px;">Inviting members</h4>
+              <p style="font-size:13px;color:var(--muted);margin:0;line-height:1.65;">Open workspace Settings, go to Members, and click <strong>Invite</strong>. Enter the email address and choose a role. The invitee receives an email with a join link valid for 72 hours. If your institution uses SSO, members can join directly by signing in through your identity provider with no individual invite required.</p>
+            </div>
+          </section>
+
+          <!-- SSO -->
+          <section id="docs-sso">
+            <h2 style="font-size:26px;font-weight:800;letter-spacing:-0.8px;margin:0 0 6px;font-family:'IBM Plex Sans',sans-serif;">SSO &amp; SAML</h2>
+            <p style="font-size:14px;color:var(--muted);margin:0 0 24px;line-height:1.7;">Enterprise plans can configure SAML 2.0 single sign-on, enabling all institution members to authenticate through your existing identity provider.</p>
+            <div style="display:flex;flex-direction:column;gap:16px;">
+              <div class="card" style="padding:20px;">
+                <h4 style="font-size:14px;font-weight:700;margin:0 0 8px;">Supported identity providers</h4>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;"><span class="badge badge-gray">Okta</span><span class="badge badge-gray">Microsoft Azure AD</span><span class="badge badge-gray">Google Workspace</span><span class="badge badge-gray">OneLogin</span><span class="badge badge-gray">Shibboleth</span><span class="badge badge-gray">ADFS</span></div>
+              </div>
+              <div class="card" style="padding:20px;">
+                <h4 style="font-size:14px;font-weight:700;margin:0 0 8px;">Setup process</h4>
+                <ol style="padding-left:20px;margin:0;display:flex;flex-direction:column;gap:8px;">
+                  <li style="font-size:13px;color:var(--muted);line-height:1.65;">Contact us at <a href="mailto:enterprise@lumenresearch.ltd" style="color:var(--primary);">enterprise@lumenresearch.ltd</a> to request SSO configuration.</li>
+                  <li style="font-size:13px;color:var(--muted);line-height:1.65;">Provide your IdP metadata XML or the metadata URL. We will generate your LumenResearch SAML Entity ID and ACS URL.</li>
+                  <li style="font-size:13px;color:var(--muted);line-height:1.65;">Configure the attribute mapping: <code style="background:var(--border);padding:1px 5px;border-radius:4px;font-size:11px;">email</code>, <code style="background:var(--border);padding:1px 5px;border-radius:4px;font-size:11px;">given_name</code>, <code style="background:var(--border);padding:1px 5px;border-radius:4px;font-size:11px;">family_name</code>, and optionally <code style="background:var(--border);padding:1px 5px;border-radius:4px;font-size:11px;">department</code>.</li>
+                  <li style="font-size:13px;color:var(--muted);line-height:1.65;">Test the flow in staging. Once verified, enable SSO for your organization. All new sign-ins will be routed through your IdP.</li>
+                </ol>
+              </div>
+              <div class="card" style="padding:20px;background:var(--primary-light);border-color:var(--primary-mid);">
+                <p style="font-size:13px;font-weight:700;margin:0 0 4px;color:var(--primary);">SCIM provisioning</p>
+                <p style="font-size:13px;color:var(--ink);margin:0;line-height:1.65;">Enterprise plans also support SCIM 2.0 for automatic user provisioning and de-provisioning. When a researcher joins or leaves your institution, their LumenResearch access updates automatically. Contact your account manager to enable SCIM.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- REST API -->
+          <section id="docs-api">
+            <h2 style="font-size:26px;font-weight:800;letter-spacing:-0.8px;margin:0 0 6px;font-family:'IBM Plex Sans',sans-serif;">REST API</h2>
+            <p style="font-size:14px;color:var(--muted);margin:0 0 24px;line-height:1.7;">The LumenResearch API provides programmatic access to workspaces, papers, graph data, and simulation logs. Available on Team and Enterprise plans.</p>
+            <div style="display:flex;flex-direction:column;gap:16px;">
+              <div class="card" style="padding:20px;">
+                <h4 style="font-size:14px;font-weight:700;margin:0 0 8px;">Authentication</h4>
+                <p style="font-size:13px;color:var(--muted);margin:0 0 10px;line-height:1.65;">Generate an API key from Account Settings → API Keys. Pass it in the Authorization header:</p>
+                <div style="background:#0f172a;border-radius:8px;padding:14px 16px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:#93c5fd;overflow-x:auto;">Authorization: Bearer lr_live_xxxxxxxxxxxxxxxxxxxx</div>
+              </div>
+              <div class="card" style="padding:20px;">
+                <h4 style="font-size:14px;font-weight:700;margin:0 0 8px;">Base URL</h4>
+                <div style="background:#0f172a;border-radius:8px;padding:14px 16px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:#93c5fd;overflow-x:auto;">https://api.lumenresearch.ltd/v1</div>
+              </div>
+              <div class="card" style="padding:20px;">
+                <h4 style="font-size:14px;font-weight:700;margin:0 0 12px;">Core endpoints</h4>
+                <div style="display:flex;flex-direction:column;gap:10px;">
+                  <div style="display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:10px;background:var(--bg);border-radius:6px;border:1px solid var(--border);">
+                    <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;background:#dbeafe;color:#1d4ed8;padding:2px 7px;border-radius:4px;font-weight:700;">GET</span>
+                    <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;">/workspaces</span>
+                    <span style="font-size:12px;color:var(--muted);">List all workspaces</span>
+                  </div>
+                  <div style="display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:10px;background:var(--bg);border-radius:6px;border:1px solid var(--border);">
+                    <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;background:#dbeafe;color:#1d4ed8;padding:2px 7px;border-radius:4px;font-weight:700;">GET</span>
+                    <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;">/workspaces/:id/papers</span>
+                    <span style="font-size:12px;color:var(--muted);">List papers in workspace</span>
+                  </div>
+                  <div style="display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:10px;background:var(--bg);border-radius:6px;border:1px solid var(--border);">
+                    <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;background:#dcfce7;color:#16a34a;padding:2px 7px;border-radius:4px;font-weight:700;">POST</span>
+                    <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;">/workspaces/:id/papers</span>
+                    <span style="font-size:12px;color:var(--muted);">Import a paper by DOI</span>
+                  </div>
+                  <div style="display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:10px;background:var(--bg);border-radius:6px;border:1px solid var(--border);">
+                    <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;background:#dbeafe;color:#1d4ed8;padding:2px 7px;border-radius:4px;font-weight:700;">GET</span>
+                    <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;">/workspaces/:id/graph</span>
+                    <span style="font-size:12px;color:var(--muted);">Export graph as JSON</span>
+                  </div>
+                  <div style="display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:10px;background:var(--bg);border-radius:6px;border:1px solid var(--border);">
+                    <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;background:#dbeafe;color:#1d4ed8;padding:2px 7px;border-radius:4px;font-weight:700;">GET</span>
+                    <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;">/workspaces/:id/simulations</span>
+                    <span style="font-size:12px;color:var(--muted);">List simulation runs</span>
+                  </div>
+                  <div style="display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:10px;background:var(--bg);border-radius:6px;border:1px solid var(--border);">
+                    <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;background:#dcfce7;color:#16a34a;padding:2px 7px;border-radius:4px;font-weight:700;">POST</span>
+                    <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;">/intelligence/synthesize</span>
+                    <span style="font-size:12px;color:var(--muted);">Request AI synthesis</span>
+                  </div>
+                </div>
+              </div>
+              <div class="card" style="padding:20px;">
+                <h4 style="font-size:14px;font-weight:700;margin:0 0 8px;">Rate limits</h4>
+                <div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:13px;"><thead><tr style="border-bottom:1px solid var(--border);"><th style="text-align:left;padding:8px 12px;font-size:11px;font-weight:700;text-transform:uppercase;color:var(--muted);">Plan</th><th style="text-align:left;padding:8px 12px;font-size:11px;font-weight:700;text-transform:uppercase;color:var(--muted);">Requests / min</th><th style="text-align:left;padding:8px 12px;font-size:11px;font-weight:700;text-transform:uppercase;color:var(--muted);">AI calls / day</th></tr></thead><tbody><tr style="border-bottom:1px solid var(--border);"><td style="padding:10px 12px;font-weight:600;">Team</td><td style="padding:10px 12px;color:var(--muted);">60</td><td style="padding:10px 12px;color:var(--muted);">100</td></tr><tr><td style="padding:10px 12px;font-weight:600;">Enterprise</td><td style="padding:10px 12px;color:var(--muted);">600</td><td style="padding:10px 12px;color:var(--muted);">Unlimited</td></tr></tbody></table></div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Data Export -->
+          <section id="docs-export">
+            <h2 style="font-size:26px;font-weight:800;letter-spacing:-0.8px;margin:0 0 6px;font-family:'IBM Plex Sans',sans-serif;">Data Export</h2>
+            <p style="font-size:14px;color:var(--muted);margin:0 0 24px;line-height:1.7;">You own your data. LumenResearch supports full data export in open formats at any time.</p>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;">
+              <div class="card" style="padding:18px;"><p style="font-weight:700;font-size:13px;margin:0 0 6px;">Papers</p><p style="font-size:12px;color:var(--muted);margin:0;line-height:1.55;">Export all paper metadata as BibTeX, RIS, or CSV. PDFs are re-downloaded where open access.</p></div>
+              <div class="card" style="padding:18px;"><p style="font-weight:700;font-size:13px;margin:0 0 6px;">Graph</p><p style="font-size:12px;color:var(--muted);margin:0;line-height:1.55;">Export the full knowledge graph in GraphML, GEXF, or JSON-LD.</p></div>
+              <div class="card" style="padding:18px;"><p style="font-weight:700;font-size:13px;margin:0 0 6px;">Simulation logs</p><p style="font-size:12px;color:var(--muted);margin:0;line-height:1.55;">Download all simulation runs as a structured JSON archive including parameters, seeds, and metrics.</p></div>
+              <div class="card" style="padding:18px;"><p style="font-weight:700;font-size:13px;margin:0 0 6px;">Annotations</p><p style="font-size:12px;color:var(--muted);margin:0;line-height:1.55;">Export annotations and highlights as a JSON or Markdown file, linked to paper DOIs.</p></div>
+            </div>
+            <div class="card" style="padding:20px;margin-top:14px;background:var(--primary-light);border-color:var(--primary-mid);">
+              <p style="font-size:13px;color:var(--ink);margin:0;line-height:1.65;"><strong style="color:var(--primary);">Full account export:</strong> Go to Account Settings → Data &amp; Privacy → Export Account Data. You will receive a download link by email within 24 hours containing all workspace data, papers, simulations, and annotations in a single archive.</p>
+            </div>
+          </section>
+
+        </div><!-- end main content -->
+      </div><!-- end docs-layout grid -->
+
+      <style>
+        @media(max-width:768px){#docs-layout{grid-template-columns:1fr !important;}#docs-sidebar{display:none !important;}}
+      </style>
     </div>
   </div>
 
   <!-- Changelog Page -->
   <div id="fp-changelog" class="footer-page">
     <div style="max-width:760px;margin:0 auto;padding:60px 20px;">
+      <a href="javascript:void(0)" onclick="showLandingPage()" style="display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);text-decoration:none;margin-bottom:20px;padding:5px 10px 5px 8px;border-radius:7px;border:1px solid var(--border);transition:all 0.2s;" onmouseover="this.style.background='var(--border)';this.style.color='var(--ink)'" onmouseout="this.style.background='';this.style.color='var(--muted)'"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg> Back to Home</a>
       <span class="badge badge-blue" style="margin-bottom:16px;display:inline-flex;">Changelog</span>
-      <h1 style="font-size:clamp(26px,4vw,42px);font-weight:800;letter-spacing:-1.5px;margin:0 0 40px;font-family:'IBM Plex Sans',sans-serif;">What's new in LumenResearch</h1>
+      <h1 style="font-size:clamp(26px,4vw,42px);font-weight:800;letter-spacing:-1.5px;margin:0 0 40px;font-family:'IBM Plex Sans',sans-serif;">LumenResearch Release Notes</h1>
       <div style="display:flex;flex-direction:column;gap:32px;">
-        <div style="display:flex;gap:20px;"><div style="width:2px;background:var(--primary);flex-shrink:0;border-radius:99px;"></div><div style="flex:1;"><p style="margin:0 0 6px;font-size:11px;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:0.08em;">May 2025 · v2.4.0</p><h3 style="font-size:17px;font-weight:700;margin:0 0 10px;">Sandbox Simulation Lab — General Availability</h3><p style="font-size:14px;color:var(--muted);line-height:1.65;margin:0 0 10px;">The Sandbox Lab is now available on all plans. Run parameter-controlled experiments with 5 model architectures and export reproducible research logs.</p><div style="display:flex;gap:6px;flex-wrap:wrap;"><span class="badge badge-blue">New Feature</span><span class="badge badge-green">All Plans</span></div></div></div>
-        <div style="display:flex;gap:20px;"><div style="width:2px;background:var(--border);flex-shrink:0;border-radius:99px;"></div><div style="flex:1;"><p style="margin:0 0 6px;font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;">Apr 2025 · v2.3.0</p><h3 style="font-size:17px;font-weight:700;margin:0 0 10px;">Research Graph: Concept Clustering</h3><p style="font-size:14px;color:var(--muted);line-height:1.65;margin:0 0 10px;">Automated concept clustering now groups related papers into visual clusters. Cross-domain link detection improved 3x in precision.</p><div style="display:flex;gap:6px;flex-wrap:wrap;"><span class="badge badge-blue">Improvement</span></div></div></div>
-        <div style="display:flex;gap:20px;"><div style="width:2px;background:var(--border);flex-shrink:0;border-radius:99px;"></div><div style="flex:1;"><p style="margin:0 0 6px;font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;">Mar 2025 · v2.2.0</p><h3 style="font-size:17px;font-weight:700;margin:0 0 10px;">Dark Mode + Custom Accent Colors</h3><p style="font-size:14px;color:var(--muted);line-height:1.65;margin:0 0 10px;">System-wide dark mode with smooth transitions, and 5 accent color options in Settings &gt; Appearance.</p><div style="display:flex;gap:6px;flex-wrap:wrap;"><span class="badge badge-green">Design</span></div></div></div>
-        <div style="display:flex;gap:20px;"><div style="width:2px;background:var(--border);flex-shrink:0;border-radius:99px;"></div><div style="flex:1;"><p style="margin:0 0 6px;font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;">Feb 2025 · v2.1.0</p><h3 style="font-size:17px;font-weight:700;margin:0 0 10px;">AI Contradiction Detection Engine</h3><p style="font-size:14px;color:var(--muted);line-height:1.65;margin:0 0 10px;">Automatically detect contradictory findings across papers in your library. Now with confidence scoring and citation chain tracing.</p><div style="display:flex;gap:6px;flex-wrap:wrap;"><span class="badge badge-blue">AI Feature</span><span class="badge badge-yellow">Beta</span></div></div></div>
+        <div style="display:flex;gap:20px;"><div style="width:2px;background:var(--primary);flex-shrink:0;border-radius:99px;"></div><div style="flex:1;"><p style="margin:0 0 6px;font-size:11px;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:0.08em;">May 2026 · v2.4.0</p><h3 style="font-size:17px;font-weight:700;margin:0 0 10px;">Sandbox Simulation Lab: General Availability</h3><p style="font-size:14px;color:var(--muted);line-height:1.65;margin:0 0 10px;">The Sandbox Lab is now available on all plans. Run parameter-controlled experiments with 5 model architectures and export reproducible research logs.</p><div style="display:flex;gap:6px;flex-wrap:wrap;"><span class="badge badge-blue">New Feature</span><span class="badge badge-green">All Plans</span></div></div></div>
+        <div style="display:flex;gap:20px;"><div style="width:2px;background:var(--border);flex-shrink:0;border-radius:99px;"></div><div style="flex:1;"><p style="margin:0 0 6px;font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;">Apr 2026 · v2.3.0</p><h3 style="font-size:17px;font-weight:700;margin:0 0 10px;">Research Graph: Concept Clustering</h3><p style="font-size:14px;color:var(--muted);line-height:1.65;margin:0 0 10px;">Automated concept clustering now groups related papers into visual clusters. Cross-domain link detection improved 3x in precision.</p><div style="display:flex;gap:6px;flex-wrap:wrap;"><span class="badge badge-blue">Improvement</span></div></div></div>
+        <div style="display:flex;gap:20px;"><div style="width:2px;background:var(--border);flex-shrink:0;border-radius:99px;"></div><div style="flex:1;"><p style="margin:0 0 6px;font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;">Mar 2026 · v2.2.0</p><h3 style="font-size:17px;font-weight:700;margin:0 0 10px;">Dark Mode + Custom Accent Colors</h3><p style="font-size:14px;color:var(--muted);line-height:1.65;margin:0 0 10px;">System-wide dark mode with smooth transitions, and 5 accent color options in Settings &gt; Appearance.</p><div style="display:flex;gap:6px;flex-wrap:wrap;"><span class="badge badge-green">Design</span></div></div></div>
+        <div style="display:flex;gap:20px;"><div style="width:2px;background:var(--border);flex-shrink:0;border-radius:99px;"></div><div style="flex:1;"><p style="margin:0 0 6px;font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;">Feb 2026 · v2.1.0</p><h3 style="font-size:17px;font-weight:700;margin:0 0 10px;">AI Contradiction Detection Engine</h3><p style="font-size:14px;color:var(--muted);line-height:1.65;margin:0 0 10px;">Automatically detect contradictory findings across papers in your library. Now with confidence scoring and citation chain tracing.</p><div style="display:flex;gap:6px;flex-wrap:wrap;"><span class="badge badge-blue">AI Feature</span><span class="badge badge-yellow">Beta</span></div></div></div>
       </div>
     </div>
   </div>
@@ -1121,13 +1488,14 @@ html{scroll-behavior:smooth;}
   <!-- Roadmap Page -->
   <div id="fp-roadmap" class="footer-page">
     <div style="max-width:760px;margin:0 auto;padding:60px 20px;">
+      <a href="javascript:void(0)" onclick="showLandingPage()" style="display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);text-decoration:none;margin-bottom:20px;padding:5px 10px 5px 8px;border-radius:7px;border:1px solid var(--border);transition:all 0.2s;" onmouseover="this.style.background='var(--border)';this.style.color='var(--ink)'" onmouseout="this.style.background='';this.style.color='var(--muted)'"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg> Back to Home</a>
       <span class="badge badge-yellow" style="margin-bottom:16px;display:inline-flex;">Roadmap</span>
       <h1 style="font-size:clamp(26px,4vw,42px);font-weight:800;letter-spacing:-1.5px;margin:0 0 14px;font-family:'IBM Plex Sans',sans-serif;">What we're building next</h1>
-      <p style="font-size:15px;color:var(--muted);margin:0 0 40px;line-height:1.65;">Our product roadmap is shaped by institutional research needs. Here's what's in progress and planned.</p>
+      <p style="font-size:15px;color:var(--muted);margin:0 0 40px;line-height:1.65;">Our roadmap is driven by feedback from research teams actively using the platform. Here is what we are building next.</p>
       <div style="display:flex;flex-direction:column;gap:14px;">
         <div class="card" style="padding:18px;border-left:3px solid var(--primary);"><div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;"><h3 style="font-size:14px;font-weight:700;margin:0;">LLM-powered citation extraction</h3><span class="badge badge-blue">In Progress</span></div><p style="margin:6px 0 0;font-size:13px;color:var(--muted);">Automatic citation graph construction from PDF uploads using fine-tuned NLP models.</p></div>
-        <div class="card" style="padding:18px;border-left:3px solid #16a34a;"><div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;"><h3 style="font-size:14px;font-weight:700;margin:0;">Real-time co-authoring on papers</h3><span class="badge badge-green">Q3 2025</span></div><p style="margin:6px 0 0;font-size:13px;color:var(--muted);">Google Docs-like collaborative editing for research notes and annotations.</p></div>
-        <div class="card" style="padding:18px;border-left:3px solid #f59e0b;"><div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;"><h3 style="font-size:14px;font-weight:700;margin:0;">Integration: Zotero / Mendeley sync</h3><span class="badge badge-yellow">Q3 2025</span></div><p style="margin:6px 0 0;font-size:13px;color:var(--muted);">Two-way sync with existing reference managers so teams don't have to migrate all at once.</p></div>
+        <div class="card" style="padding:18px;border-left:3px solid #16a34a;"><div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;"><h3 style="font-size:14px;font-weight:700;margin:0;">Real-time co-authoring on papers</h3><span class="badge badge-green">Q3 2026</span></div><p style="margin:6px 0 0;font-size:13px;color:var(--muted);">Google Docs-like collaborative editing for research notes and annotations.</p></div>
+        <div class="card" style="padding:18px;border-left:3px solid #f59e0b;"><div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;"><h3 style="font-size:14px;font-weight:700;margin:0;">Integration: Zotero / Mendeley sync</h3><span class="badge badge-yellow">Q3 2026</span></div><p style="margin:6px 0 0;font-size:13px;color:var(--muted);">Two-way sync with existing reference managers so teams don't have to migrate all at once.</p></div>
         <div class="card" style="padding:18px;border-left:3px solid #9333ea;"><div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;"><h3 style="font-size:14px;font-weight:700;margin:0;">Semantic search across graph</h3><span class="badge badge-gray">Planned</span></div><p style="margin:6px 0 0;font-size:13px;color:var(--muted);">Vector embedding search allowing natural language queries against the full knowledge graph.</p></div>
         <div class="card" style="padding:18px;border-left:3px solid #64748b;"><div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;"><h3 style="font-size:14px;font-weight:700;margin:0;">Mobile app (iOS & Android)</h3><span class="badge badge-gray">Planned</span></div><p style="margin:6px 0 0;font-size:13px;color:var(--muted);">Native mobile experience for reviewing insights, reading papers, and checking team activity on the go.</p></div>
       </div>
@@ -1137,17 +1505,18 @@ html{scroll-behavior:smooth;}
   <!-- Contact Page -->
   <div id="fp-contact" class="footer-page">
     <div style="max-width:700px;margin:0 auto;padding:60px 20px;">
+      <a href="javascript:void(0)" onclick="showLandingPage()" style="display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);text-decoration:none;margin-bottom:20px;padding:5px 10px 5px 8px;border-radius:7px;border:1px solid var(--border);transition:all 0.2s;" onmouseover="this.style.background='var(--border)';this.style.color='var(--ink)'" onmouseout="this.style.background='';this.style.color='var(--muted)'"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg> Back to Home</a>
       <span class="badge badge-green" style="margin-bottom:16px;display:inline-flex;">Contact</span>
       <h1 style="font-size:clamp(26px,4vw,42px);font-weight:800;letter-spacing:-1.5px;margin:0 0 14px;font-family:'IBM Plex Sans',sans-serif;">Get in touch</h1>
-      <p style="font-size:15px;color:var(--muted);margin:0 0 36px;line-height:1.65;">For institutional inquiries, partnerships, or general support — reach our team directly.</p>
+      <p style="font-size:15px;color:var(--muted);margin:0 0 36px;line-height:1.65;">For institutional access, technical support, or general inquiries, reach our team directly.</p>
       <div class="card" style="padding:28px;margin-bottom:20px;">
         <div style="display:flex;flex-direction:column;gap:14px;">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;"><div><label class="section-label">First Name</label><input class="input-field" placeholder="Alex" style="margin-top:5px;"/></div><div><label class="section-label">Last Name</label><input class="input-field" placeholder="Chen" style="margin-top:5px;"/></div></div>
           <div><label class="section-label">Email</label><input class="input-field" type="email" placeholder="researcher@institution.edu" style="margin-top:5px;"/></div>
           <div><label class="section-label">Institution</label><input class="input-field" placeholder="MIT CSAIL" style="margin-top:5px;"/></div>
-          <div><label class="section-label">Subject</label><select class="input-field" style="margin-top:5px;"><option>Institutional Access Request</option><option>Partnership Inquiry</option><option>Technical Support</option><option>Press & Media</option><option>Other</option></select></div>
+          <div><label class="section-label">Subject</label><select class="input-field" style="margin-top:5px;"><option>Institutional Access Request</option><option>Technical Support</option><option>Press & Media</option><option>Other</option></select></div>
           <div><label class="section-label">Message</label><textarea class="input-field" rows="4" placeholder="Tell us about your institution and research needs..." style="margin-top:5px;"></textarea></div>
-          <button class="btn-primary" onclick="showToast('Message sent — we\\'ll respond within 24 hours.','success')">Send Message</button>
+          <button class="btn-primary" onclick="showToast('Message sent: we\\'ll respond within 24 hours.','success')">Send Message</button>
         </div>
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;">
@@ -1161,9 +1530,10 @@ html{scroll-behavior:smooth;}
   <!-- Privacy Page -->
   <div id="fp-privacy" class="footer-page">
     <div style="max-width:760px;margin:0 auto;padding:60px 20px;">
+      <a href="javascript:void(0)" onclick="showLandingPage()" style="display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);text-decoration:none;margin-bottom:20px;padding:5px 10px 5px 8px;border-radius:7px;border:1px solid var(--border);transition:all 0.2s;" onmouseover="this.style.background='var(--border)';this.style.color='var(--ink)'" onmouseout="this.style.background='';this.style.color='var(--muted)'"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg> Back to Home</a>
       <span class="badge badge-gray" style="margin-bottom:16px;display:inline-flex;">Legal</span>
       <h1 style="font-size:clamp(24px,4vw,40px);font-weight:800;letter-spacing:-1px;margin:0 0 8px;font-family:'IBM Plex Sans',sans-serif;">Privacy Policy</h1>
-      <p style="font-size:13px;color:var(--muted);margin:0 0 36px;">Last updated: May 1, 2025</p>
+      <p style="font-size:13px;color:var(--muted);margin:0 0 36px;">Last updated: May 1, 2026</p>
       <div style="display:flex;flex-direction:column;gap:28px;">
         <div><h2 style="font-size:16px;font-weight:700;margin:0 0 10px;">1. Information We Collect</h2><p style="font-size:14px;color:var(--muted);line-height:1.75;margin:0;">We collect information you provide directly (name, institutional email, organization), information generated through use of the platform (papers indexed, workspace activity, collaboration logs), and technical data (IP address, browser type, device type) for security and analytics purposes.</p></div>
         <div><h2 style="font-size:16px;font-weight:700;margin:0 0 10px;">2. How We Use Your Information</h2><p style="font-size:14px;color:var(--muted);line-height:1.75;margin:0;">We use collected information to provide and improve the LumenResearch platform, communicate with you about your account and product updates, ensure security and prevent fraud, and generate anonymized aggregate analytics for product development.</p></div>
@@ -1178,9 +1548,10 @@ html{scroll-behavior:smooth;}
   <!-- Terms Page -->
   <div id="fp-terms" class="footer-page">
     <div style="max-width:760px;margin:0 auto;padding:60px 20px;">
+      <a href="javascript:void(0)" onclick="showLandingPage()" style="display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);text-decoration:none;margin-bottom:20px;padding:5px 10px 5px 8px;border-radius:7px;border:1px solid var(--border);transition:all 0.2s;" onmouseover="this.style.background='var(--border)';this.style.color='var(--ink)'" onmouseout="this.style.background='';this.style.color='var(--muted)'"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg> Back to Home</a>
       <span class="badge badge-gray" style="margin-bottom:16px;display:inline-flex;">Legal</span>
       <h1 style="font-size:clamp(24px,4vw,40px);font-weight:800;letter-spacing:-1px;margin:0 0 8px;font-family:'IBM Plex Sans',sans-serif;">Terms of Service</h1>
-      <p style="font-size:13px;color:var(--muted);margin:0 0 36px;">Last updated: May 1, 2025 · Effective: May 15, 2025</p>
+      <p style="font-size:13px;color:var(--muted);margin:0 0 36px;">Last updated: May 1, 2026 · Effective: May 15, 2026</p>
       <div style="display:flex;flex-direction:column;gap:28px;">
         <div><h2 style="font-size:16px;font-weight:700;margin:0 0 10px;">1. Acceptance of Terms</h2><p style="font-size:14px;color:var(--muted);line-height:1.75;margin:0;">By accessing or using LumenResearch, you agree to be bound by these Terms of Service. If you are using LumenResearch on behalf of an institution, you represent that you have authority to bind the institution to these terms.</p></div>
         <div><h2 style="font-size:16px;font-weight:700;margin:0 0 10px;">2. Acceptable Use</h2><p style="font-size:14px;color:var(--muted);line-height:1.75;margin:0;">You may use LumenResearch for lawful research, academic, and institutional purposes. You may not use the platform to upload illegal content, attempt to reverse-engineer our systems, or violate intellectual property rights of third parties.</p></div>
@@ -1194,9 +1565,10 @@ html{scroll-behavior:smooth;}
   <!-- Security Page -->
   <div id="fp-security" class="footer-page">
     <div style="max-width:800px;margin:0 auto;padding:60px 20px;">
+      <a href="javascript:void(0)" onclick="showLandingPage()" style="display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);text-decoration:none;margin-bottom:20px;padding:5px 10px 5px 8px;border-radius:7px;border:1px solid var(--border);transition:all 0.2s;" onmouseover="this.style.background='var(--border)';this.style.color='var(--ink)'" onmouseout="this.style.background='';this.style.color='var(--muted)'"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg> Back to Home</a>
       <span class="badge badge-red" style="margin-bottom:16px;display:inline-flex;">Security</span>
       <h1 style="font-size:clamp(26px,4vw,42px);font-weight:800;letter-spacing:-1.5px;margin:0 0 14px;font-family:'IBM Plex Sans',sans-serif;">Security at LumenResearch</h1>
-      <p style="font-size:15px;color:var(--muted);margin:0 0 40px;line-height:1.65;">Research data is sensitive. We treat security as a first-class product requirement, not an afterthought.</p>
+      <p style="font-size:15px;color:var(--muted);margin:0 0 40px;line-height:1.65;">Research data is sensitive. Security is built into our infrastructure from the start, not added later.</p>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:32px;">
         <div class="card" style="padding:20px;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;"><span style="font-size:22px;">🔒</span><p style="margin:0;font-size:14px;font-weight:700;">SOC 2 Type II</p></div><p style="margin:0;font-size:13px;color:var(--muted);line-height:1.55;">Annual audit by independent third party. Full report available under NDA for enterprise customers.</p></div>
         <div class="card" style="padding:20px;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;"><span style="font-size:22px;">🛡️</span><p style="margin:0;font-size:14px;font-weight:700;">ISO 27001</p></div><p style="margin:0;font-size:13px;color:var(--muted);line-height:1.55;">Certified information security management system across all data processing activities.</p></div>
@@ -1230,7 +1602,7 @@ html{scroll-behavior:smooth;}
       </div>
 
       <!-- Back to site -->
-      <a href="javascript:void(0)" onclick="showView('landing-view');window.scrollTo(0,0);" style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted);text-decoration:none;padding:4px 6px 10px;transition:color 0.2s;border-bottom:1px solid var(--border);margin-bottom:10px;" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--muted)'">
+      <a href="javascript:void(0)" onclick="showLandingPage()" style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted);text-decoration:none;padding:4px 6px 10px;transition:color 0.2s;border-bottom:1px solid var(--border);margin-bottom:10px;" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--muted)'">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
         Back to site
       </a>
@@ -1672,7 +2044,7 @@ html{scroll-behavior:smooth;}
         <div><label class="section-label">Title</label><input class="input-field" id="new-paper-title" placeholder="Paper title" style="margin-top:5px;"/></div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
           <div><label class="section-label">Authors</label><input class="input-field" id="new-paper-authors" placeholder="Author et al." style="margin-top:5px;"/></div>
-          <div><label class="section-label">Year</label><input class="input-field" id="new-paper-year" type="number" placeholder="2025" style="margin-top:5px;"/></div>
+          <div><label class="section-label">Year</label><input class="input-field" id="new-paper-year" type="number" placeholder="2026" style="margin-top:5px;"/></div>
         </div>
         <div><label class="section-label">Topic</label><select class="input-field" id="new-paper-topic" style="margin-top:5px;"><option>AI</option><option>Biology</option><option>Physics</option><option>Economics</option><option>Neuroscience</option><option>Systems</option></select></div>
         <div><label class="section-label">DOI / arXiv</label><input class="input-field" id="new-paper-doi" placeholder="10.xxxx/xxxxx" style="margin-top:5px;"/></div>
@@ -1736,7 +2108,7 @@ html{scroll-behavior:smooth;}
       </div>
       <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:18px;flex-wrap:wrap;">
         <button class="btn-secondary" onclick="closeModal('institutional-modal')">Cancel</button>
-        <button class="btn-primary" onclick="closeModal('institutional-modal');showToast('Application received — we\\'ll contact you within 2 business days.','success')">Submit Application</button>
+        <button class="btn-primary" onclick="closeModal('institutional-modal');showToast('Application received: we\\'ll contact you within 2 business days.','success')">Submit Application</button>
       </div>
     </div>
   </div>
@@ -1759,6 +2131,256 @@ html{scroll-behavior:smooth;}
 @media(min-width:769px){
   #mobile-menu-btn{display:none!important;}
 }
+
+/* ============ STRIPE PAYMENT PLACEHOLDER ============ */
+.stripe-payment-placeholder{margin-top:28px;width:100%;max-width:440px;margin-left:auto;margin-right:auto;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px 24px 20px;box-shadow:0 4px 24px rgba(37,99,235,0.07),0 1px 4px rgba(0,0,0,0.04);text-align:left;}
+.sp-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;}
+.sp-title{font-size:13px;font-weight:700;color:var(--ink);letter-spacing:-0.01em;}
+.sp-subtitle{font-size:11.5px;color:var(--muted);margin-top:1px;}
+.stripe-logo-wrap{display:flex;align-items:center;gap:6px;background:#f7f6ff;border:1px solid #ccc8fd;border-radius:8px;padding:6px 12px;box-shadow:0 1px 4px rgba(99,91,255,0.12);}
+html.dark .stripe-logo-wrap{background:rgba(99,91,255,0.12);border-color:rgba(99,91,255,0.32);}
+html.dark .sp-badge-logo{box-shadow:0 1px 4px rgba(0,0,0,0.35);}
+.stripe-plan-tabs{display:flex;gap:6px;margin-bottom:16px;}
+.stripe-plan-tab{flex:1;border:1.5px solid var(--border);border-radius:10px;padding:10px 8px;cursor:pointer;background:var(--bg);transition:all 0.18s;text-align:center;}
+.stripe-plan-tab:hover{border-color:#635BFF;}
+.stripe-plan-tab.active{border-color:#635BFF;background:rgba(99,91,255,0.06);}
+html.dark .stripe-plan-tab.active{background:rgba(99,91,255,0.13);}
+.sp-plan-name{font-size:12px;font-weight:700;color:var(--ink);margin-bottom:2px;}
+.stripe-plan-tab.active .sp-plan-name{color:#635BFF;}
+.sp-plan-price{font-size:15px;font-weight:800;color:var(--ink);letter-spacing:-0.5px;}
+.sp-plan-per{font-size:10px;color:var(--muted);font-weight:500;}
+.sp-divider{height:1px;background:var(--border);margin:14px 0;}
+.sp-pay-btn{width:100%;height:48px;background:#635BFF;color:#fff;border:none;border-radius:10px;font-size:14.5px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:11px;margin-top:2px;transition:background 0.18s,transform 0.12s,box-shadow 0.18s;box-shadow:0 2px 12px rgba(99,91,255,0.30);letter-spacing:-0.01em;}
+.sp-pay-btn:hover{background:#4f46e5;box-shadow:0 4px 20px rgba(99,91,255,0.40);transform:translateY(-1px);}
+.sp-pay-btn:active{transform:translateY(0);}
+.sp-btn-divider{width:1px;height:16px;background:rgba(255,255,255,0.35);}
+.sp-secure-row{display:flex;align-items:center;justify-content:center;gap:5px;margin-top:12px;font-size:11px;color:var(--muted);}
+.sp-badges{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:8px;flex-wrap:wrap;}
+.sp-badge{font-size:10px;color:var(--muted);background:var(--bg);border:1px solid var(--border);border-radius:5px;padding:2px 7px;font-weight:600;letter-spacing:0.02em;}
+.sp-badge-logo{display:inline-flex;align-items:center;border-radius:5px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.13);line-height:0;vertical-align:middle;}
+.sp-badge-logo svg{display:block;}
+.pricing-stripe-badge{display:flex;align-items:center;justify-content:center;gap:5px;margin-bottom:18px;margin-top:-4px;}
+
+@media(max-width:640px){
+  #office-map-grid{grid-template-columns:1fr !important;}
+}
+
+/* ============================================================
+   LANDING PAGE LAYOUT POLISH — desktop + mobile
+   All rules here are targeted overrides; nothing is rewritten.
+   ============================================================ */
+
+/* ── 1. SECTION VERTICAL RHYTHM
+   Hero uses 64px/56px; all other sections use 72px.
+   Unify to a single consistent rhythm. ── */
+#landing-view > section:first-of-type {
+  padding-top: 72px;
+  padding-bottom: 72px;
+}
+
+/* ── 2. HERO: tighten the gap between preview card and social strip ── */
+#landing-view > section:first-of-type [style*="margin-top:52px"] {
+  margin-top: 40px !important;
+}
+#landing-view > section:first-of-type [style*="margin-top:22px"] {
+  margin-top: 16px !important;
+}
+
+/* ── 3. HERO BUTTONS: stack at ≤640px (not just ≤520px)
+   "Request Institutional Access" wraps badly at 521-639px ── */
+@media (max-width: 640px) {
+  #land-hero-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  #land-hero-buttons button {
+    width: 100%;
+    max-width: 340px;
+    justify-content: center;
+  }
+  /* Show 3rd button at this range too */
+  #land-hero-buttons button:nth-child(3) {
+    display: flex !important;
+  }
+}
+
+/* ── 4. HERO: tighten small sub-text on very narrow screens ── */
+@media (max-width: 380px) {
+  #landing-view > section:first-of-type > p,
+  #landing-view > section:first-of-type span[style*="font-size:12px"] {
+    font-size: 11px !important;
+  }
+}
+
+/* ── 5. SOCIAL STRIP: tighter on mobile ── */
+@media (max-width: 480px) {
+  #landing-view .social-card {
+    padding: 5px 10px !important;
+    max-width: 160px !important;
+  }
+}
+
+/* ── 6. PREVIEW STAT CARD: 2-col grid below 480px ── */
+@media (max-width: 480px) {
+  .stat-chip {
+    padding: 12px;
+  }
+  .stat-chip [style*="font-size:26px"] {
+    font-size: 22px !important;
+  }
+}
+
+/* ── 7. EMULATOR TABS: horizontal scroll so they never wrap or overflow ── */
+#emulator [style*="display:flex;gap:4px;border-bottom"] {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+#emulator [style*="display:flex;gap:4px;border-bottom"]::-webkit-scrollbar {
+  display: none;
+}
+.emulator-tab {
+  flex-shrink: 0;
+}
+
+/* ── 8. PRICING: equal-height cards via flex ── */
+#pricing [style*="display:grid"] > div.card {
+  display: flex;
+  flex-direction: column;
+}
+#pricing .card ul {
+  margin-top: auto;
+  padding-top: 0;
+}
+
+/* ── 9. FOOTER GRID: mid-breakpoint for 769-1000px ── */
+@media (max-width: 1000px) and (min-width: 769px) {
+  #footer-grid {
+    grid-template-columns: 1fr 1fr 1fr !important;
+    gap: 28px;
+  }
+  #footer-grid > div:first-child {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ── 10. FOOTER MAP BLOCK: reduce double-spacing above bottom bar ── */
+#office-map-grid {
+  /* parent div has border-top + padding-top:32px + margin-bottom:32px
+     and bottom bar has padding-top:20px → total 52px gap.
+     Cap the wrapper's bottom margin. */
+}
+#landing-view footer [style*="padding-top:32px"] {
+  padding-bottom: 0 !important;
+  margin-bottom: 20px !important;
+}
+
+/* Map iframe taller when stacked on mobile ── */
+@media (max-width: 640px) {
+  #office-map-grid > div:last-child {
+    height: 200px !important;
+    min-height: 200px !important;
+  }
+}
+
+/* ── 11. FOOTER bottom bar: trim excess top spacing ── */
+#landing-view footer [style*="border-top:1px solid #1e293b;padding-top:20px"] {
+  padding-top: 16px !important;
+}
+
+/* ── 12. STRIPE CARD: keep centered and well-padded ── */
+@media (max-width: 360px) {
+  .stripe-payment-placeholder {
+    padding: 16px 12px 14px !important;
+  }
+  .sp-badges {
+    gap: 5px !important;
+  }
+  .sp-badge {
+    font-size: 9px !important;
+    padding: 2px 5px !important;
+  }
+  .sp-badge-logo svg {
+    width: 32px !important;
+    height: 20px !important;
+  }
+  .stripe-plan-tabs {
+    gap: 5px !important;
+  }
+  .sp-pay-btn {
+    font-size: 13px !important;
+    gap: 8px !important;
+  }
+}
+
+/* ── 13. MOBILE TEXT JUSTIFICATION: disable hyphens + justify on small screens.
+   Scoped strictly to #landing-view to avoid affecting workspace/docs/auth views. ── */
+@media (max-width: 640px) {
+  #landing-view .card p,
+  #landing-view section p,
+  #landing-view p[style*="line-height"] {
+    text-align: left !important;
+    hyphens: none !important;
+  }
+}
+
+/* ── 14. INSTITUTIONAL SECTION: form inputs full-width on mobile ── */
+@media (max-width: 640px) {
+  #institutional-section input {
+    font-size: 16px; /* prevents iOS auto-zoom */
+  }
+  #institutional-section [style*="display:flex"][style*="gap:12px"] {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  #institutional-section [style*="display:flex"][style*="gap:12px"] > * {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+/* ── 15. NAV: prevent logo+links colliding with buttons at 769-860px ── */
+@media (max-width: 860px) and (min-width: 769px) {
+  #land-nav-links {
+    display: none !important;
+  }
+  #land-ham-btn {
+    display: flex !important;
+  }
+}
+
+/* ── 16. MOBILE MENU: sign-in / enter buttons row ── */
+@media (max-width: 768px) {
+  #land-mobile-menu {
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  }
+  .mob-auth-row .btn-primary,
+  .mob-auth-row .btn-secondary {
+    font-size: 13px;
+    padding: 8px 14px;
+  }
+}
+
+/* ── 17. LANDING CARDS: equal-height flex columns
+   Scoped to #landing-view so workspace/docs cards are unaffected. ── */
+#landing-view section .card {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── 18. GENERAL: safe-area padding on notched phones ── */
+@supports (padding: max(0px)) {
+  #landing-view section {
+    padding-left: max(20px, env(safe-area-inset-left));
+    padding-right: max(20px, env(safe-area-inset-right));
+  }
+  #landing-view footer {
+    padding-left: max(20px, env(safe-area-inset-left));
+    padding-right: max(20px, env(safe-area-inset-right));
+    padding-bottom: max(24px, calc(env(safe-area-inset-bottom) + 12px));
+  }
+}
 </style>
 
 <script>
@@ -1771,24 +2393,24 @@ function loadState(){try{const s=localStorage.getItem(APP_KEY);if(s)Object.assig
 function saveState(){localStorage.setItem(APP_KEY,JSON.stringify(state));}
 
 const FAKE_PAPERS=[
-  {id:'p1',title:'Attention Is All You Need',authors:'Vaswani, A. et al.',year:2017,topic:'AI',citations:78423,doi:'10.48550/arXiv.1706.03762',tags:['transformers','attention','nlp'],added:'2025-01-15'},
-  {id:'p2',title:'Scaling Laws for Neural Language Models',authors:'Kaplan, J. et al.',year:2020,topic:'AI',citations:4291,doi:'10.48550/arXiv.2001.08361',tags:['scaling','llm'],added:'2025-01-18'},
-  {id:'p3',title:'A Survey on Self-Supervised Learning',authors:'Liu, X. et al.',year:2023,topic:'AI',citations:1842,doi:'10.1109/TPAMI.2023.3278932',tags:['self-supervised','representation'],added:'2025-02-02'},
-  {id:'p4',title:'AlphaFold: A Solution to a 50-Year-Old Grand Challenge in Biology',authors:'Senior, A. et al.',year:2020,topic:'Biology',citations:5612,doi:'10.1038/s41586-019-1923-7',tags:['protein','folding'],added:'2025-02-10'},
-  {id:'p5',title:'The Discovery of Invariant Risk Minimization',authors:'Arjovsky, M. et al.',year:2019,topic:'AI',citations:2108,doi:'10.48550/arXiv.1907.02893',tags:['invariance','ood','causality'],added:'2025-02-14'},
-  {id:'p6',title:'Optimal Transport for Machine Learning',authors:'Peyré, G. & Cuturi, M.',year:2019,topic:'AI',citations:3847,doi:'10.1561/2200000073',tags:['optimal transport'],added:'2025-02-20'},
-  {id:'p7',title:'Neural Ordinary Differential Equations',authors:'Chen, R.T.Q. et al.',year:2018,topic:'Physics',citations:5201,doi:'10.48550/arXiv.1806.07366',tags:['neural ode','dynamics'],added:'2025-03-01'},
-  {id:'p8',title:'Graph Neural Networks: A Review of Methods and Applications',authors:'Zhou, J. et al.',year:2018,topic:'AI',citations:6723,doi:'10.48550/arXiv.1812.08434',tags:['gnn','graph'],added:'2025-03-05'},
-  {id:'p9',title:'Causal Inference in Economics and Policy',authors:'Imbens, G. & Rubin, D.',year:2015,topic:'Economics',citations:4128,doi:'10.1017/CBO9781139025751',tags:['causality','policy'],added:'2025-03-10'},
-  {id:'p10',title:'Dissecting the Language of the Brain',authors:'Wehbe, L. et al.',year:2023,topic:'Neuroscience',citations:289,doi:'10.1162/nol_a_00094',tags:['neuroscience','language'],added:'2025-03-15'},
-  {id:'p11',title:'Diffusion Models Beat GANs on Image Synthesis',authors:'Dhariwal, P. & Nichol, A.',year:2021,topic:'AI',citations:7824,doi:'10.48550/arXiv.2105.05233',tags:['diffusion','generative'],added:'2025-03-20'},
-  {id:'p12',title:'Emergent Abilities of Large Language Models',authors:'Wei, J. et al.',year:2022,topic:'AI',citations:3401,doi:'10.48550/arXiv.2206.07682',tags:['emergence','llm'],added:'2025-04-01'},
+  {id:'p1',title:'Attention Is All You Need',authors:'Vaswani, A. et al.',year:2017,topic:'AI',citations:78423,doi:'10.48550/arXiv.1706.03762',tags:['transformers','attention','nlp'],added:'2026-01-15'},
+  {id:'p2',title:'Scaling Laws for Neural Language Models',authors:'Kaplan, J. et al.',year:2020,topic:'AI',citations:4291,doi:'10.48550/arXiv.2001.08361',tags:['scaling','llm'],added:'2026-01-18'},
+  {id:'p3',title:'A Survey on Self-Supervised Learning',authors:'Liu, X. et al.',year:2023,topic:'AI',citations:1842,doi:'10.1109/TPAMI.2023.3278932',tags:['self-supervised','representation'],added:'2026-02-02'},
+  {id:'p4',title:'AlphaFold: A Solution to a 50-Year-Old Grand Challenge in Biology',authors:'Senior, A. et al.',year:2020,topic:'Biology',citations:5612,doi:'10.1038/s41586-019-1923-7',tags:['protein','folding'],added:'2026-02-10'},
+  {id:'p5',title:'The Discovery of Invariant Risk Minimization',authors:'Arjovsky, M. et al.',year:2019,topic:'AI',citations:2108,doi:'10.48550/arXiv.1907.02893',tags:['invariance','ood','causality'],added:'2026-02-14'},
+  {id:'p6',title:'Optimal Transport for Machine Learning',authors:'Peyré, G. & Cuturi, M.',year:2019,topic:'AI',citations:3847,doi:'10.1561/2200000073',tags:['optimal transport'],added:'2026-02-20'},
+  {id:'p7',title:'Neural Ordinary Differential Equations',authors:'Chen, R.T.Q. et al.',year:2018,topic:'Physics',citations:5201,doi:'10.48550/arXiv.1806.07366',tags:['neural ode','dynamics'],added:'2026-03-01'},
+  {id:'p8',title:'Graph Neural Networks: A Review of Methods and Applications',authors:'Zhou, J. et al.',year:2018,topic:'AI',citations:6723,doi:'10.48550/arXiv.1812.08434',tags:['gnn','graph'],added:'2026-03-05'},
+  {id:'p9',title:'Causal Inference in Economics and Policy',authors:'Imbens, G. & Rubin, D.',year:2015,topic:'Economics',citations:4128,doi:'10.1017/CBO9781139025751',tags:['causality','policy'],added:'2026-03-10'},
+  {id:'p10',title:'Dissecting the Language of the Brain',authors:'Wehbe, L. et al.',year:2023,topic:'Neuroscience',citations:289,doi:'10.1162/nol_a_00094',tags:['neuroscience','language'],added:'2026-03-15'},
+  {id:'p11',title:'Diffusion Models Beat GANs on Image Synthesis',authors:'Dhariwal, P. & Nichol, A.',year:2021,topic:'AI',citations:7824,doi:'10.48550/arXiv.2105.05233',tags:['diffusion','generative'],added:'2026-03-20'},
+  {id:'p12',title:'Emergent Abilities of Large Language Models',authors:'Wei, J. et al.',year:2022,topic:'AI',citations:3401,doi:'10.48550/arXiv.2206.07682',tags:['emergence','llm'],added:'2026-04-01'},
 ];
 const FAKE_WS=[
   {id:'ws1',name:'AI Research Lab',domain:'Artificial Intelligence',desc:'Core machine learning and deep learning research.',papers:847,members:4,created:'2024-09-01'},
   {id:'ws2',name:'Systems Biology Group',domain:'Biology',desc:'Protein structure, gene regulation, cellular dynamics.',papers:312,members:3,created:'2024-11-15'},
-  {id:'ws3',name:'Economic Policy Lab',domain:'Economics',desc:'Macro and microeconomic policy analysis.',papers:204,members:2,created:'2025-01-08'},
-  {id:'ws4',name:'Quantum Computing Initiative',domain:'Physics',desc:'Quantum algorithms, error correction, hardware.',papers:178,members:5,created:'2025-02-20'},
+  {id:'ws3',name:'Economic Policy Lab',domain:'Economics',desc:'Macro and microeconomic policy analysis.',papers:204,members:2,created:'2026-01-08'},
+  {id:'ws4',name:'Quantum Computing Initiative',domain:'Physics',desc:'Quantum algorithms, error correction, hardware.',papers:178,members:5,created:'2026-02-20'},
 ];
 const FAKE_TEAM=[
   {name:'Alex Chen',role:'Principal Investigator',email:'a.chen@mit.edu',status:'online',initials:'AC',color:'#2563eb'},
@@ -1821,6 +2443,22 @@ const insightColors={synthesis:'badge-blue',contradiction:'badge-yellow',trend:'
 const domainColors={'Artificial Intelligence':'#2563eb','Biology':'#16a34a','Economics':'#f59e0b','Physics':'#7c3aed','Political Science':'#dc2626','Systems Research':'#0284c7','Neuroscience':'#9333ea','Climate Science':'#0f766e'};
 
 // ============================================================
+// URL ROUTING
+// ============================================================
+const PAGE_ROUTES={about:1,docs:1,blog:1,changelog:1,roadmap:1,contact:1,privacy:1,terms:1,security:1};
+function routeFromPath(path,push){
+  const seg=(path||'/').replace(/^\//,'').split('?')[0].split('#')[0];
+  if(!seg||seg===''){if(push!==false)history.replaceState({view:'landing'},'','/');showView('landing-view');}
+  else if(PAGE_ROUTES[seg])showFooterPage(seg,push);
+  else{if(push!==false)history.replaceState({view:'landing'},'','/');showView('landing-view');}
+}
+window.addEventListener('popstate',function(e){
+  if(e.state&&e.state.view==='footer')showFooterPage(e.state.page,false);
+  else if(e.state&&e.state.view==='auth')showView('auth-view');
+  else if(e.state&&e.state.view==='app'){if(state.user){initApp();showView('app-view');}else showView('landing-view');}
+  else routeFromPath(location.pathname,false);
+});
+// ============================================================
 // INIT
 // ============================================================
 let chartsInit={};
@@ -1830,7 +2468,12 @@ window.addEventListener('DOMContentLoaded',()=>{
   applyTheme(state.theme);
   initNotifToggles();
   if(state.user){initApp();showView('app-view');}
-  else showView('landing-view');
+  else{
+    // Route to the right public page based on the URL path
+    const _seg=location.pathname.replace(/^\//, '').split('?')[0].split('#')[0];
+    if(_seg&&PAGE_ROUTES[_seg])showFooterPage(_seg,false);
+    else showView('landing-view');
+  }
   handleResize();
   window.addEventListener('resize',handleResize);
 });
@@ -1858,6 +2501,7 @@ function showView(id){
 }
 function showLanding(){showView('landing-view');}
 function showAuth(type){
+  if(!history.state||history.state.view!=='auth')history.pushState({view:'auth',type},'','/signin');
   showView('auth-view');
   ['signin','register','forgot'].forEach(t=>{
     const el=document.getElementById('auth-'+t);
@@ -1867,11 +2511,17 @@ function showAuth(type){
 function scrollTop(){window.scrollTo({top:0,behavior:'smooth'});}
 
 // Footer pages
-function showFooterPage(name){
+function showFooterPage(name,pushHistory){
+  if(pushHistory!==false)history.pushState({view:'footer',page:name},'','/'+name);
   showView('footer-page-view');
   document.querySelectorAll('.footer-page').forEach(p=>p.classList.remove('active'));
   const el=document.getElementById('fp-'+name);
   if(el)el.classList.add('active');
+  window.scrollTo(0,0);
+}
+function showLandingPage(pushHistory){
+  if(pushHistory!==false)history.pushState({view:'landing'},'','/');
+  showView('landing-view');
   window.scrollTo(0,0);
 }
 
@@ -1892,7 +2542,7 @@ function handleSignIn(){
   if(!state.workspaces.length)state.workspaces=[...FAKE_WS];
   if(!state.papers.length)state.papers=[...FAKE_PAPERS];
   if(!state.currentWorkspace)state.currentWorkspace=state.workspaces[0];
-  saveState();initApp();showView('app-view');
+  saveState();initApp();history.replaceState({view:'app'},'','/');showView('app-view');
   showToast('Welcome back, '+user.firstName,'success');
 }
 function handleRegister(){
@@ -1914,8 +2564,8 @@ function handleRegister(){
   if(!state.workspaces.length)state.workspaces=[...FAKE_WS];
   if(!state.papers.length)state.papers=[...FAKE_PAPERS];
   if(!state.currentWorkspace)state.currentWorkspace=state.workspaces[0];
-  saveState();initApp();showView('app-view');
-  showToast('Account created — welcome to LumenResearch!','success');
+  saveState();initApp();history.replaceState({view:'app'},'','/');showView('app-view');
+  showToast('Account created. Welcome to LumenResearch!','success');
 }
 function handleForgot(){
   const email=document.getElementById('forgot-email').value.trim();
@@ -1929,11 +2579,11 @@ function handleDemoLogin(){
   if(!state.papers.length)state.papers=[...FAKE_PAPERS];
   if(!state.currentWorkspace)state.currentWorkspace=state.workspaces[0];
   if(!state.experiments)state.experiments=[];
-  initApp();showView('app-view');
-  showToast('Demo mode active. Exploring sample workspace — changes reset on exit.','info');
+  initApp();history.replaceState({view:'app'},'','/');showView('app-view');
+  showToast('Demo mode active. Changes reset on exit.','info');
 }
 function handleSignOut(){
-  state.user=null;saveState();showView('landing-view');
+  state.user=null;saveState();showLandingPage();
   showToast('Signed out successfully.','info');
 }
 
@@ -2007,6 +2657,40 @@ function closeSidebar(){
   document.getElementById('sidebar').classList.remove('open');
   document.getElementById('sidebarOverlay').classList.remove('visible');
 }
+
+// ---- Landing page mobile menu ----
+function toggleLandingMenu(){
+  const menu=document.getElementById('land-mobile-menu');
+  const btn=document.getElementById('land-ham-btn');
+  const icon=document.getElementById('land-ham-icon');
+  if(!menu)return;
+  const open=menu.classList.toggle('open');
+  if(btn)btn.setAttribute('aria-expanded',open);
+  // Swap icon: hamburger ↔ X
+  if(icon){
+    icon.innerHTML=open
+      ?'<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>'
+      :'<line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>';
+  }
+}
+function closeLandingMenu(){
+  const menu=document.getElementById('land-mobile-menu');
+  const btn=document.getElementById('land-ham-btn');
+  const icon=document.getElementById('land-ham-icon');
+  if(menu)menu.classList.remove('open');
+  if(btn)btn.setAttribute('aria-expanded','false');
+  if(icon)icon.innerHTML='<line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>';
+}
+// Close landing menu on outside tap
+document.addEventListener('click',function(e){
+  const menu=document.getElementById('land-mobile-menu');
+  const btn=document.getElementById('land-ham-btn');
+  if(menu&&menu.classList.contains('open')&&!menu.contains(e.target)&&e.target!==btn&&!btn.contains(e.target)){
+    closeLandingMenu();
+  }
+});
+// Close landing menu on resize to desktop
+window.addEventListener('resize',function(){if(window.innerWidth>768)closeLandingMenu();});
 
 // ============================================================
 // MODALS
@@ -2237,7 +2921,7 @@ function renderTeam(){
   if(notifs)notifs.innerHTML=[
     {text:'Priya added 3 papers to AI Research Lab',time:'5m ago',c:'#9333ea'},
     {text:'New contradiction detected in your library',time:'1h ago',c:'#f59e0b'},
-    {text:'Weekly digest ready — 14 new insights',time:'1d ago',c:'#2563eb'},
+    {text:'Weekly digest ready: 14 new insights',time:'1d ago',c:'#2563eb'},
     {text:'Thomas accepted workspace invitation',time:'2d ago',c:'#0f766e'},
   ].map(n=>`<div style="display:flex;gap:7px;align-items:flex-start;padding:7px;border-radius:7px;background:var(--bg);">
     <div style="width:6px;height:6px;border-radius:99px;background:${n.c};flex-shrink:0;margin-top:5px;"></div>
@@ -2285,9 +2969,9 @@ function renderCitationsTable(){
 function renderExperiments(){
   const el=document.getElementById('experiments-list');if(!el)return;
   const exps=state.experiments.length?state.experiments:[
-    {name:'Transformer Baseline',model:'Transformer',acc:'87.3%',status:'completed',date:'2025-04-12'},
-    {name:'LSTM Comparison',model:'LSTM Recurrent',acc:'79.1%',status:'completed',date:'2025-04-14'},
-    {name:'GNN Experiment',model:'GNN',acc:'91.2%',status:'running',date:'2025-05-01'},
+    {name:'Transformer Baseline',model:'Transformer',acc:'87.3%',status:'completed',date:'2026-04-12'},
+    {name:'LSTM Comparison',model:'LSTM Recurrent',acc:'79.1%',status:'completed',date:'2026-04-14'},
+    {name:'GNN Experiment',model:'GNN',acc:'91.2%',status:'running',date:'2026-05-01'},
   ];
   el.innerHTML=exps.map(e=>`
     <div style="display:flex;align-items:center;gap:9px;padding:8px;border-radius:8px;background:var(--bg);border:1px solid var(--border);">
@@ -2473,9 +3157,9 @@ function renderRightPanel(){
         </div>
       </div>
       <!-- X social link -->
-      <a href="https://x.com/lumenresearch_" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;padding:10px;border-radius:8px;background:var(--bg);border:1px solid var(--border);text-decoration:none;color:var(--ink);">
+      <a href="https://x.com/morganogoodrich" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;padding:10px;border-radius:8px;background:var(--bg);border:1px solid var(--border);text-decoration:none;color:var(--ink);">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-        <span style="font-size:12px;font-weight:600;">@lumenresearch_</span>
+        <span style="font-size:12px;font-weight:600;">@morganogoodrich</span>
       </a>
     </div>
   `;
@@ -2662,9 +3346,21 @@ async function sendAiMessage(){
     const r=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:_GSYS},..._aiHistory]})});
     const d=await r.json();_aiNoTyping();
     if(d.choices?.[0]?.message?.content){const rep=d.choices[0].message.content;_aiHistory.push({role:'assistant',content:rep});if(_aiHistory.length>20)_aiHistory=_aiHistory.slice(-20);_aiAdd(_aiBot(rep));}
-    else _aiAdd(_aiBot('Sorry — '+(d.error?.message||'something went wrong. Please try again.')));
+    else _aiAdd(_aiBot('Sorry, '+(d.error?.message||'something went wrong. Please try again.')));
   }catch(e){_aiNoTyping();_aiAdd(_aiBot('Network error. Please check your connection and try again.'));}
   btn.disabled=false;setTimeout(()=>document.getElementById('ai-chat-input')?.focus(),50);
+}
+
+// ============================================================
+// STRIPE PLACEHOLDER PLAN TABS
+// ============================================================
+function spSelectPlan(plan){
+  document.getElementById('sp-tab-free').classList.remove('active');
+  document.getElementById('sp-tab-team').classList.remove('active');
+  document.getElementById('sp-tab-'+plan).classList.add('active');
+  var label=document.getElementById('sp-btn-label');
+  if(plan==='free'){label.innerHTML='Get Started Free';}
+  else{label.innerHTML='Subscribe · $49/mo';}
 }
 
 </script>
@@ -2694,6 +3390,5 @@ async function sendAiMessage(){
     <button id="ai-chat-send" onclick="sendAiMessage()" title="Send"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
   </div>
 </div>
-
 </body>
 </html>
