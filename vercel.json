@@ -1,5 +1,8 @@
 {
   "version": 2,
+  "buildCommand": null,
+  "installCommand": null,
+  "outputDirectory": ".",
   "routes": [
     { "src": "/api/chat", "dest": "/api/chat.js" },
     { "src": "/(.*)", "dest": "/index.html" }
