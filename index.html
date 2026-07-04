@@ -109,7 +109,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);margin
   min-height:40px;touch-action:manipulation;
 }
 .btn-primary:hover{background:#1d4ed8;box-shadow:0 4px 16px rgba(37,99,235,0.35);}
-.btn-primary:active{transform:scale(0.97);}
+.btn-primary:active{transform:scale(0.98);}
 .btn-secondary{
   background:transparent;color:var(--ink);padding:9px 20px;border-radius:8px;
   font-size:13.5px;font-weight:500;border:1.5px solid var(--border);cursor:pointer;
@@ -117,7 +117,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);margin
   min-height:40px;touch-action:manipulation;
 }
 .btn-secondary:hover{background:var(--bg);border-color:var(--muted);}
-.btn-secondary:active{transform:scale(0.97);}
+.btn-secondary:active{transform:scale(0.98);}
 
 /* ============ INPUTS ============ */
 .input-field{
@@ -164,6 +164,8 @@ html.dark .badge-purple{background:#3b0764;color:#d8b4fe;}
 @media(min-width:640px){.modal-box{border-radius:14px;max-width:480px;}}
 
 /* ============ STAT CHIP ============ */
+.stat-chip { background: linear-gradient(180deg, var(--surface), var(--bg)) !important; border: 1px solid var(--border); box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
+
 .stat-chip{display:flex;flex-direction:column;gap:4px;padding:16px;border-radius:10px;
   background:var(--surface);border:1px solid var(--border);}
 
@@ -247,7 +249,7 @@ html.dark .land-nav{background:rgba(10,14,26,0.92);}
 }
 
 /* ============ MOBILE TOPBAR ============ */
-.topbar{height:52px;border-bottom:1px solid var(--border);background:var(--surface);
+.topbar{box-shadow: 0 1px 3px rgba(0,0,0,0.04); height:52px;border-bottom:1px solid var(--border);background:var(--surface);
   display:flex;align-items:center;justify-content:space-between;
   padding:0 16px;position:sticky;top:0;z-index:30;flex-shrink:0;}
 
@@ -404,8 +406,8 @@ html{scroll-behavior:smooth;}
 #ai-chat-send:disabled{opacity:0.4;cursor:not-allowed;transform:none;}
 .ai-typing{display:flex;gap:4px;align-items:center;padding:3px 0;}
 .ai-typing span{width:6px;height:6px;background:var(--muted);border-radius:50%;animation:typing-dot 1.2s ease infinite;display:inline-block;}
-.ai-typing span:nth-child(2){animation-delay:0.2s;}
-.ai-typing span:nth-child(3){animation-delay:0.4s;}
+.ai-typing span:nth-child(2){transition-delay:0.2s;}
+.ai-typing span:nth-child(3){transition-delay:0.4s;}
 @keyframes typing-dot{0%,60%,100%{transform:translateY(0);opacity:0.35}30%{transform:translateY(-5px);opacity:1}}
 
 
@@ -443,6 +445,83 @@ html{scroll-behavior:smooth;}
 #land-mobile-menu .mob-divider{height:1px;background:var(--border);margin:6px 0;}
 #land-mobile-menu .mob-auth-row{display:flex;gap:8px;padding-top:4px;}
 #land-mobile-menu .mob-auth-row button{flex:1;}
+
+/* NEW STYLES ADDED FOR UPGRADE */
+html.dark .card { border-color: rgba(255,255,255,0.1); }
+html.dark .card-hover:hover { border-color: rgba(96,165,250,0.4); }
+html.dark code, html.dark pre { background: #1e293b !important; }
+html.dark #hero { background: linear-gradient(to bottom, #050814, #0a0e1a); }
+html.dark .hero-bg-mesh { background: radial-gradient(circle at 15% 50%, rgba(37, 99, 235, 0.15), transparent 50%), radial-gradient(circle at 85% 30%, rgba(124, 58, 237, 0.15), transparent 50%); }
+
+body { font-feature-settings: "kern" 1, "liga" 1; }
+p { line-height: 1.75; }
+#hero { position: relative; overflow: hidden; }
+.hero-bg-mesh { position: absolute; inset: 0; z-index: -1; background: radial-gradient(circle at 15% 50%, rgba(37, 99, 235, 0.08), transparent 50%), radial-gradient(circle at 85% 30%, rgba(124, 58, 237, 0.08), transparent 50%); filter: blur(60px); }
+html.dark .hero-bg-mesh { background: radial-gradient(circle at 15% 50%, rgba(37, 99, 235, 0.15), transparent 50%), radial-gradient(circle at 85% 30%, rgba(124, 58, 237, 0.15), transparent 50%); }
+.hero-title-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px; height: 100px; background: radial-gradient(ellipse at center, rgba(37,99,235,0.15) 0%, transparent 70%); z-index: -1; filter: blur(20px); pointer-events: none; }
+html.dark #hero { background: linear-gradient(to bottom, #050814, #0a0e1a); }
+.word-anim { display: inline-block; opacity: 0; transform: translateY(20px); animation: wordUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+@keyframes wordUp { to { opacity: 1; transform: translateY(0); } }
+.gradient-word { animation: gradientPulse 4s ease-in-out infinite alternate !important; display: inline-block; }
+@keyframes gradientPulse { 0% { filter: hue-rotate(0deg); opacity: 1; } 100% { filter: hue-rotate(15deg); opacity: 0.85; } }
+.reveal-up { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+.reveal-up.is-revealed { opacity: 1; transform: translateY(0); }
+.reveal-scale { opacity: 0; transform: scale(0.96); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+.reveal-scale.is-revealed { opacity: 1; transform: scale(1); }
+.reveal-left { opacity: 0; transform: translateX(-40px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+.reveal-left.is-revealed { opacity: 1; transform: translateX(0); }
+.reveal-right { opacity: 0; transform: translateX(40px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+.reveal-right.is-revealed { opacity: 1; transform: translateX(0); }
+.promo-showcase { width: 100%; overflow: hidden; padding: 40px 0; }
+.promo-track { display: flex; gap: 24px; width: max-content; animation: scrollPromo 30s linear infinite; padding: 0 24px; }
+@media (max-width: 768px) { .promo-track { animation: none; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 20px; -webkit-overflow-scrolling: touch; } }
+.promo-track:hover { animation-play-state: paused; }
+@keyframes scrollPromo { to { transform: translateX(calc(-50% - 12px)); } }
+.promo-card { flex-shrink: 0; width: 400px; height: 240px; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); background: var(--surface); box-shadow: 0 10px 30px rgba(0,0,0,0.05); scroll-snap-align: center; }
+.promo-card img { width: 100%; height: 100%; object-fit: cover; }
+.inst-marquee { overflow: hidden; white-space: nowrap; position: relative; width: 100%; margin-top: 40px; padding: 20px 0; mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); }
+.inst-track { display: inline-block; animation: scrollMarquee 40s linear infinite; }
+.inst-track span { font-variant: small-caps; font-weight: 600; font-size: 14px; color: var(--muted); letter-spacing: 0.05em; margin: 0 30px; display: inline-flex; align-items: center; }
+.inst-track span::after { content: "•"; margin-left: 60px; opacity: 0.3; }
+@keyframes scrollMarquee { to { transform: translateX(-50%); } }
+.test-marquee-wrapper { overflow: hidden; width: 100%; mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent); padding: 20px 0; }
+.test-track { display: flex; gap: 20px; width: max-content; animation: scrollTest 40s linear infinite; }
+.test-track:hover { animation-play-state: paused; }
+@keyframes scrollTest { to { transform: translateX(calc(-50% - 10px)); } }
+.test-track .card { width: 320px; flex-shrink: 0; white-space: normal; }
+#land-nav-links a { position: relative; }
+#land-nav-links a.active::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 2px; background: var(--primary); border-radius: 2px; }
+#land-nav-links a.active { color: var(--primary) !important; }
+.stripe-payment-placeholder { transition: transform 0.3s, box-shadow 0.3s; }
+.stripe-payment-placeholder:hover { box-shadow: 0 12px 40px rgba(37,99,235,0.12), 0 4px 12px rgba(0,0,0,0.06); transform: translateY(-2px); }
+.stripe-plan-tab { position: relative; overflow: hidden; }
+.stripe-plan-tab::before { content: ''; position: absolute; inset: 0; background: rgba(99,91,255,0.05); transform: translateY(100%); transition: transform 0.3s; z-index: 0; }
+.stripe-plan-tab:hover::before { transform: translateY(0); }
+.stripe-plan-tab > * { position: relative; z-index: 1; }
+.nav-item { border-left: 3px solid transparent; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
+.nav-item.active { border-left-color: var(--primary); }
+.stat-chip { background: linear-gradient(145deg, var(--surface), var(--bg)); }
+.page-section { animation: pageEnter 0.4s ease-out forwards; }
+@keyframes pageEnter { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.topbar { box-shadow: 0 1px 12px rgba(0,0,0,0.03); }
+html.dark .card { border-color: rgba(255,255,255,0.1); }
+html.dark .card-hover:hover { border-color: rgba(96,165,250,0.4); }
+html.dark code, html.dark pre { background: #1e293b !important; }
+h1 { letter-spacing: -0.04em; }
+.btn-primary { position: relative; overflow: hidden; }
+.btn-primary::after { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent); transform: skewX(-20deg); transition: left 0.5s ease; }
+.btn-primary:hover::after { left: 150%; }
+.btn-secondary { border-color: var(--border); }
+.btn-secondary:hover { border-color: var(--primary-mid); }
+#ai-chat-btn { animation: chatPulse 3s infinite; }
+@keyframes chatPulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+@media (max-width: 480px) { #ai-chat-window.open { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); background: rgba(255,255,255,0.9); } html.dark #ai-chat-window.open { background: rgba(17,24,39, 0.9); } }
+.ai-msg { animation: msgSlide 0.3s ease-out forwards; }
+@keyframes msgSlide { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.footer-map-card { border: 1px solid var(--border); border-radius: 16px; overflow: hidden; background: var(--surface); box-shadow: 0 4px 20px rgba(0,0,0,0.05); display: flex; flex-direction: column; width: 100%; }
+.footer-map-info { padding: 20px; display: flex; align-items: flex-start; gap: 12px; }
+.footer-map-icon { width: 40px; height: 40px; background: var(--primary-light); color: var(--primary); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
 </style>
 </head>
 <body>
@@ -578,9 +657,7 @@ html{scroll-behavior:smooth;}
 
   <!-- Hero -->
   <section style="max-width:1160px;margin:0 auto;padding:64px 20px 56px;text-align:center;width:100%;">
-    <h1 style="font-size:clamp(32px,6vw,64px);font-weight:800;letter-spacing:-2.5px;line-height:1.03;margin:0 0 22px;font-family:'IBM Plex Sans',sans-serif;">
-      Research Infrastructure Built for <span class="gradient-word">Serious Scholars</span>
-    </h1>
+    <h1 style="font-size:clamp(32px,6vw,64px);font-weight:800;letter-spacing:-2.5px;line-height:1.03;margin:0 0 22px;font-family:'IBM Plex Sans',sans-serif;"><span class="word-anim" style="transition-delay: 0.1s">Research</span> <span class="word-anim" style="transition-delay: 0.2s">Infrastructure</span> <span class="word-anim" style="transition-delay: 0.3s">Built</span> <span class="word-anim" style="transition-delay: 0.4s">for</span> <span class="word-anim" style="transition-delay: 0.5s"><span class="gradient-word">Serious Scholars</span></span></h1>
     <p style="font-size:clamp(15px,2.5vw,19px);color:var(--muted);max-width:600px;margin:0 auto 38px;line-height:1.7;">
       Index your literature corpus, trace citation networks, run methodological simulations, and surface cross-disciplinary insights, structured around how academic research actually works.
     </p>
@@ -779,32 +856,32 @@ html{scroll-behavior:smooth;}
       <p style="text-align:center;font-size:11px;font-weight:700;color:var(--primary);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Platform Capabilities</p>
       <h2 style="text-align:center;font-size:clamp(24px,4vw,40px);font-weight:800;letter-spacing:-1.5px;margin:0 0 50px;font-family:'IBM Plex Sans',sans-serif;">Built for every layer of serious research</h2>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;">
-        <div class="card card-hover" style="padding:22px;">
+        <div class="card card-hover reveal-up" style="transition-delay: 80ms" style="padding:22px;">
           <div style="width:44px;height:44px;background:var(--primary-light);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;color:var(--primary);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><circle cx="12" cy="12" r="10"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
           <h3 style="font-size:15px;font-weight:700;margin:0 0 7px;">AI Research Intelligence</h3>
           <p style="font-size:13px;color:var(--muted);line-height:1.65;margin:0;">Synthesize observations, detect contradictions, surface cross-paper intelligence. Not a chatbot. An insight engine.</p>
         </div>
-        <div class="card card-hover" style="padding:22px;">
+        <div class="card card-hover reveal-up" style="transition-delay: 160ms" style="padding:22px;">
           <div style="width:44px;height:44px;background:#f0fdf4;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;color:#16a34a;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></div>
           <h3 style="font-size:15px;font-weight:700;margin:0 0 7px;">Research Graph</h3>
           <p style="font-size:13px;color:var(--muted);line-height:1.65;margin:0;">Visualize paper relationships, concept clusters, and citation paths as an interactive knowledge graph.</p>
         </div>
-        <div class="card card-hover" style="padding:22px;">
+        <div class="card card-hover reveal-up" style="transition-delay: 240ms" style="padding:22px;">
           <div style="width:44px;height:44px;background:#fefce8;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;color:#a16207;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg></div>
           <h3 style="font-size:15px;font-weight:700;margin:0 0 7px;">Sandbox Simulation Lab</h3>
           <p style="font-size:13px;color:var(--muted);line-height:1.65;margin:0;">Run parameter-controlled experiments, visualize outputs, and log structured research findings.</p>
         </div>
-        <div class="card card-hover" style="padding:22px;">
+        <div class="card card-hover reveal-up" style="transition-delay: 320ms" style="padding:22px;">
           <div style="width:44px;height:44px;background:#fdf4ff;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;color:#9333ea;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
           <h3 style="font-size:15px;font-weight:700;margin:0 0 7px;">Team Collaboration</h3>
           <p style="font-size:13px;color:var(--muted);line-height:1.65;margin:0;">Shared workspaces, activity feeds, inline comments, and structured notifications for research teams.</p>
         </div>
-        <div class="card card-hover" style="padding:22px;">
+        <div class="card card-hover reveal-up" style="transition-delay: 400ms" style="padding:22px;">
           <div style="width:44px;height:44px;background:#fff1f2;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;color:#e11d48;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
           <h3 style="font-size:15px;font-weight:700;margin:0 0 7px;">Paper Management</h3>
           <p style="font-size:13px;color:var(--muted);line-height:1.65;margin:0;">Upload, tag, annotate, and cross-reference papers with full metadata, citation tracking, and semantic search.</p>
         </div>
-        <div class="card card-hover" style="padding:22px;">
+        <div class="card card-hover reveal-up" style="transition-delay: 480ms" style="padding:22px;">
           <div style="width:44px;height:44px;background:#f0f9ff;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;color:#0284c7;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
           <h3 style="font-size:15px;font-weight:700;margin:0 0 7px;">Research Analytics</h3>
           <p style="font-size:13px;color:var(--muted);line-height:1.65;margin:0;">Publication velocity, citation trends, collaboration graphs, and topic distribution, all in one view.</p>
@@ -819,7 +896,14 @@ html{scroll-behavior:smooth;}
       <p style="text-align:center;font-size:11px;font-weight:700;color:var(--primary);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Pricing</p>
       <h2 style="text-align:center;font-size:clamp(22px,4vw,38px);font-weight:800;letter-spacing:-1px;margin:0 0 10px;font-family:'IBM Plex Sans',sans-serif;">Built for institutions at every scale</h2>
       <p style="text-align:center;color:var(--muted);font-size:14px;margin:0 0 44px;">Individual researchers start free. Teams and institutions scale as needed.</p>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;">
+      
+    <div class="reveal-scale" style="display:flex;justify-content:center;margin-bottom:32px;">
+      <div style="background:var(--border);padding:4px;border-radius:12px;display:inline-flex;gap:4px;">
+        <button id="toggle-monthly" onclick="spTogglePricing('monthly')" style="padding:8px 16px;border-radius:8px;border:none;background:var(--surface);box-shadow:0 2px 8px rgba(0,0,0,0.05);font-size:13px;font-weight:600;cursor:pointer;color:var(--ink);transition:all 0.2s;">Monthly</button>
+        <button id="toggle-annual" onclick="spTogglePricing('annual')" style="padding:8px 16px;border-radius:8px;border:none;background:transparent;box-shadow:none;font-size:13px;font-weight:600;cursor:pointer;color:var(--ink);transition:all 0.2s;">Annual (save 20%)</button>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;">
         <div class="card" style="padding:28px;">
           <p style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin:0 0 12px;">Researcher</p>
           <p style="font-size:36px;font-weight:800;margin:0 0 4px;">Free</p>
@@ -866,10 +950,12 @@ html{scroll-behavior:smooth;}
   </section>
 
   <!-- Testimonials -->
-  <section style="padding:72px 20px;background:var(--bg);border-top:1px solid var(--border);">
-    <div style="max-width:1160px;margin:0 auto;">
+  <section id="testimonials" style="padding:72px 20px;background:var(--bg);border-top:1px solid var(--border); overflow: hidden;">
+    <div style="max-width:1160px;margin:0 auto;text-align:center;">
       <h2 style="text-align:center;font-size:clamp(20px,3vw,34px);font-weight:800;letter-spacing:-1px;margin:0 0 44px;font-family:'IBM Plex Sans',sans-serif;">Trusted by world-class researchers</h2>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;">
+      <div class="test-marquee-wrapper reveal-up">
+        <div class="test-track">
+          
         <div class="card" style="padding:22px;">
           <p style="font-size:14px;line-height:1.7;color:var(--ink);margin:0 0 16px;">"LumenResearch transformed how our AI safety team synthesizes literature. The insight engine surfaces contradictions we would have missed in weeks of manual review."</p>
           <div style="display:flex;align-items:center;gap:10px;">
@@ -890,6 +976,54 @@ html{scroll-behavior:smooth;}
             <div style="width:36px;height:36px;border-radius:99px;background:#fdf4ff;display:flex;align-items:center;justify-content:center;font-weight:700;color:#9333ea;font-size:12px;flex-shrink:0;">AK</div>
             <div><p style="margin:0;font-size:13px;font-weight:600;">Dr. Anika Krishnamurthy</p><p style="margin:0;font-size:12px;color:var(--muted);">Computational Systems Biology</p></div>
           </div>
+        </div>
+      
+          
+        <div class="card" style="padding:22px;">
+          <p style="font-size:14px;line-height:1.7;color:var(--ink);margin:0 0 16px;">"LumenResearch transformed how our AI safety team synthesizes literature. The insight engine surfaces contradictions we would have missed in weeks of manual review."</p>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:36px;height:36px;border-radius:99px;background:var(--primary-light);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--primary);font-size:12px;flex-shrink:0;">SC</div>
+            <div><p style="margin:0;font-size:13px;font-weight:600;">Dr. Sarah Chen</p><p style="margin:0;font-size:12px;color:var(--muted);">Principal Researcher, AI Safety Lab</p></div>
+          </div>
+        </div>
+        <div class="card" style="padding:22px;">
+          <p style="font-size:14px;line-height:1.7;color:var(--ink);margin:0 0 16px;">"The Research Graph is genuinely unlike anything else in academic tools. Our economics department uses it to map interdisciplinary connections across 3,000+ papers."</p>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:36px;height:36px;border-radius:99px;background:#f0fdf4;display:flex;align-items:center;justify-content:center;font-weight:700;color:#16a34a;font-size:12px;flex-shrink:0;">MR</div>
+            <div><p style="margin:0;font-size:13px;font-weight:600;">Prof. Marcus Reyes</p><p style="margin:0;font-size:12px;color:var(--muted);">Department Chair, Applied Economics</p></div>
+          </div>
+        </div>
+        <div class="card" style="padding:22px;">
+          <p style="font-size:14px;line-height:1.7;color:var(--ink);margin:0 0 16px;">"The Sandbox Lab alone is worth the subscription. Our simulation outputs are now fully traceable and reproducible. A genuine research-grade platform."</p>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:36px;height:36px;border-radius:99px;background:#fdf4ff;display:flex;align-items:center;justify-content:center;font-weight:700;color:#9333ea;font-size:12px;flex-shrink:0;">AK</div>
+            <div><p style="margin:0;font-size:13px;font-weight:600;">Dr. Anika Krishnamurthy</p><p style="margin:0;font-size:12px;color:var(--muted);">Computational Systems Biology</p></div>
+          </div>
+        </div>
+      
+          
+        <div class="card" style="padding:22px;">
+          <p style="font-size:14px;line-height:1.7;color:var(--ink);margin:0 0 16px;">"LumenResearch transformed how our AI safety team synthesizes literature. The insight engine surfaces contradictions we would have missed in weeks of manual review."</p>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:36px;height:36px;border-radius:99px;background:var(--primary-light);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--primary);font-size:12px;flex-shrink:0;">SC</div>
+            <div><p style="margin:0;font-size:13px;font-weight:600;">Dr. Sarah Chen</p><p style="margin:0;font-size:12px;color:var(--muted);">Principal Researcher, AI Safety Lab</p></div>
+          </div>
+        </div>
+        <div class="card" style="padding:22px;">
+          <p style="font-size:14px;line-height:1.7;color:var(--ink);margin:0 0 16px;">"The Research Graph is genuinely unlike anything else in academic tools. Our economics department uses it to map interdisciplinary connections across 3,000+ papers."</p>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:36px;height:36px;border-radius:99px;background:#f0fdf4;display:flex;align-items:center;justify-content:center;font-weight:700;color:#16a34a;font-size:12px;flex-shrink:0;">MR</div>
+            <div><p style="margin:0;font-size:13px;font-weight:600;">Prof. Marcus Reyes</p><p style="margin:0;font-size:12px;color:var(--muted);">Department Chair, Applied Economics</p></div>
+          </div>
+        </div>
+        <div class="card" style="padding:22px;">
+          <p style="font-size:14px;line-height:1.7;color:var(--ink);margin:0 0 16px;">"The Sandbox Lab alone is worth the subscription. Our simulation outputs are now fully traceable and reproducible. A genuine research-grade platform."</p>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:36px;height:36px;border-radius:99px;background:#fdf4ff;display:flex;align-items:center;justify-content:center;font-weight:700;color:#9333ea;font-size:12px;flex-shrink:0;">AK</div>
+            <div><p style="margin:0;font-size:13px;font-weight:600;">Dr. Anika Krishnamurthy</p><p style="margin:0;font-size:12px;color:var(--muted);">Computational Systems Biology</p></div>
+          </div>
+        </div>
+      
         </div>
       </div>
     </div>
@@ -974,20 +1108,10 @@ html{scroll-behavior:smooth;}
       
       <!-- Office address + map -->
       <div style="border-top:1px solid #1e293b;padding-top:32px;margin-top:0;margin-bottom:32px;">
-        <div id="office-map-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;">
-          <div>
-            <p style="color:#f1f5f9;font-size:12px;font-weight:700;margin:0 0 14px;text-transform:uppercase;letter-spacing:0.08em;">Office</p>
-            <p style="font-size:13px;line-height:1.75;margin:0 0 6px;color:#94a3b8;">
-              LumenResearch Ltd.<br>
-              68 Circular Road, #02-01<br>
-              Singapore 049422
-            </p>
-            <a href="mailto:enterprise@lumenresearch.ltd" style="font-size:13px;color:#60a5fa;text-decoration:none;display:inline-flex;align-items:center;gap:6px;margin-top:4px;" onmouseover="this.style.color='#93c5fd'" onmouseout="this.style.color='#60a5fa'">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-              enterprise@lumenresearch.ltd
-            </a>
-          </div>
-          <div style="border-radius:10px;overflow:hidden;border:1px solid #1e293b;height:160px;min-height:140px;">
+        
+    <div id="office-map-grid" style="display:grid;grid-template-columns:1fr;gap:20px;">
+        <div class="footer-map-card reveal-up">
+          <div style="height: 200px; width: 100%;">
             <iframe
               title="LumenResearch Office Map"
               width="100%"
@@ -999,7 +1123,18 @@ html{scroll-behavior:smooth;}
               src="https://www.google.com/maps?q=68+Circular+Road+%2302-01+Singapore+049422&output=embed">
             </iframe>
           </div>
+          <div class="footer-map-info">
+            <div class="footer-map-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <p style="font-size: 14px; font-weight: 700; color: var(--ink); margin: 0 0 4px;">LumenResearch HQ</p>
+              <p style="font-size: 13px; color: var(--muted); margin: 0; line-height: 1.5;">100 Research Drive<br/>Cambridge, MA 02142</p>
+            </div>
+          </div>
         </div>
+    </div>
+    
       </div>
 <div style="border-top:1px solid #1e293b;padding-top:20px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;">
         <p style="font-size:12px;margin:0;">© 2026 LumenResearch Ltd. All rights reserved. · lumenresearch.ltd</p>
@@ -1076,25 +1211,25 @@ html{scroll-behavior:smooth;}
       <span class="badge badge-green" style="margin-bottom:16px;display:inline-flex;">Research Blog</span>
       <h1 style="font-size:clamp(26px,4vw,42px);font-weight:800;letter-spacing:-1.5px;margin:0 0 40px;font-family:'IBM Plex Sans',sans-serif;">Writing on research infrastructure, AI, and the science of how science works</h1>
       <div style="display:flex;flex-direction:column;gap:24px;">
-        <div class="card card-hover" style="padding:24px;cursor:pointer;">
+        <div class="card card-hover reveal-up" style="transition-delay: 560ms" style="padding:24px;cursor:pointer;">
           <span class="badge badge-blue" style="margin-bottom:12px;">AI Intelligence</span>
           <h3 style="font-size:18px;font-weight:700;margin:0 0 8px;letter-spacing:-0.5px;">How Contradiction Detection Changes Literature Review</h3>
           <p style="font-size:14px;color:var(--muted);line-height:1.65;margin:0 0 14px;">Traditional literature review misses up to 40% of contradictory findings across papers. Here's how our AI engine finds them automatically...</p>
           <div style="display:flex;align-items:center;gap:10px;"><div style="width:24px;height:24px;border-radius:99px;background:var(--primary-light);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--primary);">LK</div><span style="font-size:12px;color:var(--muted);">Dr. Leila Khoury · May 12, 2026 · 8 min read</span></div>
         </div>
-        <div class="card card-hover" style="padding:24px;cursor:pointer;">
+        <div class="card card-hover reveal-up" style="transition-delay: 640ms" style="padding:24px;cursor:pointer;">
           <span class="badge badge-green" style="margin-bottom:12px;">Research Graph</span>
           <h3 style="font-size:18px;font-weight:700;margin:0 0 8px;letter-spacing:-0.5px;">Graph Theory Meets Academic Literature: Our Approach</h3>
           <p style="font-size:14px;color:var(--muted);line-height:1.65;margin:0 0 14px;">We model papers, authors, institutions, and concepts as nodes in a heterogeneous graph. Here's how that unlocks insights that flat search cannot...</p>
           <div style="display:flex;align-items:center;gap:10px;"><div style="width:24px;height:24px;border-radius:99px;background:#f0fdf4;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#16a34a;">JW</div><span style="font-size:12px;color:var(--muted);">Dr. James Wei · Apr 28, 2026 · 12 min read</span></div>
         </div>
-        <div class="card card-hover" style="padding:24px;cursor:pointer;">
+        <div class="card card-hover reveal-up" style="transition-delay: 720ms" style="padding:24px;cursor:pointer;">
           <span class="badge badge-purple" style="margin-bottom:12px;">Product</span>
           <h3 style="font-size:18px;font-weight:700;margin:0 0 8px;letter-spacing:-0.5px;">Introducing the Sandbox Simulation Lab</h3>
           <p style="font-size:14px;color:var(--muted);line-height:1.65;margin:0 0 14px;">Reproducibility is a crisis in science. The Sandbox Lab makes every simulation traceable, parameterized, and shareable, without a single line of code...</p>
           <div style="display:flex;align-items:center;gap:10px;"><div style="width:24px;height:24px;border-radius:99px;background:#fdf4ff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#9333ea;">RB</div><span style="font-size:12px;color:var(--muted);">Rafael Bautista · Mar 15, 2026 · 6 min read</span></div>
         </div>
-        <div class="card card-hover" style="padding:24px;cursor:pointer;">
+        <div class="card card-hover reveal-up" style="transition-delay: 800ms" style="padding:24px;cursor:pointer;">
           <span class="badge badge-yellow" style="margin-bottom:12px;">Collaboration</span>
           <h3 style="font-size:18px;font-weight:700;margin:0 0 8px;letter-spacing:-0.5px;">Why Research Teams Need Structured Collaboration Tools</h3>
           <p style="font-size:14px;color:var(--muted);line-height:1.65;margin:0 0 14px;">Most research teams coordinate over tools built for general productivity. Here's why scientific collaboration needs its own structure, and how we built it...</p>
@@ -2166,7 +2301,7 @@ html.dark .stripe-plan-tab.active{background:rgba(99,91,255,0.13);}
 }
 
 /* ============================================================
-   LANDING PAGE LAYOUT POLISH — desktop + mobile
+   LANDING PAGE LAYOUT POLISH: desktop + mobile
    All rules here are targeted overrides; nothing is rewritten.
    ============================================================ */
 
@@ -2750,7 +2885,7 @@ function renderWorkspaces(){
   const grid=document.getElementById('workspaces-grid');if(!grid)return;
   grid.innerHTML=state.workspaces.map(ws=>{
     const c=domainColors[ws.domain]||'#2563eb';
-    return `<div class="card card-hover" style="padding:18px;cursor:pointer;" onclick="switchWorkspace('${ws.id}')">
+    return `<div class="card card-hover reveal-up" style="transition-delay: 880ms" style="padding:18px;cursor:pointer;" onclick="switchWorkspace('${ws.id}')">
       <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px;">
         <div style="width:38px;height:38px;border-radius:9px;background:${c}18;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:800;color:${c};">${ws.name.charAt(0)}</div>
         ${state.currentWorkspace?.id===ws.id?'<span class="badge badge-blue">Active</span>':''}
@@ -2802,7 +2937,7 @@ function renderPapers(papers){
   const ps=papers||state.papers;
   if(!ps.length){list.innerHTML='<p style="text-align:center;color:var(--muted);font-size:13.5px;padding:32px;">No papers found.</p>';return;}
   list.innerHTML=ps.map(p=>`
-    <div class="card card-hover" style="padding:14px;display:flex;align-items:flex-start;gap:12px;">
+    <div class="card card-hover reveal-up" style="transition-delay: 960ms" style="padding:14px;display:flex;align-items:flex-start;gap:12px;">
       <div style="width:34px;height:42px;background:var(--primary-light);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
       </div>
@@ -3361,6 +3496,99 @@ function spSelectPlan(plan){
   var label=document.getElementById('sp-btn-label');
   if(plan==='free'){label.innerHTML='Get Started Free';}
   else{label.innerHTML='Subscribe · $49/mo';}
+}
+
+
+// NEW JS ADDED FOR UPGRADE
+document.addEventListener('DOMContentLoaded', () => {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-revealed');
+                if (entry.target.classList.contains('stat-chip') && !entry.target.dataset.counted) {
+                    entry.target.dataset.counted = 'true';
+                    const numEl = entry.target.querySelector('.stat-num');
+                    if (numEl) {
+                        const targetText = numEl.textContent;
+                        const match = targetText.match(/([\d\.]+)(.*)/);
+                        if (match) {
+                            const num = parseFloat(match[1]);
+                            const suffix = match[2];
+                            let start = 0;
+                            const duration = 1500;
+                            const startTime = performance.now();
+                            const isFloat = !Number.isInteger(num) && targetText.includes('.');
+                            function updateCount(time) {
+                                const elapsed = time - startTime;
+                                const progress = Math.min(elapsed / duration, 1);
+                                const ease = 1 - Math.pow(1 - progress, 3);
+                                const current = start + (num - start) * ease;
+                                numEl.textContent = (isFloat ? current.toFixed(1) : Math.floor(current)) + suffix;
+                                if (progress < 1) requestAnimationFrame(updateCount);
+                                else numEl.textContent = targetText;
+                            }
+                            requestAnimationFrame(updateCount);
+                        }
+                    }
+                }
+            }
+        });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal-up, .reveal-scale, .reveal-left, .reveal-right, .stat-chip, .promo-showcase').forEach(el => observer.observe(el));
+    const sections = document.querySelectorAll('#landing-view > section');
+    const navLinks = document.querySelectorAll('#land-nav-links a');
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(sec => {
+            if (window.scrollY >= sec.offsetTop - 150) current = sec.getAttribute('id') || '';
+        });
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + current) link.classList.add('active');
+        });
+    });
+});
+function spTogglePricing(type) {
+    const isAnn = type === 'annual';
+    const tMonthly = document.getElementById('toggle-monthly');
+    const tAnnual = document.getElementById('toggle-annual');
+    if(tMonthly) { tMonthly.style.backgroundColor = isAnn ? 'transparent' : 'var(--surface)'; tMonthly.style.boxShadow = isAnn ? 'none' : '0 2px 8px rgba(0,0,0,0.05)'; }
+    if(tAnnual) { tAnnual.style.backgroundColor = isAnn ? 'var(--surface)' : 'transparent'; tAnnual.style.boxShadow = isAnn ? '0 2px 8px rgba(0,0,0,0.05)' : 'none'; }
+    const teamPrice = document.getElementById('price-team');
+    if (teamPrice) teamPrice.textContent = isAnn ? '$39' : '$49';
+    const teamBilled = document.getElementById('billed-team');
+    if (teamBilled) teamBilled.textContent = isAnn ? 'Billed $468 annually' : 'Billed monthly';
+    const spTeamPrice = document.getElementById('sp-team-price');
+    if (spTeamPrice) spTeamPrice.innerHTML = isAnn ? '$39<span class="sp-plan-per">/mo</span>' : '$49<span class="sp-plan-per">/mo</span>';
+    const spBtnLabel = document.getElementById('sp-btn-label');
+    if (spBtnLabel && spBtnLabel.textContent.includes('
+<button id="ai-chat-btn" onclick="toggleAiChat()" aria-label="Open AI Assistant">
+  <span id="ai-chat-icon-open" style="display:flex;align-items:center;justify-content:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+  <span id="ai-chat-icon-close" style="display:none;align-items:center;justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>
+  <span class="chat-online-dot"></span>
+</button>
+<div id="ai-chat-window">
+  <div id="ai-chat-header">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div style="width:36px;height:36px;border-radius:10px;background:var(--primary-light);display:flex;align-items:center;justify-content:center;color:var(--primary);flex-shrink:0;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1" fill="currentColor"/></svg></div>
+      <div><div style="font-size:13.5px;font-weight:700;line-height:1.2;">LumenResearch AI</div><div style="font-size:11px;color:var(--muted);display:flex;align-items:center;gap:4px;"><span style="width:6px;height:6px;background:#22c55e;border-radius:50%;display:inline-block;"></span>Llama 3.1 · Groq · Online</div></div>
+    </div>
+    <div style="display:flex;gap:2px;">
+      <button onclick="clearAiChat()" title="Clear" style="background:none;border:none;cursor:pointer;color:var(--muted);width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;transition:all 0.15s;" onmouseover="this.style.background='var(--bg)';this.style.color='var(--ink)'" onmouseout="this.style.background='none';this.style.color='var(--muted)'"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6M9 6V4h6v2"/></svg></button>
+      <button onclick="toggleAiChat()" title="Close" style="background:none;border:none;cursor:pointer;color:var(--muted);width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;transition:all 0.15s;" onmouseover="this.style.background='var(--bg)';this.style.color='var(--ink)'" onmouseout="this.style.background='none';this.style.color='var(--muted)'"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+  </div>
+  <div id="ai-chat-messages">
+    <div class="ai-msg assistant"><div class="ai-avatar bot"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1" fill="currentColor"/></svg></div><div class="ai-msg-bubble">Hello! I am your LumenResearch AI assistant. I can help you understand papers, suggest research methodologies, synthesize cross-domain insights, and more. What are you working on?</div></div>
+  </div>
+  <div id="ai-chat-input-row">
+    <textarea id="ai-chat-input" placeholder="Ask about research, papers, methods..." rows="1" onkeydown="aiChatKeydown(event)" oninput="autoResizeAiInput(this)"></textarea>
+    <button id="ai-chat-send" onclick="sendAiMessage()" title="Send"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
+  </div>
+</div>
+</body>
+</html>
+)) spBtnLabel.textContent = isAnn ? 'Subscribe · $39/mo' : 'Subscribe · $49/mo';
 }
 
 </script>
