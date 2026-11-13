@@ -14,6 +14,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css?v=15">
+<link rel="stylesheet" href="css/home.css?v=1">
 </head>
 <body>
 <a href="swap.html" style="display:block;position:relative;z-index:60;background:#070d1d;color:#c9a35c;text-align:center;padding:11px 14px;font-family:'Space Mono',monospace;font-weight:700;font-size:13.5px;letter-spacing:.06em;text-decoration:none;border-bottom:1px solid #c9a35c;">$LUMEN POOLS OPEN 18 NOVEMBER · UNISWAP + PANCAKESWAP →</a>
@@ -98,8 +99,6 @@
         </div>
       </div>
       <p class="doss-note" id="d-note">Case Nº 1 opens by hand, and its window runs to the next three hour boundary in UTC. Every later Case runs a plain three hour window, then seals for good.</p>
-    </div>
-    
     </div>
   </section>
 
@@ -249,5 +248,19 @@ Rules from the skill file:
 <script src="js/claim.js?v=1"></script>
 <script src="js/motion.js?v=6"></script>
 <script src="js/beam.js?v=3"></script>
+<script>
+(function () {
+  if (!("IntersectionObserver" in window)) return;
+  var els = document.querySelectorAll(".sec, .statstrip");
+  if (!els.length) return;
+  els.forEach(function (el) { el.classList.add("rv"); });
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  els.forEach(function (el) { io.observe(el); });
+})();
+</script>
 </body>
 </html>
