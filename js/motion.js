@@ -176,4 +176,50 @@
   window.addEventListener("scroll", function () {
     toTop.classList.toggle("show", window.scrollY > 700);
   }, { passive: true });
+
+  /* ---- findings per Case chart, live from chain ---- */
+  var chartEl = document.getElementById("chart");
+  var chNote = document.getElementById("ch-note");
+  if (chartEl && window.LUMEN_CONFIG) {
+    var CNFT = window.LUMEN_CONFIG.CONTRACT;
+    var CRPCS = window.LUMEN_CONFIG.RPCS || [];
+    function ccall(data) {
+      var tries = CRPCS.map(function (url) {
+        return fetch(url, {
+          method: "POST", headers: { "content-type": "application/json" },
+          body: JSON.stringify({ jsonrpc: "2.0", id: 1, method: "eth_call", params: [{ to: CNFT, data: data }, "latest"] })
+        }).then(function (r) { return r.json(); }).then(function (j) {
+          if (!j || !j.result || j.result === "0x") throw new Error("bad");
+          return parseInt(j.result, 16);
+        });
+      });
+      return Promise.any(tries);
+    }
+    function encU(n) { return n.toString(16).padStart(64, "0"); }
+    function chartTick() {
+      ccall("0xf85ffaa3").then(function (cur) {
+        var from = Math.max(1, cur - 13);
+        var jobs = [];
+        for (var i = from; i <= cur; i++) jobs.push(ccall("0xefb14faf" + encU(i)).then(function (v) { return v; }, function () { return 0; }));
+        return Promise.all(jobs).then(function (vals) { return { cur: cur, from: from, vals: vals }; });
+      }).then(function (res) {
+        var max = Math.max.apply(null, res.vals.concat([1]));
+        chartEl.innerHTML = "";
+        res.vals.forEach(function (v, k) {
+          var n = res.from + k;
+          var bar = document.createElement("div");
+          bar.className = "ch-bar" + (n === res.cur ? " now" : "");
+          var val = document.createElement("div"); val.className = "ch-val"; val.textContent = v;
+          var col = document.createElement("div"); col.className = "ch-col";
+          col.style.height = Math.max(5, Math.round((v / max) * 100)) + "%";
+          var lab = document.createElement("div"); lab.className = "ch-lab"; lab.textContent = "Nº " + n;
+          bar.appendChild(val); bar.appendChild(col); bar.appendChild(lab);
+          chartEl.appendChild(bar);
+        });
+        if (chNote) chNote.textContent = "Case Nº " + res.cur + " open · live";
+      }).catch(function () { /* keep last render */ });
+    }
+    chartTick();
+    setInterval(chartTick, 30000);
+  }
 })();

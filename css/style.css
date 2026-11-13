@@ -644,3 +644,40 @@ html { scroll-behavior: smooth; }
   html { scroll-behavior: auto; }
   #glow { display: none; }
 }
+
+/* ---- v8 tidy system: one rhythm, one button geometry, chart ---- */
+.sec { margin-top: 44px; padding-top: 40px; border-top: 1px solid rgba(233, 220, 192, 0.07); }
+.sec-head { margin-bottom: 20px; }
+.sec-head h2 { font-size: clamp(28px, 7.2vw, 40px); }
+.sec-head .kicker::before { content: none; display: none; }
+.btn { min-height: 48px; padding: 0 24px; font-size: 13px; border-radius: 999px; }
+.btn.sm { min-height: 40px; padding: 0 16px; font-size: 12px; }
+.panel, .desk { border-radius: 18px; }
+.drow { padding: 13px 2px; }
+.chart-panel {
+  margin-top: 14px; border: 1px solid rgba(201, 163, 92, 0.28); border-radius: 18px;
+  background: linear-gradient(180deg, #0e1730, #0a1122);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.35);
+  padding: 18px;
+}
+.chart-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 6px; }
+.chart-title { font-family: "Space Mono", monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--brass-2); }
+.chart-note { font-family: "Space Mono", monospace; font-size: 10.5px; color: var(--dim); text-align: right; }
+.chart { display: flex; align-items: flex-end; gap: 8px; height: 128px; padding-top: 16px; }
+.ch-empty { color: var(--dim); font-size: 13px; align-self: center; margin: 0 auto; }
+.ch-bar { flex: 1 1 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; gap: 6px; min-width: 0; }
+.ch-val { font-family: "Space Mono", monospace; font-size: 11px; color: var(--paper); }
+.ch-col { width: 100%; max-width: 46px; border-radius: 6px 6px 2px 2px; background: linear-gradient(180deg, rgba(125, 180, 255, 0.8), rgba(125, 180, 255, 0.22)); transition: height 0.9s cubic-bezier(.22,1,.36,1); }
+.ch-bar.now .ch-col { background: linear-gradient(180deg, #ffd76a, #7be495 55%, #7db4ff); }
+.ch-bar.now .ch-val { color: var(--brass-2); }
+.ch-lab { font-family: "Space Mono", monospace; font-size: 9.5px; color: var(--dim); letter-spacing: 0.04em; }
+@media (max-width: 760px) {
+  body { padding-bottom: 78px; }
+  .hero-cta { display: flex; flex-direction: column; gap: 10px; }
+  .hero-cta .btn { width: 100%; min-height: 52px; font-size: 13.5px; }
+  .chead { flex-direction: column; align-items: stretch; gap: 10px; }
+  .chead .btn { width: 100%; }
+  .panel, .desk, .chart-panel { padding: 16px; }
+  .sec { margin-top: 36px; padding-top: 32px; }
+  .chart { gap: 5px; height: 112px; }
+}
