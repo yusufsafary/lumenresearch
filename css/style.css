@@ -156,7 +156,6 @@ img { max-width: 100%; }
 @media (max-width: 679px) {
   .hero-cta { display: grid; grid-template-columns: 1fr 1fr; }
   .hero-cta .btn { flex: none; padding: 12px 10px; font-size: 12px; }
-  .hero-cta .btn:last-child { grid-column: 1 / -1; min-height: 46px; }
 }
 
 /* ---------- buttons ---------- */
@@ -572,4 +571,27 @@ details.faq > *:not(summary) { animation: faqIn 0.45s cubic-bezier(.22,1,.36,1);
 @media (prefers-reduced-motion: reduce) {
   .ticker-in { animation: none; }
   .hero .kicker, .hero h1, .hero .sub, .hero .hero-cta { animation: none; }
+}
+
+/* ---- v6 living light: button shine, live stamp pulse ---- */
+.btn { position: relative; overflow: hidden; }
+.btn::after {
+  content: ""; position: absolute; top: 0; bottom: 0; left: -70%; width: 45%;
+  background: linear-gradient(100deg, transparent, rgba(255, 250, 230, 0.35), transparent);
+  transform: skewX(-18deg); transition: left 0.7s cubic-bezier(.22,1,.36,1); pointer-events: none;
+}
+.btn:hover::after { left: 115%; }
+body[data-live="1"] .doss-status::before {
+  content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+  background: #7be495; margin-right: 8px; vertical-align: 1px;
+  box-shadow: 0 0 0 0 rgba(123, 228, 149, 0.55); animation: livePulse 2.2s ease-out infinite;
+}
+@keyframes livePulse {
+  0% { box-shadow: 0 0 0 0 rgba(123, 228, 149, 0.55); }
+  70% { box-shadow: 0 0 0 8px rgba(123, 228, 149, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(123, 228, 149, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  body[data-live="1"] .doss-status::before { animation: none; }
+  .btn::after { display: none; }
 }

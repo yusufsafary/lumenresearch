@@ -31,7 +31,7 @@
     var C = 2 * Math.PI * 40;
     arc.style.strokeDasharray = String(C);
     arc.style.strokeDashoffset = String(C);
-    var SEL = { open: "0x14349d0c", cur: "0xf85ffaa3", end: "0x37e46fcd" };
+    var SEL = { open: "0x14349d0c", cur: "0xf85ffaa3", end: "0x37e46fcd", part: "0xe200c857" };
     function encUint(n) { return n.toString(16).padStart(64, "0"); }
     function call(data) {
       var jobs = RPCS.map(function (url) {
@@ -56,19 +56,27 @@
     }
     function tickRing() {
       call(SEL.open).then(function (open) {
-        if (!open) { label.textContent = "SOON"; arc.style.strokeDashoffset = String(C); ring.style.opacity = "0.45"; return null; }
+        if (!open) {
+          label.textContent = "SOON"; arc.style.strokeDashoffset = String(C); ring.style.opacity = "0.45";
+          document.body.dataset.verdict = "0"; document.body.dataset.live = "0";
+          return null;
+        }
+        document.body.dataset.live = "1";
         return call(SEL.cur);
       }).then(function (cur) {
         if (cur === null || cur === undefined) return null;
-        return call(SEL.end + encUint(cur));
-      }).then(function (end) {
-        if (end === null || end === undefined) return;
+        return Promise.all([call(SEL.end + encUint(cur)), call(SEL.part + encUint(cur))]).then(function (r) {
+          return { end: r[0], part: r[1] };
+        });
+      }).then(function (res) {
+        if (!res) return;
         var now = Math.floor(Date.now() / 1000);
-        var left = Math.max(0, end - now);
+        var left = Math.max(0, res.end - now);
         var frac = Math.min(1, left / 10800);
         ring.style.opacity = "1";
         label.textContent = left > 0 ? fmt(left) : "SEAL";
         arc.style.strokeDashoffset = String(C * (1 - frac));
+        document.body.dataset.verdict = res.part > 100 ? "3" : (res.part >= 25 ? "2" : "1");
       }).catch(function () { /* keep last state */ });
     }
     tickRing();

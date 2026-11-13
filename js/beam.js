@@ -46,11 +46,15 @@
     return [cx + Math.cos(a) * R, cy + Math.sin(a) * R];
   }
 
+  var lvl = 1, lvlTarget = 1;
   function draw(t) {
     ctx.clearRect(0, 0, W, H);
+    var dv = parseInt((document.body && document.body.dataset.verdict) || "1", 10);
+    if (!isNaN(dv)) lvlTarget = Math.max(0, Math.min(3, dv));
+    lvl += (lvlTarget - lvl) * 0.02;
     var cx = W >= 1024 ? W * 0.60 : W * 0.5;
     var py = W < 640 ? Math.min(H * 0.30, 250) : Math.min(H * 0.36, 300);
-    var fanAlpha = W < 640 ? 0.11 : 0.14;
+    var fanAlpha = (W < 640 ? 0.11 : 0.14) * (0.55 + lvl * 0.22);
     var R = Math.max(30, Math.min(52, W * 0.075));
     var rot = Math.sin(t * 0.00016) * 0.5;
     var breathe = 0.82 + 0.18 * Math.sin(t * 0.0007);
@@ -58,15 +62,19 @@
     ctx.save();
     ctx.globalCompositeOperation = "lighter";
 
-    /* spectrum fan out of the prism */
-    var spread = 0.62 + 0.05 * Math.sin(t * 0.00023);
+    /* spectrum fan out of the prism: width and hue range follow the live
+       projected verdict (body[data-verdict] 0 standby, 1 cold, 2 developing,
+       3 confirmed). A quiet Case throws a narrow blue fan; a crowded Case
+       opens the full spectrum. */
+    var spread = 0.34 + lvl * 0.11 + 0.04 * Math.sin(t * 0.00023);
     var baseA = Math.PI / 2 + Math.sin(t * 0.00016) * 0.08;
     var fanLen = H * 1.05;
     for (var i = 0; i < HUES.length; i++) {
       var a = baseA + (i - (HUES.length - 1) / 2) * (spread / HUES.length) * 1.9;
       var c = HUES[i];
+      var hueScale = Math.max(0.06, Math.min(1, lvl + 1.35 - i * 0.62));
       var grad = ctx.createLinearGradient(cx, py, cx + Math.cos(a) * fanLen, py + Math.sin(a) * fanLen);
-      grad.addColorStop(0, "rgba(" + c[0] + "," + c[1] + "," + c[2] + "," + (fanAlpha * breathe) + ")");
+      grad.addColorStop(0, "rgba(" + c[0] + "," + c[1] + "," + c[2] + "," + (fanAlpha * breathe * hueScale) + ")");
       grad.addColorStop(1, "rgba(" + c[0] + "," + c[1] + "," + c[2] + ",0)");
       ctx.fillStyle = grad;
       ctx.beginPath();
