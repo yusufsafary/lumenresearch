@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Lumen Research prism">
+  <defs>
+    <linearGradient id="beam" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#f5efe0" stop-opacity="0"/>
+      <stop offset="1" stop-color="#f5efe0"/>
+    </linearGradient>
+  </defs>
+  <rect x="1" y="1" width="62" height="62" rx="14" fill="#0a1122"/>
+  <rect x="1" y="1" width="62" height="62" rx="14" fill="none" stroke="#c9a35c" stroke-opacity="0.45" stroke-width="1.5"/>
+  <line x1="6" y1="32" x2="26" y2="32" stroke="url(#beam)" stroke-width="2.4" stroke-linecap="round"/>
+  <path d="M32 14 L46 46 L18 46 Z" fill="rgba(201,163,92,0.10)" stroke="#e9dcc0" stroke-width="2" stroke-linejoin="round"/>
+  <line x1="38" y1="33" x2="57" y2="24" stroke="#57c8ff" stroke-width="2.2" stroke-linecap="round"/>
+  <line x1="39" y1="36" x2="58" y2="33" stroke="#7be495" stroke-width="2.2" stroke-linecap="round"/>
+  <line x1="38" y1="39" x2="56" y2="42" stroke="#ffd166" stroke-width="2.2" stroke-linecap="round"/>
+  <line x1="36" y1="42" x2="51" y2="49" stroke="#ff7ad9" stroke-width="2.2" stroke-linecap="round"/>
+</svg>
