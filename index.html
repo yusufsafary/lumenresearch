@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=4">
+<link rel="stylesheet" href="css/style.css?v=5">
 </head>
 <body>
 
@@ -24,6 +24,8 @@
     <span>Est. <b>2026</b> · Cases every 3 hours</span>
   </div>
 </div>
+
+<div class="scrollbar-x" id="scrollbar-x" aria-hidden="true"></div>
 
 <header class="mast">
   <div class="mast-in">
@@ -80,6 +82,20 @@
         <div class="doss-cell"><b id="d-findings">0</b><span>Findings</span></div>
       </div>
       <div class="spec">
+        <div class="sealring" id="sealring" aria-hidden="true">
+          <svg viewBox="0 0 92 92" width="92" height="92">
+            <defs>
+              <linearGradient id="ring-grad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#57c8ff"/><stop offset="0.35" stop-color="#5eead4"/>
+                <stop offset="0.62" stop-color="#ffd166"/><stop offset="1" stop-color="#ff7ad9"/>
+              </linearGradient>
+            </defs>
+            <circle class="ring-track" cx="46" cy="46" r="40"/>
+            <circle class="ring-arc" id="ring-arc" cx="46" cy="46" r="40"/>
+          </svg>
+          <div class="ring-label"><b id="ring-time">SOON</b><span>TO SEAL</span></div>
+        </div>
+        <div class="spec-main">
         <div class="spec-head">
           <div class="spec-proj" id="s-proj">Projected verdict · <b>Awaiting Case 1</b></div>
           <div class="spec-count" id="s-count">0 unique researchers</div>
@@ -92,10 +108,18 @@
         </div>
         <div class="spec-scale"><span>Cold Case</span><span>Verdict reads at the seal</span></div>
         <p class="spec-note" id="s-note">Verdict follows unique researchers at the seal: under 25 stays a Cold Case, 25 to 100 is Developing, over 100 turns Confirmed.</p>
+        </div>
       </div>
       <p class="doss-note" id="d-note">Case Nº 1 opens by hand, and its window runs to the next three hour boundary in UTC. Every later Case runs a plain three hour window, then seals for good.</p>
     </div>
   </section>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-in">
+      <span>Cold Case · 2,500 $LUMEN</span><i></i><span>Developing · 12,500 $LUMEN</span><i></i><span>Confirmed · 60,000 $LUMEN</span><i></i><span>Anomaly · 250,000 $LUMEN</span><i></i><span>First Finding free in every Case</span><i></i><span>A new Case every 3 hours</span><i></i>
+      <span>Cold Case · 2,500 $LUMEN</span><i></i><span>Developing · 12,500 $LUMEN</span><i></i><span>Confirmed · 60,000 $LUMEN</span><i></i><span>Anomaly · 250,000 $LUMEN</span><i></i><span>First Finding free in every Case</span><i></i><span>A new Case every 3 hours</span><i></i>
+    </div>
+  </div>
 
   <!-- VERDICTS -->
   <section class="sec" id="verdicts">
@@ -344,5 +368,6 @@ Rules from the skill file:
 <script src="js/board.js?v=1"></script>
 <script src="js/claim.js?v=1"></script>
 <script src="js/beam.js?v=2"></script>
+<script src="js/motion.js?v=1"></script>
 </body>
 </html>
