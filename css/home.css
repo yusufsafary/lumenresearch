@@ -11,13 +11,19 @@
 .kicker::after { content: none; display: none; }
 .spec-track .ghost { opacity: 0.10; }
 .spec-track .ghost::after { animation: none; display: none; }
+.foot-spectrum { opacity: 0.35; }
 
-/* ---- one section rhythm ---- */
+/* ---- one section rhythm, divided by a line of light ---- */
 .hero { padding: 54px 0 6px; }
 .sec {
   margin-top: 0;
   padding: 64px 0 14px;
-  border-top: 1px solid var(--line-soft);
+  border-top: none;
+  position: relative;
+}
+.sec::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201, 163, 92, 0.38) 30%, rgba(125, 180, 255, 0.28) 70%, transparent);
 }
 .sec-head { margin-bottom: 28px; }
 .sec-head p { margin-top: 14px; }
@@ -26,7 +32,7 @@
   .sec { padding: 48px 0 10px; }
 }
 
-/* ---- dossier: one clean plate ---- */
+/* ---- dossier: one clean instrument plate ---- */
 .dossier {
   margin-top: 40px;
   padding: 30px 28px 26px;
@@ -37,11 +43,30 @@
   animation: riseIn 0.9s cubic-bezier(.22, 1, .36, 1) 0.35s both;
 }
 .dossier::before, .dossier::after { display: none; }
-.doss-status { transform: rotate(-2deg); border-width: 1px; }
-.doss-cell { border-radius: 12px; padding: 13px 12px 11px; }
+.doss-top { align-items: center; }
+.doss-status { transform: rotate(-2deg); border-width: 1px; margin-top: 0; }
+.doss-grid {
+  border-top: 1px solid var(--line-soft);
+  padding-top: 18px; margin-top: 22px;
+}
+.doss-cell { border: none; background: none; border-radius: 0; padding: 0 6px; }
+.doss-cell + .doss-cell { border-left: 1px solid var(--line-soft); padding-left: 16px; }
+.spec {
+  border-top: 1px solid var(--line-soft);
+  padding-top: 22px; margin-top: 22px;
+}
 .doss-note { margin-top: 18px; }
 @media (max-width: 760px) {
   .dossier { padding: 24px 18px 20px; }
+  .doss-cell + .doss-cell { padding-left: 11px; }
+}
+/* seal ring stays in one row with the spectrum at every width */
+@media (max-width: 680px) {
+  .spec { flex-direction: row; gap: 16px; align-items: flex-start; }
+  .sealring { width: 72px; height: 72px; align-self: flex-start; margin-top: 2px; }
+  .sealring svg { width: 72px; height: 72px; }
+  .ring-label b { font-size: 14px; }
+  .ring-label span { font-size: 6.5px; }
 }
 
 /* ---- panels and rows: one geometry ---- */
@@ -50,6 +75,18 @@
 @media (max-width: 760px) { .desk { padding: 20px 16px; } }
 .ck-result { border-style: solid; border-color: var(--line-soft); }
 .statstrip { border-radius: 18px; margin-top: 18px; }
+
+/* consoles stay compact: a calm window, not a wall of text */
+.prompt-box {
+  max-height: 248px; overflow-y: auto; scrollbar-width: thin;
+  box-shadow: inset 0 -18px 22px -18px rgba(0, 0, 0, 0.85), inset 0 2px 14px rgba(0, 0, 0, 0.6);
+}
+.prompt-box::-webkit-scrollbar { width: 6px; }
+.prompt-box::-webkit-scrollbar-thumb { background: rgba(201, 163, 92, 0.35); border: none; }
+
+/* row labels stack cleanly: name on one line, detail under it */
+.rung { align-items: center; }
+.rung .what span { display: block; margin-top: 2px; }
 
 /* claim ladder: quiet tinted rows instead of bare rules */
 #claim .ladder { gap: 10px; margin-top: 20px; }
@@ -71,3 +108,7 @@
 
 /* ---- footer spacing matches the rhythm ---- */
 .foot { margin-top: 64px; }
+@media (max-width: 680px) {
+  .spec-scale { font-size: 9.5px; letter-spacing: 0.04em; }
+  .spec-scale span { white-space: nowrap; }
+}
