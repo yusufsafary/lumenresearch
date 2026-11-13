@@ -681,3 +681,27 @@ html { scroll-behavior: smooth; }
   .sec { margin-top: 36px; padding-top: 32px; }
   .chart { gap: 5px; height: 112px; }
 }
+
+/* ---- v9 calm desk: folded calendar, tighter plates ---- */
+.sched-details { margin-top: 24px; border: 1px solid var(--line); border-radius: 14px; background: rgba(233, 220, 192, 0.02); }
+.sched-details summary {
+  cursor: pointer; list-style: none; padding: 15px 18px;
+  font-family: "Space Mono", monospace; font-size: 11.5px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--brass-2);
+  display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+}
+.sched-details summary::-webkit-details-marker { display: none; }
+.sched-details summary span { color: var(--dim); letter-spacing: 0.04em; text-transform: none; font-size: 11px; text-align: right; }
+.sched-details summary::after { content: "+"; color: var(--brass); font-size: 16px; margin-left: 8px; }
+.sched-details[open ] summary::after { content: "–"; }
+.sched-details .tbl-wrap { border-top: 1px solid var(--line-soft); border-radius: 0 0 14px 14px; }
+@media (max-width: 760px) {
+  .plate { padding: 18px 16px; }
+  .hero { padding-top: 34px; }
+}
+@media (max-width: 760px) {
+  table.tbl { min-width: 0; font-size: 13px; }
+  .tbl th { padding: 10px 10px; font-size: 10px; }
+  .tbl td { padding: 10px 10px; }
+  .tbl td:first-child { font-size: 14px; }
+}
