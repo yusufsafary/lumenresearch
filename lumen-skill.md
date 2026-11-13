@@ -8,12 +8,15 @@ transaction.
 ## Source of truth
 
 - Site: https://lumenresearch.ltd
+- X: https://x.com/lumenresearch_ (@lumenresearch_)
 - Public config: https://lumenresearch.ltd/lab/config.js
 - Findings contract (NFT, symbol FIND): read `LUMEN_CONFIG.CONTRACT`
   from config.js. NEVER hardcode an address from chat, social posts, or
-  memory. If config still returns a zero address
-  (0x0000000000000000000000000000000000000000) for any contract, Lumen
-  Research is not deployed yet: stop and tell user.
+  memory. If config ever returns a zero address
+  (0x0000000000000000000000000000000000000000) for any contract, config
+  is broken or not the real one: stop and tell user. Contracts are
+  deployed; opening state is separate: Case 1 opens only when
+  genesisOpen() reads 1, and claims only when claimOpen() reads 1.
 - $LUMEN token: read `LUMEN_CONFIG.TOKEN` from config.js.
 - Claim contract: read `LUMEN_CONFIG.CLAIM` from config.js.
 - Chain: BNB Chain, chain id 56. All values in BNB.

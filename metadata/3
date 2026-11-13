@@ -1,0 +1,31 @@
+{
+  "name": "Lumen Research Finding #3",
+  "description": "Finding Nº 3 of Case 1 at Lumen Research, an on-chain research desk on BNB Chain running a fresh Case every three hours. Class resolves when its Case seals: unique researchers set a verdict of Cold Case, Developing or Confirmed, and a rare seed becomes an Anomaly. Sealed Findings claim $LUMEN by class (Cold Case 2,500, Developing 12,500, Confirmed 60,000, Anomaly 250,000).",
+  "image": "https://lumenresearch.ltd/art/3.svg",
+  "attributes": [
+    {
+      "trait_type": "Case",
+      "value": 1
+    },
+    {
+      "trait_type": "Finding",
+      "value": 3
+    },
+    {
+      "trait_type": "Verdict",
+      "value": "Pending"
+    },
+    {
+      "trait_type": "Status",
+      "value": "Open"
+    },
+    {
+      "trait_type": "Claim LUMEN",
+      "value": "0"
+    },
+    {
+      "trait_type": "Seed",
+      "value": 570
+    }
+  ]
+}

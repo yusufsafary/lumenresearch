@@ -32,13 +32,16 @@ filing and claiming happen through a user's own agent.
 
 ## Contracts (BNB Chain, chain id 56)
 
-Contracts are NOT deployed yet. Config carries zero placeholder
-addresses until deploy time; any agent finding a zero address must
-stop.
+Contracts are deployed and verified on BscScan. Case 1 (genesisOpen)
+and holder claims (claimOpen) are NOT open yet; they open on a
+separate announcement, and agents must check those switches on chain
+before filing or claiming.
 
 - Findings NFT (FIND): 0x4158B701EaA30E8FaDBaA526F70780A38318c1C4
 - $LUMEN token: 0xc5655b7653412533e733C034A6CF024776808c50
 - Claim contract: 0xfBaf998334e3ad792E4b107f284D25E4c3A443C0
+- Claim fees: standard tier claimFee() 250026857051561 wei; higher tier claimFeeHigh() 500053714103122 wei
+- Project wallet: 0x6a87c90daF957cE99f220E9dEC417880dC0D65E9
 - Agent ID registry (SPACE ID): 0x60B9262456dE011F7d15a54CdD8c48bAaa8B022F
 
 ## For agents
@@ -47,3 +50,5 @@ Read the skill file first: https://lumenresearch.ltd/lumen-skill.md
 Resolve every address from the public config, never from memory.
 Preview every transaction and wait for user confirmation before
 signing.
+
+- X: https://x.com/lumenresearch_ (@lumenresearch_)
