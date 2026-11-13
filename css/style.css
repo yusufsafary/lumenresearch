@@ -705,3 +705,9 @@ html { scroll-behavior: smooth; }
   .tbl td { padding: 10px 10px; }
   .tbl td:first-child { font-size: 14px; }
 }
+
+/* ---- v10 simplicity: verdict ladder tints ---- */
+.rung.tint-cold { border-left: 3px solid #7fb0ff; padding-left: 12px; }
+.rung.tint-dev { border-left: 3px solid #8fd18a; padding-left: 12px; }
+.rung.tint-conf { border-left: 3px solid #e8b04b; padding-left: 12px; }
+.rung.tint-anom { border-left: 3px solid #f2ede2; padding-left: 12px; }
