@@ -23,6 +23,8 @@
     paint();
   }
 
+  var SUBJECTS = {"2": "BNB, the chain's native asset", "3": "PancakeSwap, BNB Chain's largest DEX", "4": "SPACE ID Agent ID registry (0x60B9262456dE011F7d15a54CdD8c48bAaa8B022F)", "5": "USDT on BNB Chain", "6": "Four.meme launch curve", "7": "Newly verified contracts on BscScan", "8": "BNB staking and validators", "9": "CAKE, PancakeSwap's token", "10": "PancakeSwap v2 router", "11": "Thena, ve(3,3) DEX on BNB Chain", "12": "Venus Protocol, lending on BNB Chain", "13": "Lista DAO and lisUSD", "14": "Biswap", "15": "MEV on BNB Chain", "16": "Stablecoin flows (FDUSD)", "17": "$ZAP launch (Zaplo, PancakeSwap)", "18": "$SONIC launch (Sonic Protocol, PancakeSwap)", "19": "$ORIVIA launch (Orivia, PancakeSwap)", "20": "New PancakeSwap pools today", "21": "Liquidity locks at launch", "22": "Montra launches today", "23": "First-hour trading, new pairs", "24": "Launch-day wallets", "25": "Agent ID registry, week one", "26": "SPACE ID .bnb names", "27": "Binance Agentic Wallet", "28": "Agentic Pass mints", "29": "Nomio", "30": "AgentPepe", "31": "Agent Market stalls", "32": "Orivia", "33": "Elysium Punks (chain 99901)", "34": "Foundry Faces", "35": "AgentNova", "36": "Liberate", "37": "Doodle Lab", "38": "Urbanova", "39": "Z0MBIT and the Montra line", "40": "Standboy", "41": "AgentX402 Syrup Fund", "42": "Cointris lock refunds", "43": "Agent Browser harvest", "44": "CoinFin shares", "45": "Presschain editions", "46": "AgentLabs experiments", "47": "Claim contracts, fee flows", "48": "Lumen itself, meta case", "49": "Honeypot checks", "50": "Rug pulls, red flags", "51": "Contract verification", "52": "Whale wallets on BNB Chain", "53": "Bridge flows, BSC to Elysium", "54": "Gas and priority fees", "55": "Dormant wallets waking", "56": "Agentverse X awakening", "57": "Week 1 dossier"};
+
   /* ---- seal ring: live window progress from chain ---- */
   var arc = document.getElementById("ring-arc");
   var label = document.getElementById("ring-time");
@@ -65,6 +67,8 @@
         return call(SEL.cur);
       }).then(function (cur) {
         if (cur === null || cur === undefined) return null;
+        var subjEl = document.getElementById("d-subject");
+        if (subjEl && SUBJECTS[String(cur)]) subjEl.textContent = SUBJECTS[String(cur)];
         return Promise.all([call(SEL.end + encUint(cur)), call(SEL.part + encUint(cur))]).then(function (r) {
           return { end: r[0], part: r[1] };
         });

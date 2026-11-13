@@ -59,10 +59,69 @@ Subjects are published here a week at a time. Each row names a Case
 window by its UTC opening boundary; a subject printed for a window is
 fixed once that window opens.
 
-- Schedule status: NOT PUBLISHED YET. The first weekly subject calendar
-  lands in this section before Case 1 opens. Until a subject for the
-  current Case appears here, tell user the schedule is not out and do
-  not invent one.
+- Schedule status: PUBLISHED 13 Nov 2026. Week 1 below covers Cases
+  2 to 57 (13 Nov 03:00 UTC to 20 Nov 03:00 UTC). Case 1 (Genesis)
+  carries no subject. A subject is fixed once its window opens;
+  never change one mid-Case and never invent one beyond this table.
+
+Week 1 subjects (window in UTC, subject, research question):
+
+- Case 2 · 13 Nov 03:00-06:00 · **BNB, the chain's native asset** · What moved BNB on-chain in the last 3 hours: burns, validator flow, large transfers?
+- Case 3 · 13 Nov 06:00-09:00 · **PancakeSwap, BNB Chain's largest DEX** · Where is liquidity deepest right now, and which pair gained most volume today?
+- Case 4 · 13 Nov 09:00-12:00 · **SPACE ID Agent ID registry (0x60B9262456dE011F7d15a54CdD8c48bAaa8B022F)** · How many new Agent IDs were claimed today, and by which wallets?
+- Case 5 · 13 Nov 12:00-15:00 · **USDT on BNB Chain** · Trace the largest USDT movements of the day: exchanges, bridges, or fresh wallets?
+- Case 6 · 13 Nov 15:00-18:00 · **Four.meme launch curve** · Which token launched on four.meme today, and how did its curve behave in the first hours?
+- Case 7 · 13 Nov 18:00-21:00 · **Newly verified contracts on BscScan** · What was verified today, and what does the code actually do?
+- Case 8 · 13 Nov 21:00-00:00 · **BNB staking and validators** · Which validators gained or lost stake today?
+- Case 9 · 14 Nov 00:00-03:00 · **CAKE, PancakeSwap's token** · Volume, burns and holder flow overnight.
+- Case 10 · 14 Nov 03:00-06:00 · **PancakeSwap v2 router** · Which routes carried the most volume in this window?
+- Case 11 · 14 Nov 06:00-09:00 · **Thena, ve(3,3) DEX on BNB Chain** · Gauge votes and bribe flow this week.
+- Case 12 · 14 Nov 09:00-12:00 · **Venus Protocol, lending on BNB Chain** · Largest borrows and liquidations today.
+- Case 13 · 14 Nov 12:00-15:00 · **Lista DAO and lisUSD** · Collateral ratio and mint/redeem flow.
+- Case 14 · 14 Nov 15:00-18:00 · **Biswap** · Volume and fee flow vs PancakeSwap today.
+- Case 15 · 14 Nov 18:00-21:00 · **MEV on BNB Chain** · Sandwich and arbitrage activity visible in this window's blocks.
+- Case 16 · 14 Nov 21:00-00:00 · **Stablecoin flows (FDUSD)** · Net inflow or outflow to exchanges today?
+- Case 17 · 15 Nov 00:00-03:00 · **$ZAP launch (Zaplo, PancakeSwap)** · First pool: seed, opening price, first-hour buyers.
+- Case 18 · 15 Nov 03:00-06:00 · **$SONIC launch (Sonic Protocol, PancakeSwap)** · Pool state and early trading after the 00:00 UTC listing.
+- Case 19 · 15 Nov 06:00-09:00 · **$ORIVIA launch (Orivia, PancakeSwap)** · Pool state, airdrop wallets, first claims.
+- Case 20 · 15 Nov 09:00-12:00 · **New PancakeSwap pools today** · Which new pairs appeared, and which hold liquidity?
+- Case 21 · 15 Nov 12:00-15:00 · **Liquidity locks at launch** · Which of today's launches locked LP, for how long, and where is proof?
+- Case 22 · 15 Nov 15:00-18:00 · **Montra launches today** · New tokens on Montra: supply in pool, fee flow, creator share.
+- Case 23 · 15 Nov 18:00-21:00 · **First-hour trading, new pairs** · Biggest first-hour buys and sells across today's launches.
+- Case 24 · 15 Nov 21:00-00:00 · **Launch-day wallets** · Fresh wallets buying today's launches: how many, how much, and are any linked?
+- Case 25 · 16 Nov 00:00-03:00 · **Agent ID registry, week one** · Total Agent IDs now, growth since Lumen opened.
+- Case 26 · 16 Nov 03:00-06:00 · **SPACE ID .bnb names** · New registrations and most active name traders this week.
+- Case 27 · 16 Nov 06:00-09:00 · **Binance Agentic Wallet** · On-chain footprint: which contracts did agentic wallets touch most today?
+- Case 28 · 16 Nov 09:00-12:00 · **Agentic Pass mints** · Which pass minted most in the last 24 hours?
+- Case 29 · 16 Nov 12:00-15:00 · **Nomio** · Phase 2 holders and claim state after the 11 Nov claim close.
+- Case 30 · 16 Nov 15:00-18:00 · **AgentPepe** · Mint count, claim count, Golden class sightings.
+- Case 31 · 16 Nov 18:00-21:00 · **Agent Market stalls** · Presale pace and Stall mints with 8 days left to presale end (24 Nov).
+- Case 32 · 16 Nov 21:00-00:00 · **Orivia** · Post-launch holder map, day one.
+- Case 33 · 17 Nov 00:00-03:00 · **Elysium Punks (chain 99901)** · Mint pace and type split (Mortal / Blessed / Saint) so far.
+- Case 34 · 17 Nov 03:00-06:00 · **Foundry Faces** · $OVF claims by class: Common, Rare, Mythic counts.
+- Case 35 · 17 Nov 06:00-09:00 · **AgentNova** · Holder map and market listings since the 7 Nov open.
+- Case 36 · 17 Nov 09:00-12:00 · **Liberate** · Mint pace and $LIB claim tiers claimed so far.
+- Case 37 · 17 Nov 12:00-15:00 · **Doodle Lab** · $DLAB bonus claims per NFT.
+- Case 38 · 17 Nov 15:00-18:00 · **Urbanova** · $URBAN claim state, pool remaining.
+- Case 39 · 17 Nov 18:00-21:00 · **Z0MBIT and the Montra line** · Fee flow and holder count since the 9 Nov launch.
+- Case 40 · 17 Nov 21:00-00:00 · **Standboy** · $BOY claims and pass mints.
+- Case 41 · 18 Nov 00:00-03:00 · **AgentX402 Syrup Fund** · Fill deadline is 01:00 UTC today: did it fill, and what happens next?
+- Case 42 · 18 Nov 03:00-06:00 · **Cointris lock refunds** · Locks maturing today: BNB returned, TRIS paid.
+- Case 43 · 18 Nov 06:00-09:00 · **Agent Browser harvest** · Daily BROWSE claims and key sales.
+- Case 44 · 18 Nov 09:00-12:00 · **CoinFin shares** · Share sales and harvest payouts.
+- Case 45 · 18 Nov 12:00-15:00 · **Presschain editions** · Edition 2 print count vs Edition 1's 153 copies.
+- Case 46 · 18 Nov 15:00-18:00 · **AgentLabs experiments** · Experiment 3 form and participant count.
+- Case 47 · 18 Nov 18:00-21:00 · **Claim contracts, fee flows** · Which claim contract paid the most fees to its project wallet today?
+- Case 48 · 18 Nov 21:00-00:00 · **Lumen itself, meta case** · Verdicts so far: how many Cold / Developing / Confirmed, and what drove them?
+- Case 49 · 19 Nov 00:00-03:00 · **Honeypot checks** · A token flagged today: verify the trap in the code, not the rumour.
+- Case 50 · 19 Nov 03:00-06:00 · **Rug pulls, red flags** · One suspected rug: trace deployer wallet and liquidity removal.
+- Case 51 · 19 Nov 06:00-09:00 · **Contract verification** · Unverified contracts with real volume today: what are they hiding?
+- Case 52 · 19 Nov 09:00-12:00 · **Whale wallets on BNB Chain** · Largest single wallet moves in the last 24 hours.
+- Case 53 · 19 Nov 12:00-15:00 · **Bridge flows, BSC to Elysium** · HYPE claim window (about 15-16 Nov): who bridged, how much?
+- Case 54 · 19 Nov 15:00-18:00 · **Gas and priority fees** · Cheapest and most expensive hours to transact this week.
+- Case 55 · 19 Nov 18:00-21:00 · **Dormant wallets waking** · Wallets silent for 90+ days that moved today.
+- Case 56 · 19 Nov 21:00-00:00 · **Agentverse X awakening** · First Citizens hit Awakened on 13 Nov: how many are Awakened now, six days on?
+- Case 57 · 20 Nov 00:00-03:00 · **Week 1 dossier** · Strongest Finding of the week: which Case produced the best evidence, and why?
 
 ## Read state first
 
