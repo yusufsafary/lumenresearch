@@ -595,3 +595,52 @@ body[data-live="1"] .doss-status::before {
   body[data-live="1"] .doss-status::before { animation: none; }
   .btn::after { display: none; }
 }
+
+/* ---- v7 super premium pass: light, glare, wayfinding, tidy ---- */
+::selection { background: rgba(201, 163, 92, 0.85); color: #0a1122; }
+:focus-visible { outline: 2px solid #c9a35c; outline-offset: 3px; border-radius: 4px; }
+html { scroll-behavior: smooth; }
+.sec, .dossier { scroll-margin-top: 104px; }
+.sec-head .kicker::before {
+  content: ""; display: inline-block; width: 26px; height: 2px; margin-right: 10px;
+  vertical-align: middle; border-radius: 2px;
+  background: linear-gradient(90deg, #7db4ff, #7be495, #ffd76a, #ff9d6b, #ff7d9c);
+}
+#glow {
+  position: fixed; left: 0; top: 0; width: 560px; height: 560px; z-index: 1;
+  pointer-events: none; border-radius: 50%; opacity: 0;
+  background: radial-gradient(circle, rgba(201, 163, 92, 0.10) 0%, rgba(125, 180, 255, 0.045) 42%, transparent 68%);
+  transform: translate(-50%, -50%); transition: opacity 0.6s ease; mix-blend-mode: screen;
+}
+.dossier::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background: radial-gradient(420px circle at var(--gx, 50%) var(--gy, 0%), rgba(255, 246, 220, 0.10), transparent 65%);
+  opacity: 0; transition: opacity 0.45s ease; mix-blend-mode: screen;
+}
+.dossier:hover::after { opacity: 1; }
+.navrow a { position: relative; transition: color 0.3s ease; }
+.navrow a.on { color: var(--brass-2); }
+.navrow a.on::after {
+  content: ""; position: absolute; left: 50%; bottom: -7px; width: 4px; height: 4px;
+  border-radius: 50%; background: var(--brass); transform: translateX(-50%);
+}
+.tbl-wrap { max-height: 430px; overflow: auto; scrollbar-width: thin; }
+.tbl thead th { position: sticky; top: 0; background: #0d1526; z-index: 2; }
+.tbl tbody tr { transition: background 0.25s ease; }
+.tbl tbody tr:hover { background: rgba(201, 163, 92, 0.05); }
+.hero-cta .btn, .chead .btn { will-change: transform; }
+#toTop {
+  position: fixed; right: 22px; bottom: 22px; z-index: 60; width: 46px; height: 46px;
+  border-radius: 50%; border: 1px solid rgba(201, 163, 92, 0.55); cursor: pointer;
+  background: rgba(10, 17, 34, 0.88); color: var(--brass-2); font-size: 17px; line-height: 1;
+  opacity: 0; pointer-events: none; transform: translateY(8px);
+  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(.22,1,.36,1), background 0.3s ease;
+  backdrop-filter: blur(6px); display: none;
+}
+#toTop.show { opacity: 1; pointer-events: auto; transform: none; }
+#toTop:hover { background: rgba(201, 163, 92, 0.22); }
+@media (min-width: 900px) { #toTop { display: block; } }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  #glow { display: none; }
+}

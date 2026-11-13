@@ -103,4 +103,77 @@
     });
     doss.addEventListener("pointerleave", function () { doss.style.transform = ""; });
   }
+
+  /* ---- v7 premium interaction layer (fine pointers) ---- */
+  var fine = window.matchMedia && window.matchMedia("(pointer: fine)").matches && !reduced;
+  if (fine) {
+    /* cursor light: a soft observatory glow follows the pointer */
+    var glow = document.createElement("div");
+    glow.id = "glow";
+    document.body.appendChild(glow);
+    var gx = -600, gy = -600, tx = -600, ty = -600;
+    document.addEventListener("pointermove", function (e) {
+      tx = e.clientX; ty = e.clientY;
+      if (gx < -500) { gx = tx; gy = ty; }
+      glow.style.opacity = "1";
+    }, { passive: true });
+    (function follow() {
+      gx += (tx - gx) * 0.08; gy += (ty - gy) * 0.08;
+      glow.style.transform = "translate(" + (gx - 280) + "px," + (gy - 280) + "px)";
+      requestAnimationFrame(follow);
+    })();
+
+    /* magnetic buttons: a gentle pull toward the cursor */
+    var mags = document.querySelectorAll(".hero-cta .btn, .chead .btn");
+    Array.prototype.forEach.call(mags, function (b) {
+      b.addEventListener("pointermove", function (e) {
+        var r = b.getBoundingClientRect();
+        var dx = (e.clientX - (r.left + r.width / 2)) * 0.14;
+        var dy = (e.clientY - (r.top + r.height / 2)) * 0.22;
+        b.style.transform = "translate(" + dx.toFixed(1) + "px," + dy.toFixed(1) + "px)";
+      });
+      b.addEventListener("pointerleave", function () { b.style.transform = ""; });
+    });
+
+    /* dossier glare follows the pointer across the plate */
+    var plate = document.querySelector(".dossier");
+    if (plate) {
+      plate.addEventListener("pointermove", function (e) {
+        var r = plate.getBoundingClientRect();
+        plate.style.setProperty("--gx", (((e.clientX - r.left) / r.width) * 100).toFixed(1) + "%");
+        plate.style.setProperty("--gy", (((e.clientY - r.top) / r.height) * 100).toFixed(1) + "%");
+      });
+    }
+  }
+
+  /* nav wayfinding: mark the section in view */
+  var navLinks = document.querySelectorAll('.navrow a[href^="#"]');
+  if (navLinks.length && "IntersectionObserver" in window) {
+    var byId = {};
+    Array.prototype.forEach.call(navLinks, function (a) { byId[a.getAttribute("href").slice(1)] = a; });
+    var nobs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        Array.prototype.forEach.call(navLinks, function (a) { a.classList.remove("on"); });
+        var link = byId[en.target.id];
+        if (link) link.classList.add("on");
+      });
+    }, { rootMargin: "-38% 0px -52% 0px" });
+    Object.keys(byId).forEach(function (id) {
+      var s = document.getElementById(id);
+      if (s) nobs.observe(s);
+    });
+  }
+
+  /* back to top (desktop) */
+  var toTop = document.createElement("button");
+  toTop.id = "toTop";
+  toTop.type = "button";
+  toTop.setAttribute("aria-label", "Back to top");
+  toTop.textContent = "↑";
+  document.body.appendChild(toTop);
+  toTop.addEventListener("click", function () { window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" }); });
+  window.addEventListener("scroll", function () {
+    toTop.classList.toggle("show", window.scrollY > 700);
+  }, { passive: true });
 })();
