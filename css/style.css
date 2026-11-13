@@ -769,3 +769,14 @@ html { scroll-behavior: smooth; }
   .mast-right { font-size: 10.5px; gap: 10px; }
   .mast-in { gap: 10px; }
 }
+
+/* ---- v13 wordmark: smaller, never collides ---- */
+.mast .wm { font-size: 16.5px; letter-spacing: 0.1em; white-space: nowrap; }
+.mast .brand { min-width: 0; }
+.mast-right { flex: 0 0 auto; }
+@media (max-width: 760px) {
+  .mast .wm { font-size: 14px; letter-spacing: 0.07em; }
+  .mast .brand img { width: 26px; height: 26px; }
+  .mast .brand { gap: 8px; }
+  .mast-right { font-size: 10px; }
+}
