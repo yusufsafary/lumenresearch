@@ -142,12 +142,8 @@ img { max-width: 100%; }
   -webkit-mask-image: linear-gradient(180deg, #000 30%, transparent 88%);
   mask-image: linear-gradient(180deg, #000 30%, transparent 88%);
 }
-#beambg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; pointer-events: none; opacity: 0.9; }
-.hero > *:not(#beambg) { position: relative; z-index: 1; }
-@media (prefers-reduced-motion: reduce) {
-  #beambg { display: none; }
-  .hero { background: #0a1122 url("../img/beam-poster.jpg") center / cover no-repeat; }
-}
+#beam { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+.hero > *:not(#beam) { position: relative; z-index: 1; }
 .hero h1 {
   font-family: "Fraunces", Georgia, serif; font-weight: 560;
   font-size: clamp(44px, 12.4vw, 92px); line-height: 0.99; letter-spacing: -0.018em;
