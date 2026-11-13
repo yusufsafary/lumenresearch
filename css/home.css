@@ -1,0 +1,73 @@
+/* Lumen Research homepage polish: calm, tidy, simple.
+   Loaded only by index.html, after style.css. One rhythm, no noise:
+   no dot grids, no cursor glow, no shine sweeps, no shimmer loops.
+   The living beam and the spectrum bar stay; they carry the light. */
+
+/* ---- quiet the noise ---- */
+.hero::before { display: none; }
+#glow { display: none !important; }
+.scrollbar-x { display: none; }
+.btn::after { display: none; }
+.kicker::after { content: none; display: none; }
+.spec-track .ghost { opacity: 0.10; }
+.spec-track .ghost::after { animation: none; display: none; }
+
+/* ---- one section rhythm ---- */
+.hero { padding: 54px 0 6px; }
+.sec {
+  margin-top: 0;
+  padding: 64px 0 14px;
+  border-top: 1px solid var(--line-soft);
+}
+.sec-head { margin-bottom: 28px; }
+.sec-head p { margin-top: 14px; }
+@media (max-width: 760px) {
+  .hero { padding-top: 40px; }
+  .sec { padding: 48px 0 10px; }
+}
+
+/* ---- dossier: one clean plate ---- */
+.dossier {
+  margin-top: 40px;
+  padding: 30px 28px 26px;
+  border-radius: 20px;
+  border: 1px solid rgba(201, 163, 92, 0.22);
+  background: linear-gradient(180deg, #101b36, var(--panel));
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(233, 220, 192, 0.07);
+  animation: riseIn 0.9s cubic-bezier(.22, 1, .36, 1) 0.35s both;
+}
+.dossier::before, .dossier::after { display: none; }
+.doss-status { transform: rotate(-2deg); border-width: 1px; }
+.doss-cell { border-radius: 12px; padding: 13px 12px 11px; }
+.doss-note { margin-top: 18px; }
+@media (max-width: 760px) {
+  .dossier { padding: 24px 18px 20px; }
+}
+
+/* ---- panels and rows: one geometry ---- */
+.panel, .desk { border-radius: 20px; }
+.desk { padding: 28px; box-shadow: 0 18px 44px rgba(0, 0, 0, 0.30); }
+@media (max-width: 760px) { .desk { padding: 20px 16px; } }
+.ck-result { border-style: solid; border-color: var(--line-soft); }
+.statstrip { border-radius: 18px; margin-top: 18px; }
+
+/* claim ladder: quiet tinted rows instead of bare rules */
+#claim .ladder { gap: 10px; margin-top: 20px; }
+#claim .ladder .rung {
+  border: 1px solid var(--line-soft); border-radius: 12px; padding: 14px 16px;
+}
+#claim .rung.tint-cold { border-left: 3px solid #7fb0ff; background: rgba(87, 200, 255, 0.05); }
+#claim .rung.tint-dev { border-left: 3px solid #8fd18a; background: rgba(123, 228, 149, 0.05); }
+#claim .rung.tint-conf { border-left: 3px solid #e8b04b; background: rgba(255, 209, 102, 0.05); }
+#claim .rung.tint-anom { border-left: 3px solid #f2ede2; background: rgba(255, 122, 217, 0.05); }
+
+/* ---- gentle section reveals (JS adds .rv only when it can observe) ---- */
+.rv { opacity: 0; transform: translateY(16px); transition: opacity 0.85s ease, transform 0.95s cubic-bezier(.22, 1, .36, 1); }
+.rv.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .rv { opacity: 1; transform: none; transition: none; }
+  .dossier { animation: none; }
+}
+
+/* ---- footer spacing matches the rhythm ---- */
+.foot { margin-top: 64px; }
