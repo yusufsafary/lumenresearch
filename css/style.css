@@ -741,3 +741,31 @@ html { scroll-behavior: smooth; }
 .ladder .rung:hover { background: rgba(233, 220, 192, 0.03); }
 .sched-details summary { transition: color .25s; }
 .sched-details summary:hover { color: var(--paper); }
+
+/* ---- v12 header: one slim bar, product nav ---- */
+.mast { padding: 15px 0 13px; border-bottom: 1px solid var(--line-soft); background: rgba(7, 13, 29, 0.85); backdrop-filter: blur(10px); }
+.mast-in { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.mast .brand img { width: 36px; height: 36px; }
+.mast .wm { font-size: 19px; }
+.mast-right { display: flex; align-items: center; gap: 18px; font-family: "Space Mono", monospace; font-size: 11.5px; color: var(--dim); white-space: nowrap; }
+.mast-right .xlink { color: var(--brass-2); text-decoration: none; }
+.mast-right .xlink:hover { color: var(--paper); }
+.mast-meta, .util { display: none; }
+.navrow { border-bottom: 1px solid var(--line-soft); }
+.nav-in { justify-content: flex-start; gap: 28px; overflow-x: auto; scrollbar-width: none; }
+.nav-in::-webkit-scrollbar { display: none; }
+.navrow .link { font-family: "Space Mono", monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--dim); white-space: nowrap; padding: 4px 0; }
+.navrow .link:hover { color: var(--paper); }
+.navrow .link.on { color: var(--brass-2); }
+.navrow .pill { display: none; }
+@media (max-width: 760px) {
+  .mast-right #utc-clock { display: none; }
+  .mast .wm { font-size: 17px; }
+  .nav-in { gap: 22px; }
+}
+@media (max-width: 760px) {
+  .mast-right .xprefix { display: none; }
+  .mast .brand img { width: 30px; height: 30px; }
+  .mast-right { font-size: 10.5px; gap: 10px; }
+  .mast-in { gap: 10px; }
+}
