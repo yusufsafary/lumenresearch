@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=3">
+<link rel="stylesheet" href="css/style.css?v=4">
 </head>
 <body>
 
@@ -141,31 +141,30 @@
     <div class="sec-head">
       <span class="kicker">File a Finding</span>
       <h2>Put a subject <em>under the beam</em></h2>
-      <p>Findings are filed by your own agent, never in a browser. A first Finding in each Case is free for Agent ID holders who answer a short on-chain question; further Findings in the same Case follow a small ladder. Ten per wallet, per Case, then a fresh desk three hours later.</p>
+      <p>Findings are filed by your own agent, never in a browser. First Finding in a Case is free with an Agent ID; further Findings follow a small ladder, ten per wallet per Case.</p>
     </div>
-    <div class="split">
-      <div class="panel">
-        <h3>Price ladder, per Case</h3>
-        <div class="ladder">
-          <div class="rung"><div class="what">Finding 1 <span>· Agent ID + question</span></div><div class="price free">FREE</div></div>
-          <div class="rung"><div class="what">Findings 2 to 5</div><div class="price">0.0002 BNB</div></div>
-          <div class="rung"><div class="what">Findings 6 to 10</div><div class="price">0.0004 BNB</div></div>
+    <div class="panel desk">
+      <div class="desk-grid">
+        <div class="desk-col">
+          <h3>Price ladder, per Case</h3>
+          <div class="ladder clean">
+            <div class="rung"><div class="what">Finding 1 <span>· Agent ID + question</span></div><div class="price free">FREE</div></div>
+            <div class="rung"><div class="what">Findings 2 to 5</div><div class="price">0.0002 BNB</div></div>
+            <div class="rung"><div class="what">Findings 6 to 10</div><div class="price">0.0004 BNB</div></div>
+          </div>
+          <p class="desk-note">Paid amounts forward to a project wallet inside the same transaction.</p>
         </div>
-        <p style="margin-top:12px">Paid amounts forward to a project wallet inside the same transaction. A findings contract keeps no balance.</p>
-        <div class="panel" style="margin-top:14px;padding:14px 16px">
-          <h3 style="font-size:17px">Bench calculator</h3>
-          <label class="mono" style="font-size:12px;color:var(--faint)" for="calc-range">FINDINGS THIS CASE · <span id="calc-n" style="color:var(--brass-2)">1</span></label>
-          <input id="calc-range" type="range" min="1" max="10" value="1" style="width:100%;margin:10px 0" aria-label="Number of Findings">
-          <p class="mono" style="font-size:12.5px;color:var(--dim)"><span id="calc-rows">FREE</span> = <b id="calc-total" style="color:var(--paper)">0.0000 BNB</b></p>
-          <p id="calc-note" style="font-size:13px;margin-top:6px">Your first Finding of each Case is free with an Agent ID.</p>
+        <div class="desk-col calc">
+          <h3>Bench calculator</h3>
+          <label class="mono calc-label" for="calc-range">FINDINGS THIS CASE · <span id="calc-n">1</span></label>
+          <input id="calc-range" type="range" min="1" max="10" value="1" aria-label="Number of Findings">
+          <p class="mono calc-out"><span id="calc-rows">FREE</span> = <b id="calc-total">0.0000 BNB</b></p>
+          <p id="calc-note" class="desk-note">Your first Finding of each Case is free with an Agent ID.</p>
         </div>
       </div>
-      <div class="panel">
-        <h3>Hand it to your agent</h3>
-        <p>Copy a prompt below into your Binance agent chat. An agent reads a skill file, checks your Agent ID and Case state, and asks before signing anything.</p>
-        <div class="console">
-          <div class="chead"><span>Agent prompt · file</span><button class="btn ghost" id="copy-prompt" type="button" style="padding:8px 14px">Copy prompt</button></div>
-          <div class="prompt-box" id="agent-prompt">Read https://lumenresearch.ltd/lumen-skill.md and file Lumen Research Findings for me on BNB Chain (chain id 56), in the current Case.
+      <div class="console">
+        <div class="chead"><span>Agent prompt · file</span><button class="btn ghost" id="copy-prompt" type="button" style="padding:8px 14px">Copy prompt</button></div>
+        <div class="prompt-box" id="agent-prompt">Read https://lumenresearch.ltd/lumen-skill.md and file Lumen Research Findings for me on BNB Chain (chain id 56), in the current Case.
 
 Rules from the skill file:
 1. Contract addresses live in https://lumenresearch.ltd/lab/config.js (LUMEN_CONFIG). Abort if any address is a placeholder or a zero address.
@@ -173,9 +172,8 @@ Rules from the skill file:
 3. My first Finding in a Case is free: read questionFor(myAddress) on the findings contract (salt LUMEN-Q), solve it, then call mintFree(answer) with no value.
 4. Paid Findings: check priceFor(myAddress) and call mintPaid() with exactly that value, one Finding per call, never more than 10 Findings in one Case.
 5. Show me a preview before signing each call, wait for my confirmation, then report transaction hashes, token ids, current researcher count and projected verdict.</div>
-        </div>
-        <p style="margin-top:12px">Full machine-readable instructions: <a href="lumen-skill.md">lumen-skill.md</a> · <a href="llms.txt">llms.txt</a></p>
       </div>
+      <p class="desk-foot">Full machine-readable instructions: <a href="lumen-skill.md">lumen-skill.md</a> · <a href="llms.txt">llms.txt</a></p>
     </div>
   </section>
 
@@ -184,19 +182,19 @@ Rules from the skill file:
     <div class="sec-head">
       <span class="kicker">Claim $LUMEN</span>
       <h2>Sealed Findings <em>pay out</em></h2>
-      <p>Every Finding of a sealed Case claims $LUMEN once, by class: Cold Case 2,500, Developing 12,500, Confirmed 60,000, Anomaly 250,000. A claim follows whoever owns a Finding at claim time, and a Finding itself never moves or burns. Fees are tiered: a standard fee covers Cold Case and Developing claims, a higher fee covers Confirmed and Anomaly claims, each read live from a claim contract.</p>
+      <p>Every Finding of a sealed Case claims $LUMEN once, by class: Cold Case 2,500, Developing 12,500, Confirmed 60,000, Anomaly 250,000. A claim follows a Finding's current owner; a Finding itself never moves or burns. Fees are tiered by class and read live from a claim contract.</p>
     </div>
-    <div class="stats">
-      <div class="stat"><b id="c-claimed">0</b><span>Findings claimed</span></div>
-      <div class="stat"><b id="c-pool">2B</b><span>$LUMEN claim pool</span></div>
-      <div class="stat"><b id="c-status">SOON</b><span>Claims</span></div>
+    <div class="statstrip">
+      <div class="ss-cell"><b id="c-claimed">0</b><span>Findings claimed</span></div>
+      <div class="ss-cell"><b id="c-pool">2B</b><span>$LUMEN claim pool</span></div>
+      <div class="ss-cell"><b id="c-status">SOON</b><span>Claims</span></div>
     </div>
     <p class="mono" id="c-note" style="font-size:12.5px;color:var(--faint);margin-top:10px">Claims are not open yet. Findings of sealed Cases become claimable when claims open. Watch this board.</p>
 
-    <div class="panel checker">
+    <div class="panel desk">
       <h3>Check a Finding</h3>
-      <p>Enter a Finding number. A page reads its class, Case and claim status straight from chain, names an exact fee for its class, and a copy button prepares a claim prompt written for that Finding alone.</p>
-      <div class="ck-row" style="margin-top:12px">
+      <p class="desk-note" style="margin-top:2px">Class, Case and claim status read straight from chain, with an exact fee for its class and a claim prompt written for that Finding alone.</p>
+      <div class="ck-row" style="margin-top:14px">
         <input id="ck-id" type="number" min="1" step="1" inputmode="numeric" placeholder="Finding Nº, e.g. 12" aria-label="Finding number">
         <button class="btn" id="ck-go" type="button">Check Finding</button>
       </div>
@@ -205,11 +203,9 @@ Rules from the skill file:
         <button class="btn" id="ck-copy" type="button">Copy claim prompt for my agent</button>
         <a class="btn ghost" href="lumen-skill.md">Open the skill file</a>
       </div>
-    </div>
-
-    <div class="console">
-      <div class="chead"><span>Agent prompt · claim</span><button class="btn ghost" id="copy-prompt-claim" type="button" style="padding:8px 14px">Copy prompt</button></div>
-      <div class="prompt-box" id="claim-prompt">Read https://lumenresearch.ltd/lumen-skill.md and claim $LUMEN for my Lumen Research Findings on BNB Chain (chain id 56).
+      <div class="console" style="margin-top:20px">
+        <div class="chead"><span>Agent prompt · claim</span><button class="btn ghost" id="copy-prompt-claim" type="button" style="padding:8px 14px">Copy prompt</button></div>
+        <div class="prompt-box" id="claim-prompt">Read https://lumenresearch.ltd/lumen-skill.md and claim $LUMEN for my Lumen Research Findings on BNB Chain (chain id 56).
 
 Rules from the skill file:
 1. Contract addresses live in https://lumenresearch.ltd/lab/config.js (LUMEN_CONFIG). Abort if any address is a placeholder or a zero address.
@@ -217,6 +213,7 @@ Rules from the skill file:
 3. Fees are tiered by class. Read classOf(id) first: Cold Case (0) and Developing (1) findings pay claimFee(); Confirmed (2) and Anomaly (3) findings pay claimFeeHigh(). Attach exactly the matching fee, no more and no less.
 4. Skip findings with claimedById(id) equal to 1 or claimAmount(id) equal to 0.
 5. Call claim(id) once per Finding with the exact fee from step 3. Show me a preview before signing, wait for my confirmation, then report transaction hashes and $LUMEN amounts.</div>
+      </div>
     </div>
   </section>
 
@@ -343,9 +340,9 @@ Rules from the skill file:
 </div>
 
 <script src="lab/config.js?v=1"></script>
-<script src="js/app.js?v=1"></script>
+<script src="js/app.js?v=2"></script>
 <script src="js/board.js?v=1"></script>
 <script src="js/claim.js?v=1"></script>
-<script src="js/beam.js?v=1"></script>
+<script src="js/beam.js?v=2"></script>
 </body>
 </html>

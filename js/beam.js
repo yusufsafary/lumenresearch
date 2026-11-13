@@ -20,7 +20,7 @@
   var motes = [];
   function seedMotes() {
     motes = [];
-    var n = Math.round(Math.min(90, Math.max(34, W / 14)));
+    var n = Math.round(Math.min(56, Math.max(22, W / 22)));
     for (var i = 0; i < n; i++) {
       motes.push({
         x: Math.random(), y: Math.random(),
@@ -50,7 +50,7 @@
     ctx.clearRect(0, 0, W, H);
     var cx = W >= 1024 ? W * 0.60 : W * 0.5;
     var py = W < 640 ? Math.min(H * 0.30, 250) : Math.min(H * 0.36, 300);
-    var fanAlpha = W < 640 ? 0.13 : 0.16;
+    var fanAlpha = W < 640 ? 0.11 : 0.14;
     var R = Math.max(30, Math.min(52, W * 0.075));
     var rot = Math.sin(t * 0.00016) * 0.5;
     var breathe = 0.82 + 0.18 * Math.sin(t * 0.0007);

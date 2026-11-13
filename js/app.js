@@ -86,7 +86,7 @@
     if (cTotal) cTotal.textContent = total.toFixed(4) + " BNB";
     if (cNote) cNote.textContent = n >= 10
       ? "Ten Findings is a wallet's full desk for one Case. The next Case, three hours later, resets the allowance."
-      : "Your first Finding of each Case is free with an Agent ID. Paid amounts forward to the project wallet in the same transaction.";
+      : "Your first Finding of each Case is free with an Agent ID.";
   }
   if (range) { range.addEventListener("input", renderCalc); renderCalc(); }
 
