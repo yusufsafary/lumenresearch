@@ -22,11 +22,11 @@ filing and claiming happen through a user's own agent.
 ## Key pages
 
 - Home, current Case dossier, verdicts, claim checker: https://lumenresearch.ltd/
-- Tokenomics: https://lumenresearch.ltd/tokenomics.html
-- Whitepaper: https://lumenresearch.ltd/whitepaper.html
-- Docs: https://lumenresearch.ltd/docs.html
-- Swap (pool soon): https://lumenresearch.ltd/swap.html
-- About: https://lumenresearch.ltd/about.html
+- Tokenomics: https://lumenresearch.ltd/tokenomics
+- Whitepaper: https://lumenresearch.ltd/whitepaper
+- Docs: https://lumenresearch.ltd/docs
+- Swap (pool soon): https://lumenresearch.ltd/swap
+- About: https://lumenresearch.ltd/about
 - Agent skill file: https://lumenresearch.ltd/lumen-skill.md
 - Public config (contract addresses): https://lumenresearch.ltd/lab/config.js
 
