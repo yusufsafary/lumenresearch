@@ -112,3 +112,119 @@
   .spec-scale { font-size: 9.5px; letter-spacing: 0.04em; }
   .spec-scale span { white-space: nowrap; }
 }
+
+/* ---- v3 spectacular pass: gauge marker, verdict tiers, sealed archive ---- */
+
+/* verdict gauge: a diamond marker rides the spectrum to the live count */
+.s-marker {
+  position: absolute; top: 50%; left: 0; z-index: 3; width: 15px; height: 15px;
+  transform: translate(-50%, -50%) rotate(45deg);
+  background: var(--spectrum); border: 2px solid #0a1122; border-radius: 3px;
+  box-shadow: 0 0 14px rgba(255, 209, 102, 0.55), 0 2px 8px rgba(0, 0, 0, 0.5);
+  transition: left 1.2s var(--ease); pointer-events: none;
+}
+
+/* verdict tiers under the scale, live tier lit by the board */
+.spec-tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 14px; }
+.spec-tiers .tier {
+  border: 1px solid var(--line-soft); border-radius: 12px; padding: 9px 11px;
+  background: rgba(7, 13, 29, 0.45);
+  transition: border-color .5s ease, background-color .5s ease, box-shadow .5s ease;
+}
+.spec-tiers .tier span {
+  display: block; font-family: "Space Mono", monospace; font-size: 8.8px;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--faint);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.spec-tiers .tier b {
+  font-family: "Fraunces", Georgia, serif; font-weight: 560;
+  font-size: clamp(12.5px, 3.4vw, 16.5px); color: var(--paper); white-space: nowrap;
+}
+#s-tiers[data-active="cold"] .tier[data-tier="cold"] { border-color: rgba(87, 200, 255, 0.65); background: rgba(87, 200, 255, 0.08); box-shadow: 0 0 18px rgba(87, 200, 255, 0.16); }
+#s-tiers[data-active="dev"] .tier[data-tier="dev"] { border-color: rgba(123, 228, 149, 0.6); background: rgba(123, 228, 149, 0.07); box-shadow: 0 0 18px rgba(123, 228, 149, 0.15); }
+#s-tiers[data-active="conf"] .tier[data-tier="conf"] { border-color: rgba(255, 209, 102, 0.65); background: rgba(255, 209, 102, 0.08); box-shadow: 0 0 18px rgba(255, 209, 102, 0.18); }
+@media (max-width: 760px) {
+  .spec-tiers { grid-template-columns: 1fr; }
+  .spec-tiers .tier { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+  .spec-tiers .tier span { white-space: normal; overflow: visible; }
+}
+
+/* newest Finding line under the dossier grid */
+.doss-latest {
+  font-family: "Space Mono", monospace; font-size: 11.5px; letter-spacing: 0.05em;
+  color: var(--brass-2); margin-top: 12px;
+}
+.doss-latest.flash { animation: latestFlash 1.6s ease; }
+@keyframes latestFlash {
+  0% { color: #ffffff; text-shadow: 0 0 14px rgba(255, 209, 102, 0.85); }
+  100% { color: var(--brass-2); text-shadow: none; }
+}
+
+/* sealed Case archive: dossier cards with an ink verdict stamp */
+.archive-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 18px; }
+@media (min-width: 700px) { .archive-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1020px) { .archive-grid { grid-template-columns: repeat(3, 1fr); } }
+.acard {
+  position: relative; overflow: hidden; border: 1px solid var(--line-soft);
+  border-radius: 18px; padding: 18px;
+  background: linear-gradient(180deg, var(--panel-2), var(--panel));
+  animation: riseIn 0.8s cubic-bezier(.22, 1, .36, 1) both;
+}
+.acard:nth-child(2) { animation-delay: 0.06s; }
+.acard:nth-child(3) { animation-delay: 0.12s; }
+.acard:nth-child(4) { animation-delay: 0.18s; }
+.acard:nth-child(5) { animation-delay: 0.24s; }
+.acard:nth-child(6) { animation-delay: 0.30s; }
+.acard::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+.acard[data-verdict="cold"]::before { background: var(--cold); }
+.acard[data-verdict="dev"]::before { background: var(--dev); }
+.acard[data-verdict="conf"]::before { background: var(--spectrum); }
+.acard header { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.acard .acase { font-family: "Fraunces", Georgia, serif; font-weight: 560; font-size: 21px; white-space: nowrap; }
+.acard .adate {
+  font-family: "Space Mono", monospace; font-size: 9.5px; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--faint); text-align: right;
+}
+.acard .asubj {
+  font-family: "Fraunces", Georgia, serif; font-style: italic; font-size: 16.5px;
+  line-height: 1.35; margin-top: 8px; color: var(--paper);
+}
+.acard .astats {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+  margin-top: 14px; border-top: 1px solid var(--line-soft); padding-top: 12px;
+}
+.acard .astats b {
+  display: block; font-family: "Fraunces", Georgia, serif; font-weight: 560;
+  font-size: 19px; line-height: 1.1; font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+.acard .astats span {
+  font-family: "Space Mono", monospace; font-size: 8.5px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--faint); white-space: nowrap;
+}
+.acard .stamp {
+  position: absolute; top: 47%; right: 12px; z-index: 2; pointer-events: none;
+  font-family: "Space Mono", monospace; font-weight: 700; font-size: 11px;
+  letter-spacing: 0.14em; text-transform: uppercase; padding: 6px 10px;
+  border: 2px solid currentColor; border-radius: 6px;
+  background: rgba(7, 13, 29, 0.55);
+  opacity: 0; transform: translateY(-50%) rotate(-7deg) scale(1);
+}
+.acard[data-verdict="cold"] .stamp { color: var(--cold); }
+.acard[data-verdict="dev"] .stamp { color: var(--dev); }
+.acard[data-verdict="conf"] .stamp { color: var(--conf); }
+.acard.stamped .stamp { animation: stampIn 0.5s cubic-bezier(.2, 1.4, .36, 1) forwards; }
+@keyframes stampIn {
+  0% { opacity: 0; transform: translateY(-50%) rotate(6deg) scale(2.2); }
+  60% { opacity: 1; }
+  100% { opacity: 0.94; transform: translateY(-50%) rotate(-7deg) scale(1); }
+}
+.a-note { font-size: 11px; color: var(--faint); margin-top: 12px; letter-spacing: 0.04em; line-height: 1.6; }
+
+@media (prefers-reduced-motion: reduce) {
+  .acard { animation: none; }
+  .acard .stamp { opacity: 0.94; }
+  .acard.stamped .stamp { animation: none; opacity: 0.94; }
+  .s-marker { transition: none; }
+  .doss-latest.flash { animation: none; }
+  .spec-tiers .tier { transition: none; }
+}

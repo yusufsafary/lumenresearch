@@ -114,6 +114,11 @@
     var fill = $("s-fill");
     var pct = Math.min(100, (participants / 100) * 100);
     if (fill) fill.style.clipPath = "inset(0 " + (100 - pct) + "% 0 0)";
+    var marker = $("s-marker");
+    if (marker) marker.style.left = pct + "%";
+    var tiers = $("s-tiers");
+    if (tiers) tiers.setAttribute("data-active", participants > 100 ? "conf" : (participants >= 25 ? "dev" : "cold"));
+    document.body.dataset.researchers = String(participants);
     var proj = $("s-proj");
     if (proj) proj.innerHTML = "Projected verdict · <b>" + verdictOf(participants) + "</b>";
     setText("s-count", fmt(participants) + " unique researchers");
@@ -151,6 +156,11 @@
     setText("d-note", "Case N\u00ba 1 opens by hand, and its window runs to the next three hour boundary in UTC. Every later Case runs a plain three hour window, then seals for good.");
     var fill = $("s-fill");
     if (fill) fill.style.clipPath = "inset(0 100% 0 0)";
+    var marker = $("s-marker");
+    if (marker) marker.style.left = "0%";
+    var tiers = $("s-tiers");
+    if (tiers) tiers.setAttribute("data-active", "");
+    document.body.dataset.researchers = "0";
     var proj = $("s-proj");
     if (proj) proj.innerHTML = "Projected verdict · <b>Awaiting Case 1</b>";
     setText("s-count", "0 unique researchers");

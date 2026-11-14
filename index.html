@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css?v=15">
-<link rel="stylesheet" href="css/home.css?v=2">
+<link rel="stylesheet" href="css/home.css?v=3">
 </head>
 <body>
 <a href="swap" style="display:block;position:relative;z-index:60;background:#070d1d;color:#c9a35c;text-align:center;padding:11px 14px;font-family:'Space Mono',monospace;font-weight:700;font-size:13.5px;letter-spacing:.06em;text-decoration:none;border-bottom:1px solid #c9a35c;">$LUMEN POOLS OPEN 18 NOVEMBER · UNISWAP + PANCAKESWAP →</a>
@@ -34,6 +34,7 @@
 <nav class="navrow">
   <div class="nav-in">
     <a class="link" href="#case">Current Case</a>
+    <a class="link" href="#archive">Archive</a>
     <a class="link" href="#file">File a Finding</a>
     <a class="link" href="#claim">Claim</a>
     <a class="link" href="tokenomics">Tokenomics</a>
@@ -93,13 +94,36 @@
           <div class="fill" id="s-fill"></div>
           <div class="mark" style="left:25%"><i>25 · Developing</i></div>
           <div class="mark" style="left:calc(100% - 1px)"><i>100 · Confirmed</i></div>
+          <div class="s-marker" id="s-marker" aria-hidden="true"></div>
         </div>
         <div class="spec-scale"><span>Cold Case</span><span>Verdict reads at the seal</span></div>
+        <div class="spec-tiers" id="s-tiers">
+          <div class="tier" data-tier="cold"><span>Cold Case · under 25</span><b>2,500 $LUMEN</b></div>
+          <div class="tier" data-tier="dev"><span>Developing · 25 to 100</span><b>12,500 $LUMEN</b></div>
+          <div class="tier" data-tier="conf"><span>Confirmed · over 100</span><b>60,000 $LUMEN</b></div>
+        </div>
         <p class="spec-note" id="s-note">Verdict follows unique researchers at the seal: under 25 stays a Cold Case, 25 to 100 is Developing, over 100 turns Confirmed.</p>
         </div>
       </div>
       <p class="doss-note" id="d-note">Case Nº 1 opens by hand, and its window runs to the next three hour boundary in UTC. Every later Case runs a plain three hour window, then seals for good.</p>
+      <p class="doss-latest" id="d-latest" hidden></p>
     </div>
+  </section>
+
+  <!-- SEALED CASE ARCHIVE -->
+  <section class="sec" id="archive">
+    <div class="sec-head">
+      <span class="kicker">Sealed record</span>
+      <h2>Closed Cases, <em>stamped and filed</em></h2>
+      <p>Every Case seals for good at its three hour boundary. A verdict follows unique researchers who showed up, and each sealed Finding claims once, at a rate its verdict set.</p>
+    </div>
+    <div class="statstrip">
+      <div class="ss-cell"><b id="a-total">0</b><span>Findings filed</span></div>
+      <div class="ss-cell"><b id="a-unclaimed">0</b><span>Sealed · unclaimed</span></div>
+      <div class="ss-cell"><b id="a-claimed">0</b><span>Findings claimed</span></div>
+    </div>
+    <div class="archive-grid" id="archive-grid"></div>
+    <p class="mono a-note" id="a-note">Reading sealed Cases from BNB Chain…</p>
   </section>
 
 
@@ -244,10 +268,11 @@ Rules from the skill file:
 
 <script src="lab/config.js?v=1"></script>
 <script src="js/app.js?v=2"></script>
-<script src="js/board.js?v=1"></script>
+<script src="js/board.js?v=2"></script>
 <script src="js/claim.js?v=1"></script>
-<script src="js/motion.js?v=6"></script>
-<script src="js/beam.js?v=3"></script>
+<script src="js/motion.js?v=7"></script>
+<script src="js/beam.js?v=4"></script>
+<script src="js/archive.js?v=1"></script>
 <script>
 (function () {
   if (!("IntersectionObserver" in window)) return;

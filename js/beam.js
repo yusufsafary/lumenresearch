@@ -38,7 +38,35 @@
     canvas.width = Math.round(W * DPR); canvas.height = Math.round(H * DPR);
     ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
     seedMotes();
+    seedFrags();
     if (reduced) draw(0);
+  }
+
+  /* dossier fragments: archival scraps printed on the plate, lit only
+     when the scan sweep passes over them */
+  var FRAGS = ["FIELD NOTE", "CHAIN OF CUSTODY", "EXHIBIT A", "HANDLE WITH LIGHT",
+    "VERDICT PENDING", "SPECIMEN RECORD", "RESEARCH DESK", "SEALED AT BOUNDARY",
+    "UNDER BEAM", "CASE FILE"];
+  var frags = [];
+  function seedFrags() {
+    frags = [];
+    var n = W < 640 ? 5 : 9;
+    for (var i = 0; i < n; i++) {
+      frags.push({
+        x: 0.05 + Math.random() * 0.86, y: 0.16 + Math.random() * 0.68,
+        s: FRAGS[i % FRAGS.length], sz: 10 + Math.random() * 3
+      });
+    }
+  }
+
+  /* pointer sway: the beam leans toward a fine pointer over the hero */
+  var pxT = 0, pxS = 0;
+  if (!reduced && window.matchMedia && window.matchMedia("(pointer: fine)").matches) {
+    hero.addEventListener("pointermove", function (e) {
+      var r = hero.getBoundingClientRect();
+      pxT = Math.max(-1, Math.min(1, ((e.clientX - r.left) / Math.max(1, r.width) - 0.5) * 2));
+    }, { passive: true });
+    hero.addEventListener("pointerleave", function () { pxT = 0; });
   }
 
   function prismPoint(cx, cy, R, rot, k) {
@@ -52,9 +80,12 @@
     var dv = parseInt((document.body && document.body.dataset.verdict) || "1", 10);
     if (!isNaN(dv)) lvlTarget = Math.max(0, Math.min(3, dv));
     lvl += (lvlTarget - lvl) * 0.02;
-    var cx = W >= 1024 ? W * 0.60 : W * 0.5;
+    pxS += (pxT - pxS) * 0.045;
+    var resN = parseInt((document.body && document.body.dataset.researchers) || "", 10);
+    var energy = isNaN(resN) ? lvl / 3 : Math.min(1, resN / 160);
+    var cx = (W >= 1024 ? W * 0.60 : W * 0.5) + pxS * Math.min(64, W * 0.07);
     var py = W < 640 ? Math.min(H * 0.30, 250) : Math.min(H * 0.36, 300);
-    var fanAlpha = (W < 640 ? 0.11 : 0.14) * (0.55 + lvl * 0.22);
+    var fanAlpha = (W < 640 ? 0.11 : 0.14) * (0.5 + lvl * 0.18 + energy * 0.3);
     var R = Math.max(30, Math.min(52, W * 0.075));
     var rot = Math.sin(t * 0.00016) * 0.5;
     var breathe = 0.82 + 0.18 * Math.sin(t * 0.0007);
@@ -67,7 +98,7 @@
        3 confirmed). A quiet Case throws a narrow blue fan; a crowded Case
        opens the full spectrum. */
     var spread = 0.34 + lvl * 0.11 + 0.04 * Math.sin(t * 0.00023);
-    var baseA = Math.PI / 2 + Math.sin(t * 0.00016) * 0.08;
+    var baseA = Math.PI / 2 + Math.sin(t * 0.00016) * 0.08 + pxS * 0.10;
     var fanLen = H * 1.05;
     for (var i = 0; i < HUES.length; i++) {
       var a = baseA + (i - (HUES.length - 1) / 2) * (spread / HUES.length) * 1.9;
@@ -156,6 +187,28 @@
       ctx.beginPath();
       ctx.arc(x, y, m.r, 0, Math.PI * 2);
       ctx.fill();
+    }
+    ctx.restore();
+
+    /* scan sweep: a line of light travels down the plate and dossier
+       fragments flare as it passes over them */
+    var scanY = reduced ? H * 0.42 : ((t * 0.055) % (H * 1.3)) - H * 0.15;
+    ctx.save();
+    var sg = ctx.createLinearGradient(0, scanY - 60, 0, scanY + 60);
+    sg.addColorStop(0, "rgba(255,240,205,0)");
+    sg.addColorStop(0.5, "rgba(255,240,205,0.055)");
+    sg.addColorStop(1, "rgba(255,240,205,0)");
+    ctx.fillStyle = sg;
+    ctx.fillRect(0, Math.max(0, scanY - 60), W, 120);
+    ctx.fillStyle = "rgba(255,244,214,0.26)";
+    ctx.fillRect(0, scanY, W, 1);
+    for (var fi = 0; fi < frags.length; fi++) {
+      var fg = frags[fi];
+      var dScan = Math.abs(scanY - fg.y * H);
+      var fa = 0.05 + Math.max(0, 1 - dScan / 130) * 0.5;
+      ctx.font = "600 " + fg.sz.toFixed(1) + "px 'Space Mono', ui-monospace, monospace";
+      ctx.fillStyle = "rgba(233,220,192," + fa.toFixed(3) + ")";
+      ctx.fillText(fg.s, fg.x * W, fg.y * H);
     }
     ctx.restore();
 
